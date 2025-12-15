@@ -1,8 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { PriceTable } from "./priceSimulator";
+import { PriceTable } from "@/components/ui/PriceTable";
 
-export default function QuotePrint() {
+export default function QuotePrintPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const quantities = location.state?.quantities || {};

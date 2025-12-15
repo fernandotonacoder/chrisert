@@ -61,7 +61,7 @@ const defaultNavigationLinks = [
   { href: "/", label: "Início", active: true },
   { href: "/#services", label: "Serviços" },
   { href: "/#portfolio", label: "Portfólio" },
-  { href: "/price-simulator", label: "Simular" },
+  { href: "/simulador", label: "Simular" },
   { href: "/#about", label: "Saber mais" },
   { href: "/#contacts", label: "Contactos" },
 ];

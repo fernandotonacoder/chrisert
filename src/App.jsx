@@ -1,10 +1,10 @@
-import './App.css'
-import { Routes, Route } from 'react-router-dom'
-import { Navbar01 } from '@/components/ui/shadcn-io/navbar-01'
-import Hero from './components/ui/hero'
-import CustomFooter from './components/ui/customFooter'
-import PriceSimulator from './pages/priceSimulator'
-import QuotePrint from './pages/quotePrint'
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import { Navbar01 } from "@/components/ui/shadcn-io/navbar-01";
+import Hero from "./components/ui/hero";
+import CustomFooter from "./components/ui/customFooter";
+import PriceSimulatorPage from "./pages/PriceSimulatorPage";
+import QuotePrintPage from "./pages/QuotePrintPage";
 
 function App() {
   return (
@@ -15,15 +15,22 @@ function App() {
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<Hero />} />
-          <Route path="/price-simulator" element={<div className="container mx-auto px-4 py-10"><PriceSimulator /></div>} />
-          <Route path="/quote" element={<QuotePrint />} />
+          <Route
+            path="/simulador"
+            element={
+              <div className="container mx-auto px-4 py-10">
+                <PriceSimulatorPage />
+              </div>
+            }
+          />
+          <Route path="/orcamento" element={<QuotePrintPage />} />
         </Routes>
       </main>
       <div className="print:hidden">
         <CustomFooter />
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
