@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting...</title>
+    <script>
+      // Store the path for redirect after loading
+      sessionStorage.setItem(
+        "redirect",
+        location.pathname + location.search + location.hash
+      );
+      // Redirect to the base path
+      location.replace("/chrisert/");
+    </script>
+  </head>
+  <body>
+    A redirecionar...
+  </body>
+</html>
