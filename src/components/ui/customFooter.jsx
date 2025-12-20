@@ -15,7 +15,7 @@ const logos = [
   {
     name: "Facebook",
     icon: SiFacebook,
-    url: "https://facebook.com",
+    url: "https://facebook.com/chrisert.pt",
   },
   {
     name: "Instagram",
@@ -46,7 +46,12 @@ const CustomFooter = () => (
         <MarqueeContent pauseOnHover={false}>
           {logos.map((logo) => (
             <MarqueeItem className="mx-16 size-12" key={logo.name}>
-              <a href={logo.url}>
+              <a
+                href={logo.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Abrir ${logo.name} (abre nova aba)`}
+              >
                 <logo.icon className="size-full" />
               </a>
             </MarqueeItem>
