@@ -20,7 +20,7 @@ const logos = [
   {
     name: "Instagram",
     icon: SiInstagram,
-    url: "https://www.instagram.com/chrisertr/",
+    url: "https://www.instagram.com/chrisert.pt",
   },
   {
     name: "YouTube",
