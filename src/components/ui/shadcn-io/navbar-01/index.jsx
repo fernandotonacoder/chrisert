@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -20,7 +20,7 @@ const Logo = (props) => {
     <img 
       src="chrisert-logo.png" 
       alt="Chrisert Logo" 
-      className="h-16 w-auto object-contain"
+      className="h-44 w-auto object-contain"
       {...props}
     />
   );
@@ -58,12 +58,12 @@ const HamburgerIcon = ({ className, ...props }) => (
 
 // Default navigation links
 const defaultNavigationLinks = [
-  { href: "/", label: "Início", active: true },
-  { href: "/#services", label: "Serviços" },
-  { href: "/#portfolio", label: "Portfólio" },
-  { href: "/simulador", label: "Simular" },
-  { href: "/#about", label: "Saber mais" },
-  { href: "/#contacts", label: "Contactos" },
+  { href: "/", label: "Início" },
+  { href: "/servicos", label: "Serviços" },
+  { href: "/portfolio", label: "Portfólio" },
+  // { href: "/simulador", label: "Simular" },
+  { href: "/sobre", label: "Saber mais" },
+  { href: "/contactos", label: "Contactos" },
 ];
 
 export const Navbar01 = React.forwardRef(
@@ -71,7 +71,7 @@ export const Navbar01 = React.forwardRef(
     {
       className,
       logo = <Logo />,
-      logoHref = "#",
+      logoHref = "/",
       navigationLinks = defaultNavigationLinks,
       ...props
     },
@@ -79,6 +79,7 @@ export const Navbar01 = React.forwardRef(
   ) => {
     const [isMobile, setIsMobile] = useState(false);
     const containerRef = useRef(null);
+    const location = useLocation();
 
     useEffect(() => {
       const checkWidth = () => {
@@ -122,54 +123,49 @@ export const Navbar01 = React.forwardRef(
         )}
         {...props}
       >
-        <div className="container mx-auto flex h-16 max-w-screen-2xl items-center justify-between gap-4">
-          {/* Left side */}
-          <div className="flex items-center gap-2">
-            {/* Mobile menu trigger */}
-            {isMobile && (
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button
-                    className="group h-9 w-9 hover:bg-accent hover:text-accent-foreground"
-                    variant="ghost"
-                    size="icon"
-                  >
-                    <HamburgerIcon />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent align="start" className="w-48 p-2">
-                  <NavigationMenu className="max-w-none">
-                    <NavigationMenuList className="flex-col items-start gap-1">
-                      {navigationLinks.map((link, index) => (
-                        <NavigationMenuItem key={index} className="w-full">
-                          <Link
-                            to={link.href}
-                            className={cn(
-                              "flex w-full items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground cursor-pointer no-underline",
-                              link.active
-                                ? "bg-accent text-accent-foreground"
-                                : "text-foreground/80"
-                            )}
-                          >
-                            {link.label}
-                          </Link>
-                        </NavigationMenuItem>
-                      ))}
-                    </NavigationMenuList>
-                  </NavigationMenu>
-                </PopoverContent>
-              </Popover>
-            )}
-            {/* Main nav */}
-            <div className="flex items-center gap-6">
-              <Link
-                to="/"
-                className="flex items-center hover:opacity-90 transition-opacity"
-              >
-                {logo}
-              </Link>
-              {/* Navigation menu */}
-              {!isMobile && (
+        <div className="container mx-auto max-w-screen-2xl">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
+            <Link to={logoHref} className="flex items-center shrink-0 mt-4">
+              {logo}
+            </Link>
+            
+            {/* Navigation */}
+            <div className="flex items-center">
+              {isMobile ? (
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      className="group h-9 w-9 hover:bg-accent hover:text-accent-foreground"
+                      variant="ghost"
+                      size="icon"
+                    >
+                      <HamburgerIcon />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent align="start" className="w-48 p-2">
+                    <NavigationMenu className="max-w-none">
+                      <NavigationMenuList className="flex-col items-start gap-1">
+                        {navigationLinks.map((link, index) => (
+                          <NavigationMenuItem key={index} className="w-full">
+                            <Link
+                              to={link.href}
+                              className={cn(
+                                "flex w-full items-center rounded-md px-3 py-2 text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground cursor-pointer no-underline",
+                                location.pathname === link.href
+                                  ? "bg-accent text-accent-foreground"
+                                  : "text-foreground/80"
+                              )}
+                            >
+                              {link.label}
+                            </Link>
+                          </NavigationMenuItem>
+                        ))}
+                      </NavigationMenuList>
+                    </NavigationMenu>
+                  </PopoverContent>
+                </Popover>
+              ) : (
                 <NavigationMenu className="flex">
                   <NavigationMenuList className="gap-1">
                     {navigationLinks.map((link, index) => (
@@ -177,8 +173,8 @@ export const Navbar01 = React.forwardRef(
                         <Link
                           to={link.href}
                           className={cn(
-                            "group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 cursor-pointer no-underline",
-                            link.active
+                            "group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 cursor-pointer no-underline",
+                            location.pathname === link.href
                               ? "bg-accent text-accent-foreground"
                               : "text-foreground/80 hover:text-foreground"
                           )}
@@ -192,28 +188,6 @@ export const Navbar01 = React.forwardRef(
               )}
             </div>
           </div>
-          {/* Right side */}
-          {/* <div className="flex items-center gap-3">
-          <Button
-            variant="ghost"
-            size="sm"
-            className="text-sm font-medium hover:bg-accent hover:text-accent-foreground"
-            onClick={(e) => {
-              e.preventDefault();
-              if (onSignInClick) onSignInClick();
-            }}>
-            {signInText}
-          </Button>
-          <Button
-            size="sm"
-            className="text-sm font-medium px-4 h-9 rounded-md shadow-sm"
-            onClick={(e) => {
-              e.preventDefault();
-              if (onCtaClick) onCtaClick();
-            }}>
-            {ctaText}
-          </Button>
-        </div> */}
         </div>
       </header>
     );

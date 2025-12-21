@@ -35,17 +35,17 @@ const logos = [
 ];
 
 const CustomFooter = () => (
-  <footer className="flex flex-col items-center justify-center gap-8 rounded-xl bg-secondary py-8 pb-18">
-    <p className="mb-0 text-balance font-medium text-muted-foreground">
+  <footer className="flex flex-col items-center justify-center gap-4 rounded-xl bg-secondary py-6">
+    <p className="text-balance font-medium text-muted-foreground">
       Segue-nos nas redes sociais!
     </p>
-    <div className="flex size-full items-center justify-center">
+    <div className="flex w-full items-center justify-center">
       <Marquee>
         <MarqueeFade className="from-secondary" side="left" />
         <MarqueeFade className="from-secondary" side="right" />
-        <MarqueeContent pauseOnHover={false}>
+        <MarqueeContent pauseOnHover={true} speed={30}>
           {logos.map((logo) => (
-            <MarqueeItem className="mx-16 size-12" key={logo.name}>
+            <MarqueeItem className="mx-8 size-10" key={logo.name}>
               <a
                 href={logo.url}
                 target="_blank"
@@ -59,6 +59,17 @@ const CustomFooter = () => (
         </MarqueeContent>
       </Marquee>
     </div>
+    <p className="text-sm text-muted-foreground">
+      © 2026 Chrisert. Desenvolvido por{" "}
+      <a
+        href="https://fernandotonacoder.github.io/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline hover:text-foreground transition-colors"
+      >
+        Fernando Tona
+      </a>
+    </p>
   </footer>
 );
 

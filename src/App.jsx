@@ -1,10 +1,14 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { Navbar01 } from "@/components/ui/shadcn-io/navbar-01";
-import Hero from "./components/ui/hero";
 import CustomFooter from "./components/ui/customFooter";
-import PriceSimulatorPage from "./pages/PriceSimulatorPage";
-import QuotePrintPage from "./pages/QuotePrintPage";
+// import PriceSimulatorPage from "./pages/PriceSimulatorPage";
+// import QuotePrintPage from "./pages/QuotePrintPage";
+import HomePage from "./pages/HomePage";
+import ServicesPage from "./pages/ServicesPage";
+import PortfolioPage from "./pages/PortfolioPage";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
 
 function App() {
   return (
@@ -14,16 +18,20 @@ function App() {
       </div>
       <main className="flex-1">
         <Routes>
-          <Route path="/" element={<Hero />} />
-          <Route
+          <Route path="/" element={<HomePage />} />
+          <Route path="/servicos" element={<ServicesPage />} />
+          <Route path="/portfolio" element={<PortfolioPage />} />
+          <Route path="/sobre" element={<AboutPage />} />
+          {/* <Route
             path="/simulador"
             element={
               <div className="container mx-auto px-4 py-10">
                 <PriceSimulatorPage />
               </div>
             }
-          />
-          <Route path="/orcamento" element={<QuotePrintPage />} />
+          /> */}
+          <Route path="/contactos" element={<ContactPage />} />
+          {/* <Route path="/orcamento" element={<QuotePrintPage />} /> */}
         </Routes>
       </main>
       <div className="print:hidden">
