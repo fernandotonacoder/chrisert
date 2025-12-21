@@ -66,7 +66,7 @@ const defaultNavigationLinks = [
   { href: "/contactos", label: "Contactos" },
 ];
 
-export const Navbar01 = React.forwardRef(
+export const Navbar = React.forwardRef(
   (
     {
       className,
@@ -194,6 +194,6 @@ export const Navbar01 = React.forwardRef(
   }
 );
 
-Navbar01.displayName = "Navbar01";
+Navbar.displayName = "Navbar";
 
 export { Logo, HamburgerIcon };

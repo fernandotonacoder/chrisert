@@ -1,7 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { Navbar01 } from "@/components/ui/shadcn-io/navbar-01";
-import CustomFooter from "./components/ui/customFooter";
+import { Navbar } from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import HomePage from "./pages/HomePage";
 import ServicesPage from "./pages/ServicesPage";
 import PortfolioPage from "./pages/PortfolioPage";
@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="flex flex-col min-h-screen">
       <div className="print:hidden">
-        <Navbar01 />
+        <Navbar />
       </div>
       <main className="flex-1">
         <Routes>
@@ -24,7 +24,7 @@ function App() {
         </Routes>
       </main>
       <div className="print:hidden">
-        <CustomFooter />
+        <Footer />
       </div>
     </div>
   );

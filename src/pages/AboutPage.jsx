@@ -14,7 +14,8 @@ const AboutPage = () => {
             <h2 className="text-2xl font-semibold mb-4">Sobre Nós</h2>
             <p className="text-muted-foreground leading-relaxed">
               A Chrisert é uma empresa dedicada a fornecer aplicação de sistemas de isolamento 
-              térmico ETICS ("Capoto") e serviços de remodelação de alta qualidade para clientes residenciais e comerciais.
+              térmico ETICS ("Capoto") e serviços de remodelação de alta qualidade para clientes 
+              residenciais e comerciais, que opera em Portugal continental.
             </p>
           </section>
           
@@ -44,7 +45,7 @@ const AboutPage = () => {
               <div className="text-center">
                 <h3 className="font-semibold mb-2">Confiança</h3>
                 <p className="text-sm text-muted-foreground">
-                  Relacionamento duradouro com nossos clientes.
+                  Relacionamento duradouro com os nossos clientes.
                 </p>
               </div>
             </div>

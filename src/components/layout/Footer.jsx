@@ -9,7 +9,7 @@ import {
   MarqueeContent,
   MarqueeFade,
   MarqueeItem,
-} from "@/components/ui/shadcn-io/marquee";
+} from "@/components/ui/marquee";
 
 const logos = [
   {

@@ -176,6 +176,7 @@ const ContactPage = () => {
             <p><strong className="text-foreground">Email:</strong> info@chrisert.pt</p>
             <p><strong className="text-foreground">Telefone:</strong> +351 932 741 391</p>
             <p><strong className="text-foreground">Morada:</strong> Rua Subida da Catraia, nº 323 R/C Esquerdo. Águeda 3750-308</p>
+            <p className="mt-4 text-xs">Prestamos serviços apenas em Portugal continental.</p>
           </div>
         </div>
       </div>

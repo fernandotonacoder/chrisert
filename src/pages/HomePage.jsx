@@ -30,7 +30,7 @@ const HomePage = () => {
             
             <p className="text-lg md:text-xl text-white/80 mb-8 leading-relaxed">
               Especialistas em sistemas ETICS ("Capoto"), remodelações e acabamentos 
-              de alta qualidade. Transformamos espaços com eficiência energética e qualidade superior.
+              de alta qualidade, a operar em Portugal continental. Transformamos espaços com eficiência energética, qualidade e estética superior.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
