@@ -48,10 +48,29 @@ const ContactPage = () => {
     },
   });
 
-  const onSubmit = (values) => {
-    console.log("Dados do formulário:", values);
-    alert("Mensagem enviada com sucesso! Entraremos em contacto em breve.");
-    form.reset();
+  const onSubmit = async (values) => {
+    try {
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          "form-name": "contacto",
+          ...values,
+        }).toString(),
+      });
+
+      if (response.ok) {
+        if (import.meta.env.DEV) {
+          console.log("DEV: Formulário simulado. Dados:", values);
+        }
+        alert("Mensagem enviada com sucesso! Entraremos em contacto em breve.");
+        form.reset();
+      } else {
+        alert("Ocorreu um erro. Por favor, tente novamente.");
+      }
+    } catch (error) {
+      alert("Ocorreu um erro. Por favor, tente novamente.");
+    }
   };
 
   return (
@@ -66,7 +85,14 @@ const ContactPage = () => {
         </div>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form
+            name="contacto"
+            method="POST"
+            data-netlify="true"
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-6"
+          >
+            <input type="hidden" name="form-name" value="contacto" />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormField
                 control={form.control}

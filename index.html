@@ -46,6 +46,14 @@
     <link rel="icon" type="image/png" href="/chrisert-icon.png" />
   </head>
   <body>
+    <!-- Netlify forms -->
+    <form name="contacto" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="text" name="subject" />
+      <textarea name="message"></textarea>
+    </form>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
