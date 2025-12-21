@@ -7,6 +7,7 @@ import ServicesPage from "./pages/ServicesPage";
 import PortfolioPage from "./pages/PortfolioPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
           <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/sobre" element={<AboutPage />} />
           <Route path="/contactos" element={<ContactPage />} />
+          <Route path="/404" element={<NotFoundPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
       <div className="print:hidden">

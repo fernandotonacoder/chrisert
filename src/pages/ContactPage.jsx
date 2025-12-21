@@ -14,7 +14,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-// Schema de validação usando Zod
 const contactFormSchema = z.object({
   name: z.string().min(2, {
     message: "O nome deve ter pelo menos 2 caracteres.",
@@ -50,7 +49,6 @@ const ContactPage = () => {
   });
 
   const onSubmit = (values) => {
-    // Aqui podes integrar com um serviço de email (EmailJS, Formspree, etc.)
     console.log("Dados do formulário:", values);
     alert("Mensagem enviada com sucesso! Entraremos em contacto em breve.");
     form.reset();
@@ -173,10 +171,21 @@ const ContactPage = () => {
             Outras formas de contacto
           </h3>
           <div className="space-y-2 text-sm text-muted-foreground">
-            <p><strong className="text-foreground">Email:</strong> info@chrisert.pt</p>
-            <p><strong className="text-foreground">Telefone:</strong> +351 932 741 391</p>
-            <p><strong className="text-foreground">Morada:</strong> Rua Subida da Catraia, nº 323 R/C Esquerdo. Águeda 3750-308</p>
-            <p className="mt-4 text-xs">Prestamos serviços apenas em Portugal continental.</p>
+            <p>
+              <strong className="text-foreground">Email:</strong>{" "}
+              info@chrisert.pt
+            </p>
+            <p>
+              <strong className="text-foreground">Telefone:</strong> +351 932
+              741 391
+            </p>
+            <p>
+              <strong className="text-foreground">Morada:</strong> Rua Subida da
+              Catraia, nº 323 R/C Esquerdo. Águeda 3750-308
+            </p>
+            <p className="mt-4 text-xs">
+              Prestamos serviços apenas em Portugal continental.
+            </p>
           </div>
         </div>
       </div>

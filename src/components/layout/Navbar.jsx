@@ -14,19 +14,17 @@ import {
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 
-// Logo component using the Chrisert PNG
 const Logo = (props) => {
   return (
-    <img 
-      src="chrisert-logo.png" 
-      alt="Chrisert Logo" 
+    <img
+      src="chrisert-logo.png"
+      alt="Chrisert Logo"
       className="h-44 w-auto object-contain"
       {...props}
     />
   );
 };
 
-// Hamburger icon component
 const HamburgerIcon = ({ className, ...props }) => (
   <svg
     className={cn("pointer-events-none", className)}
@@ -56,12 +54,10 @@ const HamburgerIcon = ({ className, ...props }) => (
   </svg>
 );
 
-// Default navigation links
 const defaultNavigationLinks = [
   { href: "/", label: "Início" },
   { href: "/servicos", label: "Serviços" },
   { href: "/portfolio", label: "Portfólio" },
-  // { href: "/simulador", label: "Simular" },
   { href: "/sobre", label: "Saber mais" },
   { href: "/contactos", label: "Contactos" },
 ];
@@ -85,7 +81,7 @@ export const Navbar = React.forwardRef(
       const checkWidth = () => {
         if (containerRef.current) {
           const width = containerRef.current.offsetWidth;
-          setIsMobile(width < 768); // 768px is md breakpoint
+          setIsMobile(width < 768);
         }
       };
 
@@ -101,7 +97,6 @@ export const Navbar = React.forwardRef(
       };
     }, []);
 
-    // Combine refs
     const combinedRef = React.useCallback(
       (node) => {
         containerRef.current = node;
@@ -125,12 +120,10 @@ export const Navbar = React.forwardRef(
       >
         <div className="container mx-auto max-w-screen-2xl">
           <div className="flex items-center justify-between h-20">
-            {/* Logo */}
             <Link to={logoHref} className="flex items-center shrink-0 mt-4">
               {logo}
             </Link>
-            
-            {/* Navigation */}
+
             <div className="flex items-center">
               {isMobile ? (
                 <Popover>

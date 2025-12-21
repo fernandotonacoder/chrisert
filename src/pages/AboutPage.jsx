@@ -8,25 +8,27 @@ const AboutPage = () => {
             Conheça melhor a ChrisERT e a nossa missão.
           </p>
         </div>
-        
+
         <div className="space-y-8">
           <section>
             <h2 className="text-2xl font-semibold mb-4">Sobre Nós</h2>
             <p className="text-muted-foreground leading-relaxed">
-              A Chrisert é uma empresa dedicada a fornecer aplicação de sistemas de isolamento 
-              térmico ETICS ("Capoto") e serviços de remodelação de alta qualidade para clientes 
-              residenciais e comerciais, que opera em Portugal continental.
+              A Chrisert é uma empresa dedicada a fornecer aplicação de sistemas
+              de isolamento térmico ETICS ("Capoto") e serviços de remodelação
+              de alta qualidade para clientes residenciais e comerciais, que
+              opera em Portugal continental.
             </p>
           </section>
-          
+
           <section>
             <h2 className="text-2xl font-semibold mb-4">A Nossa Missão</h2>
             <p className="text-muted-foreground leading-relaxed">
-              Oferecemos soluções personalizadas que atendem às necessidades específicas 
-              de cada projeto, garantindo eficiência energética, qualidade e estética superior.
+              Oferecemos soluções personalizadas que atendem às necessidades
+              específicas de cada projeto, garantindo eficiência energética,
+              qualidade e estética superior.
             </p>
           </section>
-          
+
           <section>
             <h2 className="text-2xl font-semibold mb-4">Valores</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -51,10 +53,11 @@ const AboutPage = () => {
             </div>
           </section>
         </div>
-        
+
         <div className="text-center mt-12 pt-8 border-t">
           <p className="text-muted-foreground">
-            Conteúdo adicional em desenvolvimento. Entre em contacto para mais informações.
+            Conteúdo adicional em desenvolvimento. Entre em contacto para mais
+            informações.
           </p>
         </div>
       </div>
