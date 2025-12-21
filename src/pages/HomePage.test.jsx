@@ -16,10 +16,13 @@ describe("HomePage", () => {
     expect(heading).toHaveTextContent(/isolamento térmico/i);
   });
 
-  it("renders the ETICS badge", () => {
+  it("renders the service badges", () => {
     renderWithRouter(<HomePage />);
 
-    expect(screen.getByText(/especialistas em etics/i)).toBeInTheDocument();
+    const badges = screen.getAllByRole("generic", { hidden: true }).filter(
+      (el) => el.getAttribute("data-slot") === "badge"
+    );
+    expect(badges.length).toBe(4);
   });
 
   it("renders call-to-action buttons", () => {

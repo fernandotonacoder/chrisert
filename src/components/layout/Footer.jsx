@@ -9,7 +9,7 @@ import {
   MarqueeContent,
   MarqueeFade,
   MarqueeItem,
-} from "@/components/ui/marquee";
+} from "@/components/ui/Marquee";
 
 const logos = [
   {

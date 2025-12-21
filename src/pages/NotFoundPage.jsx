@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { BarsScaleFadeIcon } from "@/components/ui/icons/svg-spinners-bars-scale-fade";
+import { Button } from "@/components/ui/Button";
+import { BarsScaleFadeIcon } from "@/components/ui/icons/BarsScaleFadeIcon";
 import { useEffect, useState } from "react";
 
 const NotFoundPage = () => {
