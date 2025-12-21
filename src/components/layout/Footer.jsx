@@ -65,7 +65,7 @@ const CustomFooter = () => (
         href="https://fernandotonacoder.github.io/"
         target="_blank"
         rel="noopener noreferrer"
-        className="underline hover:text-foreground transition-colors"
+        className="font-bold hover:text-foreground transition-colors"
       >
         Fernando Tona
       </a>
