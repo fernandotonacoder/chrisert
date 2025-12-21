@@ -1,12 +1,59 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-PT">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/chrisert-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chrisert</title>
+    <meta
+      name="description"
+      content="Chrisert - Especialistas em sistemas ETICS (Capoto), isolamento térmico, remodelações e acabamentos de alta qualidade em Portugal continental."
+    />
+    <meta name="author" content="Chrisert" />
+    <meta
+      name="keywords"
+      content="ETICS, Capoto, isolamento térmico, remodelações, acabamentos, construção, eficiência energética, Portugal continental, Águeda"
+    />
+    <title>Chrisert - Especialistas em ETICS e Isolamento Térmico</title>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://chrisert.pt/" />
+    <meta
+      property="og:title"
+      content="Chrisert - Especialistas em ETICS e Isolamento Térmico"
+    />
+    <meta
+      property="og:description"
+      content="Especialistas em sistemas ETICS (Capoto), isolamento térmico, remodelações e acabamentos de alta qualidade em Portugal continental."
+    />
+    <meta property="og:image" content="https://chrisert.pt/chrisert-logo.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://chrisert.pt/" />
+    <meta
+      property="twitter:title"
+      content="Chrisert - Especialistas em ETICS e Isolamento Térmico"
+    />
+    <meta
+      property="twitter:description"
+      content="Especialistas em sistemas ETICS (Capoto), isolamento térmico, remodelações e acabamentos de alta qualidade em Portugal continental."
+    />
+    <meta
+      property="twitter:image"
+      content="https://chrisert.pt/chrisert-logo.png"
+    />
+
+    <link rel="icon" type="image/png" href="/chrisert-icon.png" />
   </head>
   <body>
+    <!-- Netlify forms -->
+    <form name="contacto" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="text" name="subject" />
+      <textarea name="message"></textarea>
+    </form>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

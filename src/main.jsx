@@ -15,5 +15,5 @@ createRoot(document.getElementById("root")).render(
     <BrowserRouter basename="/chrisert">
       <App />
     </BrowserRouter>
-  </StrictMode>,
-)
+  </StrictMode>
+);
