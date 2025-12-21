@@ -17,9 +17,9 @@ import { cn } from "@/lib/utils";
 const Logo = (props) => {
   return (
     <img
-      src="chrisert-logo.png"
+      src="chrisert-logo-with-footer-no-bg.png"
       alt="Chrisert Logo"
-      className="h-44 w-auto object-contain"
+      className="h-32 w-auto object-contain"
       {...props}
     />
   );
@@ -28,8 +28,6 @@ const Logo = (props) => {
 const HamburgerIcon = ({ className, ...props }) => (
   <svg
     className={cn("pointer-events-none", className)}
-    width={16}
-    height={16}
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -133,7 +131,7 @@ export const Navbar = React.forwardRef(
                       variant="ghost"
                       size="icon"
                     >
-                      <HamburgerIcon />
+                      <HamburgerIcon className="size-7" />
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent align="start" className="w-48 p-2">

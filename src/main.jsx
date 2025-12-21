@@ -7,7 +7,7 @@ import App from "./App.jsx";
 const redirect = sessionStorage.getItem("redirect");
 if (redirect) {
   sessionStorage.removeItem("redirect");
-  window.history.replaceState(null, "", redirect);
+  window.history.replaceState(null, "", "/chrisert/404");
 }
 
 createRoot(document.getElementById("root")).render(
