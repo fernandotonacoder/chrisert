@@ -22,13 +22,13 @@ const NotFoundPage = () => {
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4">
       <div className="text-center max-w-md">
-        <h1 className="text-8xl font-bold text-[#e8790d] mb-2">404</h1>
+        <h1 className="text-8xl font-bold text-ring mb-2">404</h1>
         <h2 className="text-2xl font-semibold mb-4">Página não encontrada</h2>
         <p className="text-muted-foreground mb-6">
           A página que procura não existe ou foi movida.
         </p>
 
-        <div className="flex items-center justify-center gap-2 text-[#e8790d] font-medium mb-6">
+        <div className="flex items-center justify-center gap-2 text-ring font-medium mb-6">
           <BarsScaleFadeIcon size={20} />
           <span>A redirecionar em {count}...</span>
         </div>

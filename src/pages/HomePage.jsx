@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import chrisertLogo from "/chrisert-logo.png";
 import heroImage from "/hero-work.jpg";
 
 const HomePage = () => {
@@ -12,23 +11,23 @@ const HomePage = () => {
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${heroImage})` }}
         >
-          <div className="absolute inset-0 bg-black/60" />
+          <div className="absolute inset-0 bg-foreground/60" />
         </div>
 
         <div className="relative z-10 container mx-auto px-6 py-24">
           <div className="max-w-3xl">
-            <Badge
-              variant="secondary"
-              className="mb-6 bg-gray-100 text-gray-800"
-            >
-              Especialistas em ETICS
-            </Badge>
+            <div className="flex flex-wrap gap-2 mb-6">
+              <Badge variant="outline" className="bg-background/80">ETICS ("capoto")</Badge>
+              <Badge variant="outline" className="bg-background/80">Barramento</Badge>
+              <Badge variant="outline" className="bg-background/80">Pintura</Badge>
+              <Badge variant="outline" className="bg-background/80">Remodelações</Badge>
+            </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 leading-tight">
               Isolamento térmico de excelência para o seu projeto
             </h1>
 
-            <p className="text-lg md:text-xl text-white/80 mb-8 leading-relaxed">
+            <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 leading-relaxed">
               Especialistas em sistemas ETICS ("Capoto"), remodelações e
               acabamentos de alta qualidade, a operar em Portugal continental.
               Transformamos espaços com eficiência energética, qualidade e
@@ -39,7 +38,7 @@ const HomePage = () => {
               <Button
                 asChild
                 size="lg"
-                className="text-base bg-black text-white border border-white hover:bg-[#e8790d] hover:text-white"
+                className="text-base bg-primary text-primary-foreground border border-primary-foreground hover:bg-ring hover:text-primary-foreground"
               >
                 <Link to="/contactos">Pedir Orçamento</Link>
               </Button>
@@ -47,7 +46,7 @@ const HomePage = () => {
                 asChild
                 variant="outline"
                 size="lg"
-                className="text-base bg-transparent text-white border-white hover:bg-white hover:text-black"
+                className="text-base bg-transparent text-primary-foreground border-primary-foreground hover:bg-primary-foreground hover:text-primary"
               >
                 <Link to="/servicos">Ver Serviços</Link>
               </Button>
