@@ -17,9 +17,9 @@ import { cn } from "@/lib/utils";
 const Logo = (props) => {
   return (
     <img
-      src="chrisert-logo.png"
+      src="chrisert-logo-with-footer-no-bg.png"
       alt="Chrisert Logo"
-      className="h-44 w-auto object-contain"
+      className="h-32 w-auto object-contain"
       {...props}
     />
   );
