@@ -1,0 +1,14 @@
+name: Quality Checks
+
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  test:
+    uses: ./.github/workflows/test.yml
+
+  lint:
+    uses: ./.github/workflows/lint.yml
