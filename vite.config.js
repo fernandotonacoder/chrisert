@@ -6,8 +6,11 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// GitHub Pages (dev branch) uses "/chrisert/", Netlify (main branch) uses "/"
+const base = process.env.DEPLOY_TARGET === "github-pages" ? "/chrisert/" : "/";
+
 export default defineConfig({
-  base: "/chrisert/",
+  base,
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
