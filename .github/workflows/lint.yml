@@ -1,4 +1,4 @@
-name: Test
+name: Lint
 
 on:
   pull_request:
@@ -8,8 +8,10 @@ on:
   workflow_call:
 
 jobs:
-  test:
+  lint:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -23,8 +25,5 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run tests
-        run: npm test
-
-      - name: Verify build
-        run: npm run build
+      - name: Run linting
+        run: npm run lint

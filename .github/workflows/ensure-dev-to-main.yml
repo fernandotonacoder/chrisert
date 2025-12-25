@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  check-source-branch:
+  ensure-dev-to-main:
     runs-on: ubuntu-latest
     steps:
       - name: Verify source is dev
