@@ -24,6 +24,22 @@ export default defineConfig([
     },
     rules: {
       "no-unused-vars": ["error", { varsIgnorePattern: "^[A-Z_]" }],
+      "react-refresh/only-export-components": [
+        "warn",
+        { allowConstantExport: true },
+      ],
+    },
+  },
+  {
+    files: ["vite.config.js"],
+    languageOptions: {
+      globals: globals.node,
+    },
+  },
+  {
+    files: ["src/components/ui/**/*.jsx"],
+    rules: {
+      "react-refresh/only-export-components": "off",
     },
   },
 ]);
