@@ -68,7 +68,7 @@ const ContactPage = () => {
       } else {
         alert("Ocorreu um erro. Por favor, tente novamente.");
       }
-    } catch (error) {
+    } catch {
       alert("Ocorreu um erro. Por favor, tente novamente.");
     }
   };
