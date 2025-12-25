@@ -110,6 +110,7 @@ export const Navbar = React.forwardRef(
     return (
       <header
         ref={combinedRef}
+        style={{ colorScheme: "only light" }}
         className={cn(
           "sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-4 md:px-6 [&_*]:no-underline",
           className
