@@ -6,6 +6,8 @@ on:
       - main
       - dev
 
+permissions: {}
+
 jobs:
   test:
     uses: ./.github/workflows/test.yml
