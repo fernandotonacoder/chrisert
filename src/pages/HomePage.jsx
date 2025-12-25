@@ -17,10 +17,18 @@ const HomePage = () => {
         <div className="relative z-10 container mx-auto px-6 py-24">
           <div className="max-w-3xl">
             <div className="flex flex-wrap gap-2 mb-6">
-              <Badge variant="outline" className="bg-background/80">ETICS</Badge>
-              <Badge variant="outline" className="bg-background/80">Barramento</Badge>
-              <Badge variant="outline" className="bg-background/80">Pintura</Badge>
-              <Badge variant="outline" className="bg-background/80">Remodelações</Badge>
+              <Badge variant="outline" className="bg-background/80">
+                Isolamento
+              </Badge>
+              <Badge variant="outline" className="bg-background/80">
+                Barramento
+              </Badge>
+              <Badge variant="outline" className="bg-background/80">
+                Pintura
+              </Badge>
+              <Badge variant="outline" className="bg-background/80">
+                ETICS
+              </Badge>
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 leading-tight">

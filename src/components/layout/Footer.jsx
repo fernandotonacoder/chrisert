@@ -1,8 +1,8 @@
 import {
   SiFacebook,
   SiInstagram,
-  SiYoutube,
-  SiTiktok,
+  // SiYoutube,
+  // SiTiktok,
 } from "@icons-pack/react-simple-icons";
 import {
   Marquee,
@@ -22,16 +22,16 @@ const logos = [
     icon: SiInstagram,
     url: "https://www.instagram.com/chrisert.pt",
   },
-  {
-    name: "YouTube",
-    icon: SiYoutube,
-    url: "https://youtube.com",
-  },
-  {
-    name: "TikTok",
-    icon: SiTiktok,
-    url: "https://tiktok.com",
-  },
+  // {
+  //   name: "YouTube",
+  //   icon: SiYoutube,
+  //   url: "https://youtube.com",
+  // },
+  // {
+  //   name: "TikTok",
+  //   icon: SiTiktok,
+  //   url: "https://tiktok.com",
+  // },
 ];
 
 const CustomFooter = () => (

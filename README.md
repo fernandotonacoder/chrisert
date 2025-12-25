@@ -1,5 +1,10 @@
 # Chrisert - Business Website
 
+[![Production](https://github.com/fernandotonacoder/chrisert/actions/workflows/netlify-deploy.yml/badge.svg?branch=main)](https://github.com/fernandotonacoder/chrisert/actions/workflows/netlify-deploy.yml)
+[![Staging](https://github.com/fernandotonacoder/chrisert/actions/workflows/github-pages-deploy.yml/badge.svg?branch=dev)](https://github.com/fernandotonacoder/chrisert/actions/workflows/github-pages-deploy.yml)
+[![Tests](https://github.com/fernandotonacoder/chrisert/actions/workflows/test.yml/badge.svg)](https://github.com/fernandotonacoder/chrisert/actions/workflows/test.yml)
+[![Lint](https://github.com/fernandotonacoder/chrisert/actions/workflows/lint.yml/badge.svg)](https://github.com/fernandotonacoder/chrisert/actions/workflows/lint.yml)
+
 A business website for a fully-working construction services company. 
 
 ## 📋 About
@@ -56,6 +61,9 @@ npm run dev
 # Run development server
 npm run dev
 
+# Run dev server accessible from other devices (e.g., mobile)
+npm run dev -- --host
+
 # Build for production
 npm run build
 
@@ -68,8 +76,20 @@ npm run preview
 
 ## 🌐 Live Demo
 
-- **Production:** (_temporarily unavailable_)
+- **Production:** [https://chrisert.pt](https://chrisert.pt)
 - **Staging:** [https://fernandotonacoder.github.io/chrisert/](https://fernandotonacoder.github.io/chrisert/)
+
+## 🔄 CI/CD Pipeline
+
+| Branch | Environment | Checks |
+|--------|-------------|--------|
+| `dev` | GitHub Pages (Staging) | Tests, Lint, Build |
+| `main` | Netlify (Production) | Tests, Lint, Security Audit, Build |
+
+- **Branch Protection:** Direct merges to `main` are blocked; all changes must go through `dev` first
+- **Automated Testing:** Vitest runs on every PR to `dev` and `main`
+- **Security Audits:** Weekly dependency audits + on every PR
+- **Deployments:** Automatic on push to respective branches
 
 ## 📁 Project Structure
 
