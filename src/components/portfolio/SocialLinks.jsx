@@ -22,26 +22,29 @@ const socialLinks = [
 const SocialLinks = () => {
   return (
     <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
-      {socialLinks.map(
-        ({ name, icon: Icon, title, description, url, label }) => (
-          <div key={name} className="p-8 bg-muted/50 rounded-xl">
+      {socialLinks.map((social) => {
+        const Icon = social.icon;
+        return (
+          <div key={social.name} className="p-8 bg-muted/50 rounded-xl">
             <div className="flex flex-col items-center gap-4">
               <Icon className="size-12 text-primary" />
-              <h2 className="text-xl font-semibold">{title}</h2>
-              <p className="text-muted-foreground text-sm">{description}</p>
+              <h2 className="text-xl font-semibold">{social.title}</h2>
+              <p className="text-muted-foreground text-sm">
+                {social.description}
+              </p>
               <a
-                href={url}
+                href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-lg font-medium hover:bg-primary/90 transition-colors"
               >
                 <Icon className="size-5" />
-                {label}
+                {social.label}
               </a>
             </div>
           </div>
-        )
-      )}
+        );
+      })}
     </div>
   );
 };

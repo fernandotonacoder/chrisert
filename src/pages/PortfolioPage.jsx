@@ -34,8 +34,12 @@ const PortfolioPage = () => {
   // Sync carousel state
   useEffect(() => {
     if (!api) return;
-    setCurrent(api.selectedScrollSnap());
-    api.on("select", () => setCurrent(api.selectedScrollSnap()));
+
+    const onSelect = () => setCurrent(api.selectedScrollSnap());
+    onSelect();
+    api.on("select", onSelect);
+
+    return () => api.off("select", onSelect);
   }, [api]);
 
   return (
