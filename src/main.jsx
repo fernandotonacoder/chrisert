@@ -7,10 +7,12 @@ import App from "./App.jsx";
 // Use "/chrisert" for GitHub Pages, "/" for Netlify
 const basename = import.meta.env.BASE_URL.replace(/\/$/, "") || "/";
 
+// Handle GitHub Pages SPA redirect
 const redirect = sessionStorage.getItem("redirect");
 if (redirect) {
   sessionStorage.removeItem("redirect");
-  window.history.replaceState(null, "", `${basename}/404`);
+  // Redirect to the original path the user requested
+  window.history.replaceState(null, "", redirect);
 }
 
 createRoot(document.getElementById("root")).render(
