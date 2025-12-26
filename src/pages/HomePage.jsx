@@ -48,7 +48,7 @@ const HomePage = () => {
                 size="lg"
                 className="text-base bg-primary text-primary-foreground border border-primary-foreground hover:bg-ring hover:text-primary-foreground"
               >
-                <Link to="/contactos">Pedir Orçamento</Link>
+                <Link to="/contactos">Entrar em contacto</Link>
               </Button>
               <Button
                 asChild
