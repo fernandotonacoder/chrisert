@@ -19,9 +19,9 @@ describe("HomePage", () => {
   it("renders the service badges", () => {
     renderWithRouter(<HomePage />);
 
-    const badges = screen.getAllByRole("generic", { hidden: true }).filter(
-      (el) => el.getAttribute("data-slot") === "badge"
-    );
+    const badges = screen
+      .getAllByRole("generic", { hidden: true })
+      .filter((el) => el.getAttribute("data-slot") === "badge");
     expect(badges.length).toBe(4);
   });
 
@@ -29,7 +29,7 @@ describe("HomePage", () => {
     renderWithRouter(<HomePage />);
 
     expect(
-      screen.getByRole("link", { name: /pedir orçamento/i })
+      screen.getByRole("link", { name: /entrar em contacto/i })
     ).toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: /ver serviços/i })
