@@ -1,10 +1,15 @@
 import { render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import { describe, it, expect } from "vitest";
 import PortfolioPage from "./PortfolioPage";
 
 describe("PortfolioPage", () => {
   it("renders the page title and description", () => {
-    render(<PortfolioPage />);
+    render(
+      <MemoryRouter>
+        <PortfolioPage />
+      </MemoryRouter>
+    );
 
     expect(
       screen.getByRole("heading", { level: 1, name: /portfólio/i })
@@ -15,14 +20,22 @@ describe("PortfolioPage", () => {
   });
 
   it("renders carousel with images", () => {
-    render(<PortfolioPage />);
+    render(
+      <MemoryRouter>
+        <PortfolioPage />
+      </MemoryRouter>
+    );
 
     const images = screen.getAllByRole("img");
     expect(images.length).toBeGreaterThan(0);
   });
 
   it("renders social media links", () => {
-    render(<PortfolioPage />);
+    render(
+      <MemoryRouter>
+        <PortfolioPage />
+      </MemoryRouter>
+    );
 
     expect(screen.getByText(/@chrisert.pt/i)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /@chrisert.pt/i })).toHaveAttribute(
