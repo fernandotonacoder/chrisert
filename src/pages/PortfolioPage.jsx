@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
   Carousel,
   CarouselContent,
@@ -6,6 +7,7 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "@/components/ui/Carousel";
+import { Button } from "@/components/ui/Button";
 import Lightbox from "@/components/portfolio/Lightbox";
 import SocialLinks from "@/components/portfolio/SocialLinks";
 import { portfolioImages } from "@/data/portfolioImages";
@@ -92,6 +94,26 @@ const PortfolioPage = () => {
 
         <SocialLinks />
       </div>
+
+      {/* CTA Section */}
+      <section className="py-16 px-4 mt-12 bg-primary text-primary-foreground rounded-lg">
+        <div className="container mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Gostou do que viu?
+          </h2>
+          <p className="text-lg mb-8 opacity-90">
+            Peça já o seu orçamento gratuito e sem compromisso.
+          </p>
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="btn-cta-inverted"
+          >
+            <Link to="/contactos">Pedir orçamento</Link>
+          </Button>
+        </div>
+      </section>
 
       {isLightboxOpen && (
         <Lightbox

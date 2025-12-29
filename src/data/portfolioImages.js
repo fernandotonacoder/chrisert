@@ -5,7 +5,8 @@ import carousel04 from "@/assets/carousel-photos/carousel-04.jpg";
 import carousel05 from "@/assets/carousel-photos/carousel-05.jpeg";
 import carousel06 from "@/assets/carousel-photos/carousel-06.jpeg";
 import carousel07 from "@/assets/carousel-photos/carousel-07.jpeg";
-import carousel08 from "@/assets/carousel-photos/carousel-08.jpg";
+import carousel08 from "@/assets/carousel-photos/carousel-08.jpeg";
+import carousel09 from "@/assets/carousel-photos/carousel-09.jpg";
 
 export const portfolioImages = [
   { id: 1, image: carousel01 },
@@ -16,4 +17,5 @@ export const portfolioImages = [
   { id: 6, image: carousel06 },
   { id: 7, image: carousel07 },
   { id: 8, image: carousel08 },
+  { id: 9, image: carousel09 },
 ];
