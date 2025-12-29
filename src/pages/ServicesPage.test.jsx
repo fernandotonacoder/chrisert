@@ -1,34 +1,84 @@
 import { render, screen } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 import { describe, it, expect } from "vitest";
 import ServicesPage from "./ServicesPage";
 
+const renderWithRouter = (component) => {
+  return render(<BrowserRouter>{component}</BrowserRouter>);
+};
+
 describe("ServicesPage", () => {
   it("renders the page title", () => {
-    render(<ServicesPage />);
+    renderWithRouter(<ServicesPage />);
 
     expect(
-      screen.getByRole("heading", { level: 1, name: /serviços/i })
+      screen.getByRole("heading", { level: 1, name: /os nossos serviços/i })
     ).toBeInTheDocument();
   });
 
-  it("renders the ETICS service card", () => {
-    render(<ServicesPage />);
+  it("renders all service cards", () => {
+    renderWithRouter(<ServicesPage />);
 
-    expect(screen.getByText(/sistema etics/i)).toBeInTheDocument();
+    // Verifica os títulos dos cards de serviços (h3)
     expect(
-      screen.getByText(/isolamento térmico pelo exterior/i)
+      screen.getByRole("heading", { name: /sistema etics/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /pintura exterior/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /barramento/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /recuperação de fachadas/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /impermeabilização/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /manutenção de exteriores/i })
     ).toBeInTheDocument();
   });
 
-  it("renders the remodeling service card", () => {
-    render(<ServicesPage />);
+  it("renders the ETICS benefits section", () => {
+    renderWithRouter(<ServicesPage />);
 
-    expect(screen.getByText(/remodelações/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /porquê escolher etics/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /conforto térmico/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /poupança energética/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /sustentabilidade/i })
+    ).toBeInTheDocument();
   });
 
-  it("renders the consulting service card", () => {
-    render(<ServicesPage />);
+  it("renders the process steps section", () => {
+    renderWithRouter(<ServicesPage />);
 
-    expect(screen.getByText(/consultoria/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /como trabalhamos/i })
+    ).toBeInTheDocument();
+    expect(screen.getByText("01")).toBeInTheDocument();
+    expect(screen.getByText("02")).toBeInTheDocument();
+    expect(screen.getByText("03")).toBeInTheDocument();
+    expect(screen.getByText("04")).toBeInTheDocument();
+  });
+
+  it("renders the CTA section with contact link", () => {
+    renderWithRouter(<ServicesPage />);
+
+    expect(
+      screen.getByRole("heading", {
+        name: /pronto para transformar o exterior/i,
+      })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /entrar em contacto/i })
+    ).toHaveAttribute("href", "/contactos");
   });
 });

@@ -107,16 +107,56 @@ const HomePage = () => {
       </section>
 
       <section className="py-20 px-6">
+        <div className="container mx-auto">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
+              Quem Somos
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-12 text-center max-w-2xl mx-auto">
+              A Chrisert é uma empresa dedicada à aplicação de sistemas de
+              isolamento térmico ETICS ("Capoto") e serviços de renovação de
+              exteriores de alta qualidade para clientes residenciais e
+              comerciais, a operar em Portugal continental.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border rounded-lg overflow-hidden">
+              <div className="text-center p-8 bg-background">
+                <h3 className="text-lg font-semibold mb-2">Qualidade</h3>
+                <p className="text-sm text-muted-foreground">
+                  Compromisso com a excelência em todos os projetos.
+                </p>
+              </div>
+              <div className="text-center p-8 bg-background">
+                <h3 className="text-lg font-semibold mb-2">Inovação</h3>
+                <p className="text-sm text-muted-foreground">
+                  Sempre procuramos as melhores soluções técnicas.
+                </p>
+              </div>
+              <div className="text-center p-8 bg-background">
+                <h3 className="text-lg font-semibold mb-2">Confiança</h3>
+                <p className="text-sm text-muted-foreground">
+                  Relacionamento duradouro com os nossos clientes.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 px-6 bg-primary text-primary-foreground">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Pronto para transformar o seu espaço?
           </h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Entre em contacto connosco para um orçamento gratuito e sem
-            compromisso.
+          <p className="text-lg mb-8 max-w-2xl mx-auto opacity-90">
+            Entre em contacto connosco, sem compromisso.
           </p>
-          <Button asChild size="lg" className="text-base">
-            <Link to="/contactos">Contacte-nos Hoje</Link>
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="text-base bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+          >
+            <Link to="/contactos">Entrar em contacto</Link>
           </Button>
         </div>
       </section>

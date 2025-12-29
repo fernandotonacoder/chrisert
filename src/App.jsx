@@ -5,7 +5,7 @@ import Footer from "@/components/layout/Footer";
 import HomePage from "./pages/HomePage";
 import ServicesPage from "./pages/ServicesPage";
 import PortfolioPage from "./pages/PortfolioPage";
-import AboutPage from "./pages/AboutPage";
+import FAQPage from "./pages/FAQPage";
 import ContactPage from "./pages/ContactPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
@@ -20,7 +20,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/servicos" element={<ServicesPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
-          <Route path="/sobre" element={<AboutPage />} />
+          <Route path="/faq" element={<FAQPage />} />
           <Route path="/contactos" element={<ContactPage />} />
           <Route path="/404" element={<NotFoundPage />} />
           <Route path="*" element={<NotFoundPage />} />

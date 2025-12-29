@@ -22,22 +22,12 @@ const logos = [
     icon: SiInstagram,
     url: "https://www.instagram.com/chrisert.pt",
   },
-  // {
-  //   name: "YouTube",
-  //   icon: SiYoutube,
-  //   url: "https://youtube.com",
-  // },
-  // {
-  //   name: "TikTok",
-  //   icon: SiTiktok,
-  //   url: "https://tiktok.com",
-  // },
 ];
 
 const CustomFooter = () => (
   <footer className="flex flex-col items-center justify-center gap-4 rounded-xl bg-secondary py-6">
     <p className="text-balance font-medium text-muted-foreground">
-      Segue-nos nas redes sociais!
+      Siga-nos nas redes sociais!
     </p>
     <div className="flex w-full items-center justify-center">
       <Marquee>
