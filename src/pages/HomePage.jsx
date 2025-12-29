@@ -109,10 +109,10 @@ const HomePage = () => {
       <section className="py-20 px-6">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
               Quem Somos
             </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-12 text-center max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-center mb-12">
               A Chrisert é uma empresa dedicada à aplicação de sistemas de
               isolamento térmico ETICS ("Capoto") e serviços de renovação de
               exteriores de alta qualidade para clientes residenciais e
@@ -154,7 +154,7 @@ const HomePage = () => {
             asChild
             size="lg"
             variant="outline"
-            className="text-base bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+            className="btn-cta-inverted"
           >
             <Link to="/contactos">Entrar em contacto</Link>
           </Button>

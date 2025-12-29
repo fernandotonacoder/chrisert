@@ -11,7 +11,7 @@ const ServicesPage = () => {
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             Os Nossos Serviços
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Especialistas em soluções para exteriores. Desde isolamento térmico
             ETICS até recuperação de fachadas, oferecemos serviços de excelência
             para valorizar e proteger o seu edifício.
@@ -117,12 +117,7 @@ const ServicesPage = () => {
           <p className="text-lg mb-8 opacity-90">
             Entre em contacto connosco, sem compromisso.
           </p>
-          <Button
-            asChild
-            size="lg"
-            variant="outline"
-            className="text-base bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
-          >
+          <Button asChild size="lg" variant="outline" className="btn-cta-inverted">
             <Link to="/contactos">Entrar em contacto</Link>
           </Button>
         </div>

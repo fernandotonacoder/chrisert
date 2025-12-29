@@ -32,9 +32,16 @@ const FAQPage = () => {
             {faqCategories.map((category) => (
               <div key={category.id}>
                 <h2 className="text-2xl font-bold mb-6">{category.title}</h2>
-                <Accordion type="single" collapsible className="border rounded-lg px-4">
+                <Accordion
+                  type="single"
+                  collapsible
+                  className="border rounded-lg px-4"
+                >
                   {category.questions.map((item, index) => (
-                    <AccordionItem key={index} value={`${category.id}-${index}`}>
+                    <AccordionItem
+                      key={index}
+                      value={`${category.id}-${index}`}
+                    >
                       <AccordionTrigger className="text-base">
                         {item.question}
                       </AccordionTrigger>
@@ -113,7 +120,7 @@ const FAQPage = () => {
             asChild
             size="lg"
             variant="outline"
-            className="text-base bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+            className="btn-cta-inverted"
           >
             <Link to="/contactos">Falar com um técnico</Link>
           </Button>

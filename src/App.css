@@ -56,3 +56,10 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  /* CTA Button (inverted for dark sections) */
+  .btn-cta-inverted {
+    @apply text-base bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary;
+  }
+}
