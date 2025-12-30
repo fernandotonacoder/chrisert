@@ -56,7 +56,7 @@ const defaultNavigationLinks = [
   { href: "/", label: "Início" },
   { href: "/servicos", label: "Serviços" },
   { href: "/portfolio", label: "Portfólio" },
-  { href: "/sobre", label: "Saber mais" },
+  { href: "/faq", label: "FAQ" },
   { href: "/contactos", label: "Contactos" },
 ];
 

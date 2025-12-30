@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/Button";
 import { BarsScaleFadeIcon } from "@/components/ui/icons/BarsScaleFadeIcon";
+import SEO from "@/components/SEO";
 import { useEffect, useState } from "react";
 
 const NotFoundPage = () => {
@@ -21,6 +22,10 @@ const NotFoundPage = () => {
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4">
+      <SEO
+        title="Página Não Encontrada"
+        description="A página que procura não existe."
+      />
       <div className="text-center max-w-md">
         <h1 className="text-8xl font-bold text-ring mb-2">404</h1>
         <h2 className="text-2xl font-semibold mb-4">Página não encontrada</h2>
