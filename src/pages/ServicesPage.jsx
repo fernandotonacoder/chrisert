@@ -22,29 +22,39 @@ const ServicesPage = () => {
       <section className="py-16 px-4">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <div
-                key={index}
-                className="p-6 border rounded-lg bg-background hover:shadow-lg transition-shadow"
-              >
-                <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
-                <p className="text-muted-foreground mb-4">
-                  {service.description}
-                </p>
-                <ul className="space-y-2">
-                  {service.features.map((feature, idx) => (
-                    <li
-                      key={idx}
-                      className="flex items-center gap-2 text-sm text-muted-foreground"
-                    >
-                      <span className="text-primary">✓</span>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            {services.map((service, index) => {
+              const IconComponent = service.icon;
+              return (
+                <div
+                  key={index}
+                  className="p-6 border rounded-lg bg-background hover:shadow-lg transition-shadow"
+                >
+                  <div className="mb-4">
+                    <IconComponent
+                      className={`w-10 h-10 ${service.iconColor}`}
+                      strokeWidth={1.5}
+                    />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-muted-foreground mb-4">
+                    {service.description}
+                  </p>
+                  <ul className="space-y-2">
+                    {service.features.map((feature, idx) => (
+                      <li
+                        key={idx}
+                        className="flex items-center gap-2 text-sm text-muted-foreground"
+                      >
+                        <span className="text-primary">✓</span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -63,18 +73,28 @@ const ServicesPage = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {eticsBenefits.map((benefit, index) => (
-              <div
-                key={index}
-                className="text-center p-6 bg-background rounded-lg border"
-              >
-                <div className="text-3xl mb-3">{benefit.icon}</div>
-                <h3 className="text-lg font-semibold mb-2">{benefit.title}</h3>
-                <p className="text-sm text-muted-foreground">
-                  {benefit.description}
-                </p>
-              </div>
-            ))}
+            {eticsBenefits.map((benefit, index) => {
+              const IconComponent = benefit.icon;
+              return (
+                <div
+                  key={index}
+                  className="text-center p-6 bg-background rounded-lg border"
+                >
+                  <div className="flex justify-center mb-3">
+                    <IconComponent
+                      className={`w-8 h-8 ${benefit.iconColor}`}
+                      strokeWidth={1.5}
+                    />
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {benefit.description}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
