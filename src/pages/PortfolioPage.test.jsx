@@ -1,15 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { HelmetProvider } from "react-helmet-async";
 import { describe, it, expect } from "vitest";
 import PortfolioPage from "./PortfolioPage";
 
 const renderWithProviders = (component) => {
-  return render(
-    <HelmetProvider>
-      <MemoryRouter>{component}</MemoryRouter>
-    </HelmetProvider>
-  );
+  return render(<MemoryRouter>{component}</MemoryRouter>);
 };
 
 describe("PortfolioPage", () => {

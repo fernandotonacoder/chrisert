@@ -1,15 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
-import { HelmetProvider } from "react-helmet-async";
 import { describe, it, expect } from "vitest";
 import ServicesPage from "./ServicesPage";
 
 const renderWithRouter = (component) => {
-  return render(
-    <HelmetProvider>
-      <BrowserRouter>{component}</BrowserRouter>
-    </HelmetProvider>
-  );
+  return render(<BrowserRouter>{component}</BrowserRouter>);
 };
 
 describe("ServicesPage", () => {

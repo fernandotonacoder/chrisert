@@ -1,5 +1,3 @@
-import { Helmet } from "react-helmet-async";
-
 const SEO = ({
   title,
   description,
@@ -25,9 +23,9 @@ const SEO = ({
   const fullImage = ogImage || defaultImage;
   const fullCanonical = canonical ? `${baseUrl}${canonical}` : baseUrl;
 
+  // React 19 native document metadata support
   return (
-    <Helmet>
-      {/* Standard Metadata */}
+    <>
       <title>{fullTitle}</title>
       <meta name="description" content={fullDescription} />
       <meta name="keywords" content={fullKeywords} />
@@ -47,7 +45,7 @@ const SEO = ({
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={fullDescription} />
       <meta name="twitter:image" content={fullImage} />
-    </Helmet>
+    </>
   );
 };
 

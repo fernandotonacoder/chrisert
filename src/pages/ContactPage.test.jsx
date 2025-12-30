@@ -1,10 +1,9 @@
 import { render, screen } from "@testing-library/react";
-import { HelmetProvider } from "react-helmet-async";
 import { describe, it, expect } from "vitest";
 import ContactPage from "./ContactPage";
 
 const renderWithProviders = (component) => {
-  return render(<HelmetProvider>{component}</HelmetProvider>);
+  return render(component);
 };
 
 describe("ContactPage", () => {
