@@ -4,6 +4,7 @@ import * as z from "zod";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";
+import SEO from "@/components/SEO";
 import {
   Form,
   FormControl,
@@ -75,9 +76,16 @@ const ContactPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-10">
+      <SEO
+        title="Contactos"
+        description="Entre em contacto com a Chrisert para orçamentos gratuitos de isolamento térmico e obras em fachadas."
+        canonical="/contactos"
+      />
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-4">Entre em Contacto</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            Entre em Contacto
+          </h1>
           <p className="text-lg text-muted-foreground">
             Tem um projeto em mente? Gostaríamos de saber mais sobre as suas
             necessidades.
@@ -89,10 +97,16 @@ const ContactPage = () => {
             name="contacto"
             method="POST"
             data-netlify="true"
+            netlify-honeypot="bot-field"
             onSubmit={form.handleSubmit(onSubmit)}
             className="space-y-6"
           >
             <input type="hidden" name="form-name" value="contacto" />
+            <p className="hidden">
+              <label>
+                Don't fill this out if you're human: <input name="bot-field" />
+              </label>
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormField
                 control={form.control}

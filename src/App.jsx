@@ -2,10 +2,11 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { Navbar } from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { BackToTop } from "@/components/ui/BackToTop";
 import HomePage from "./pages/HomePage";
 import ServicesPage from "./pages/ServicesPage";
 import PortfolioPage from "./pages/PortfolioPage";
-import AboutPage from "./pages/AboutPage";
+import FAQPage from "./pages/FAQPage";
 import ContactPage from "./pages/ContactPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
@@ -20,7 +21,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/servicos" element={<ServicesPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
-          <Route path="/sobre" element={<AboutPage />} />
+          <Route path="/faq" element={<FAQPage />} />
           <Route path="/contactos" element={<ContactPage />} />
           <Route path="/404" element={<NotFoundPage />} />
           <Route path="*" element={<NotFoundPage />} />
@@ -29,6 +30,7 @@ function App() {
       <div className="print:hidden">
         <Footer />
       </div>
+      <BackToTop />
     </div>
   );
 }
