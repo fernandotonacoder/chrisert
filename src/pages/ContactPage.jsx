@@ -4,6 +4,7 @@ import * as z from "zod";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";
+import SEO from "@/components/SEO";
 import {
   Form,
   FormControl,
@@ -75,6 +76,11 @@ const ContactPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-10">
+      <SEO
+        title="Contactos"
+        description="Entre em contacto com a Chrisert para orçamentos gratuitos de isolamento térmico e obras em fachadas."
+        canonical="/contactos"
+      />
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">

@@ -1,9 +1,15 @@
 import { CTASection } from "@/components/ui/CTASection";
+import SEO from "@/components/SEO";
 import { services, eticsBenefits, processSteps } from "@/data/servicesData";
 
 const ServicesPage = () => {
   return (
     <div className="flex flex-col">
+      <SEO
+        title="Serviços"
+        description="Conheça os nossos serviços de isolamento térmico (ETICS/Capoto), renovação de fachadas, pintura e limpeza de telhados."
+        canonical="/servicos"
+      />
       {/* Hero Section */}
       <section className="py-16 px-4 bg-secondary/30">
         <div className="container mx-auto max-w-4xl text-center">

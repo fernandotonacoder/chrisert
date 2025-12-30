@@ -5,11 +5,17 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import SEO from "@/components/SEO";
 import { faqCategories, mythsAndFacts } from "@/data/faqData";
 
 const FAQPage = () => {
   return (
     <div className="flex flex-col">
+      <SEO
+        title="Perguntas Frequentes"
+        description="Dúvidas sobre ETICS ou Capoto? Encontre respostas para as perguntas mais comuns sobre isolamento térmico."
+        canonical="/faq"
+      />
       {/* Hero Section */}
       <section className="py-16 px-4 bg-secondary/30">
         <div className="container mx-auto max-w-4xl text-center">

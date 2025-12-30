@@ -2,12 +2,14 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { CTASection } from "@/components/ui/CTASection";
+import SEO from "@/components/SEO";
 import { Award, Users, ThermometerSun } from "lucide-react";
 import heroImage from "/hero-work.jpg";
 
 const HomePage = () => {
   return (
     <div className="flex flex-col">
+      <SEO canonical="/" />
       <section className="relative min-h-[90vh] flex items-center">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
