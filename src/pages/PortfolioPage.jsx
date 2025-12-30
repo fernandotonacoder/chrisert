@@ -44,60 +44,62 @@ const PortfolioPage = () => {
   }, [api]);
 
   return (
-    <div className="container mx-auto px-4 py-10">
-      <div className="max-w-4xl mx-auto text-center">
-        <h1 className="text-4xl md:text-5xl font-bold mb-6">Portfólio</h1>
-        <p className="text-lg text-muted-foreground mb-12">
-          Conheça alguns dos nossos projetos realizados.
-        </p>
+    <div className="flex flex-col">
+      <div className="container mx-auto px-4 py-10">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">Portfólio</h1>
+          <p className="text-lg text-muted-foreground mb-12">
+            Conheça alguns dos nossos projetos realizados.
+          </p>
 
-        <Carousel
-          setApi={setApi}
-          className="w-full max-w-md md:max-w-lg mx-auto"
-        >
-          <CarouselContent>
-            {portfolioImages.map((project, index) => (
-              <CarouselItem key={project.id}>
-                <div
-                  className="rounded-lg overflow-hidden aspect-[3/4] max-h-[70vh] cursor-pointer transition-transform hover:scale-[1.02]"
-                  onClick={() => setLightboxIndex(index)}
-                >
-                  <img
-                    src={project.image}
-                    alt={`Projeto ${project.id}`}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </CarouselItem>
+          <Carousel
+            setApi={setApi}
+            className="w-full max-w-md md:max-w-lg mx-auto"
+          >
+            <CarouselContent>
+              {portfolioImages.map((project, index) => (
+                <CarouselItem key={project.id}>
+                  <div
+                    className="rounded-lg overflow-hidden aspect-[3/4] max-h-[70vh] cursor-pointer transition-transform hover:scale-[1.02]"
+                    onClick={() => setLightboxIndex(index)}
+                  >
+                    <img
+                      src={project.image}
+                      alt={`Projeto ${project.id}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+
+          {/* Dot indicators */}
+          <div className="flex justify-center gap-2 mt-4">
+            {portfolioImages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => api?.scrollTo(index)}
+                className={`h-2 rounded-full transition-all ${
+                  index === current
+                    ? "w-6 bg-primary"
+                    : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                }`}
+                aria-label={`Ir para projeto ${index + 1}`}
+              />
             ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
+          </div>
 
-        {/* Dot indicators */}
-        <div className="flex justify-center gap-2 mt-4">
-          {portfolioImages.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => api?.scrollTo(index)}
-              className={`h-2 rounded-full transition-all ${
-                index === current
-                  ? "w-6 bg-primary"
-                  : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
-              }`}
-              aria-label={`Ir para projeto ${index + 1}`}
-            />
-          ))}
+          <SocialLinks />
         </div>
-
-        <SocialLinks />
       </div>
+
       <CTASection
         title="Gostou do que viu?"
         description="Peça já o seu orçamento gratuito e sem compromisso."
         buttonText="Pedir orçamento"
-        className="mt-12 rounded-lg"
       />
 
       {isLightboxOpen && (
