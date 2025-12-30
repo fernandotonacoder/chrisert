@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { CTASection } from "@/components/ui/CTASection";
 import heroImage from "/hero-work.jpg";
 
 const HomePage = () => {
@@ -128,7 +129,7 @@ const HomePage = () => {
               <div className="text-center p-8 bg-background">
                 <h3 className="text-lg font-semibold mb-2">Inovação</h3>
                 <p className="text-sm text-muted-foreground">
-                  Sempre procuramos as melhores soluções técnicas.
+                  Procuramos sempre as melhores soluções técnicas.
                 </p>
               </div>
               <div className="text-center p-8 bg-background">
@@ -141,25 +142,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-
-      <section className="py-20 px-6 bg-primary text-primary-foreground">
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Pronto para transformar o seu espaço?
-          </h2>
-          <p className="text-lg mb-8 max-w-2xl mx-auto opacity-90">
-            Entre em contacto connosco, sem compromisso.
-          </p>
-          <Button
-            asChild
-            size="lg"
-            variant="outline"
-            className="btn-cta-inverted"
-          >
-            <Link to="/contactos">Entrar em contacto</Link>
-          </Button>
-        </div>
-      </section>
+      <CTASection />
     </div>
   );
 };

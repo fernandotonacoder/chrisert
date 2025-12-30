@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/Button";
+import { CTASection } from "@/components/ui/CTASection";
 import { services, eticsBenefits, processSteps } from "@/data/servicesData";
 
 const ServicesPage = () => {
@@ -70,7 +69,7 @@ const ServicesPage = () => {
                 className="text-center p-6 bg-background rounded-lg border"
               >
                 <div className="text-3xl mb-3">{benefit.icon}</div>
-                <h3 className="font-semibold mb-2">{benefit.title}</h3>
+                <h3 className="text-lg font-semibold mb-2">{benefit.title}</h3>
                 <p className="text-sm text-muted-foreground">
                   {benefit.description}
                 </p>
@@ -98,7 +97,7 @@ const ServicesPage = () => {
                 <div className="text-4xl font-bold text-primary/20 mb-2">
                   {item.step}
                 </div>
-                <h3 className="font-semibold mb-2">{item.title}</h3>
+                <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
                 <p className="text-sm text-muted-foreground">
                   {item.description}
                 </p>
@@ -107,21 +106,7 @@ const ServicesPage = () => {
           </div>
         </div>
       </section>
-
-      {/* CTA Section */}
-      <section className="py-16 px-4 bg-primary text-primary-foreground">
-        <div className="container mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Pronto para transformar o exterior do seu edifício?
-          </h2>
-          <p className="text-lg mb-8 opacity-90">
-            Entre em contacto connosco, sem compromisso.
-          </p>
-          <Button asChild size="lg" variant="outline" className="btn-cta-inverted">
-            <Link to="/contactos">Entrar em contacto</Link>
-          </Button>
-        </div>
-      </section>
+      <CTASection title="Pronto para transformar o exterior do seu edifício?" />
     </div>
   );
 };

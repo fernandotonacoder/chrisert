@@ -2,6 +2,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { Navbar } from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { BackToTop } from "@/components/ui/BackToTop";
 import HomePage from "./pages/HomePage";
 import ServicesPage from "./pages/ServicesPage";
 import PortfolioPage from "./pages/PortfolioPage";
@@ -29,6 +30,7 @@ function App() {
       <div className="print:hidden">
         <Footer />
       </div>
+      <BackToTop />
     </div>
   );
 }
