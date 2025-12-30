@@ -77,7 +77,9 @@ const ContactPage = () => {
     <div className="container mx-auto px-4 py-10">
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-4">Entre em Contacto</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            Entre em Contacto
+          </h1>
           <p className="text-lg text-muted-foreground">
             Tem um projeto em mente? Gostaríamos de saber mais sobre as suas
             necessidades.

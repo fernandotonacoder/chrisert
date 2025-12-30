@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/Button";
+import { CTASection } from "@/components/ui/CTASection";
 import {
   Accordion,
   AccordionContent,
@@ -31,7 +30,9 @@ const FAQPage = () => {
           <div className="space-y-12">
             {faqCategories.map((category) => (
               <div key={category.id}>
-                <h2 className="text-2xl font-bold mb-6">{category.title}</h2>
+                <h2 className="text-2xl md:text-3xl font-bold mb-6">
+                  {category.title}
+                </h2>
                 <Accordion
                   type="single"
                   collapsible
@@ -108,24 +109,11 @@ const FAQPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 px-4 bg-primary text-primary-foreground">
-        <div className="container mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ainda tem dúvidas?
-          </h2>
-          <p className="text-lg mb-8 opacity-90">
-            Fale diretamente com um dos nossos técnicos especializados.
-          </p>
-          <Button
-            asChild
-            size="lg"
-            variant="outline"
-            className="btn-cta-inverted"
-          >
-            <Link to="/contactos">Falar com um técnico</Link>
-          </Button>
-        </div>
-      </section>
+      <CTASection
+        title="Ainda tem dúvidas?"
+        description="Fale diretamente com um dos nossos técnicos especializados."
+        buttonText="Falar com um técnico"
+      />
     </div>
   );
 };
