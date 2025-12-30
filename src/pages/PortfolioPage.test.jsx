@@ -1,15 +1,20 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import { describe, it, expect } from "vitest";
 import PortfolioPage from "./PortfolioPage";
 
+const renderWithProviders = (component) => {
+  return render(
+    <HelmetProvider>
+      <MemoryRouter>{component}</MemoryRouter>
+    </HelmetProvider>
+  );
+};
+
 describe("PortfolioPage", () => {
   it("renders the page title and description", () => {
-    render(
-      <MemoryRouter>
-        <PortfolioPage />
-      </MemoryRouter>
-    );
+    renderWithProviders(<PortfolioPage />);
 
     expect(
       screen.getByRole("heading", { level: 1, name: /portfólio/i })
@@ -20,22 +25,14 @@ describe("PortfolioPage", () => {
   });
 
   it("renders carousel with images", () => {
-    render(
-      <MemoryRouter>
-        <PortfolioPage />
-      </MemoryRouter>
-    );
+    renderWithProviders(<PortfolioPage />);
 
     const images = screen.getAllByRole("img");
     expect(images.length).toBeGreaterThan(0);
   });
 
   it("renders social media links", () => {
-    render(
-      <MemoryRouter>
-        <PortfolioPage />
-      </MemoryRouter>
-    );
+    renderWithProviders(<PortfolioPage />);
 
     expect(screen.getByText(/@chrisert.pt/i)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /@chrisert.pt/i })).toHaveAttribute(

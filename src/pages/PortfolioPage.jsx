@@ -9,6 +9,7 @@ import {
 import { CTASection } from "@/components/ui/CTASection";
 import Lightbox from "@/components/portfolio/Lightbox";
 import SocialLinks from "@/components/portfolio/SocialLinks";
+import SEO from "@/components/SEO";
 import { portfolioImages } from "@/data/portfolioImages";
 
 const PortfolioPage = () => {
@@ -45,6 +46,11 @@ const PortfolioPage = () => {
 
   return (
     <div className="flex flex-col">
+      <SEO
+        title="Portfólio"
+        description="Veja alguns dos nossos projetos de isolamento térmico e renovação de fachadas realizados em Portugal."
+        canonical="/portfolio"
+      />
       <div className="container mx-auto px-4 py-10">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Portfólio</h1>
