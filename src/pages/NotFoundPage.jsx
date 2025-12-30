@@ -6,10 +6,11 @@ import { useEffect, useState } from "react";
 
 const NotFoundPage = () => {
   const [count, setCount] = useState(10);
+  const basename = import.meta.env.BASE_URL.replace(/\/$/, "") || "/";
 
   useEffect(() => {
     if (count <= 0) {
-      window.location.replace("/chrisert/");
+      window.location.replace(basename);
       return;
     }
 
@@ -18,7 +19,7 @@ const NotFoundPage = () => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [count]);
+  }, [count, basename]);
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4">
