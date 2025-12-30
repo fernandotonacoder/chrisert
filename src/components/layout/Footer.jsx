@@ -1,8 +1,6 @@
 import {
   SiFacebook,
-  SiInstagram,
-  // SiYoutube,
-  // SiTiktok,
+  SiInstagram
 } from "@icons-pack/react-simple-icons";
 import {
   Marquee,
