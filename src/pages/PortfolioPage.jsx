@@ -60,7 +60,7 @@ const PortfolioPage = () => {
               {portfolioImages.map((project, index) => (
                 <CarouselItem key={project.id}>
                   <div
-                    className="rounded-lg overflow-hidden aspect-[3/4] max-h-[70vh] cursor-pointer transition-transform hover:scale-[1.02]"
+                    className="rounded-lg overflow-hidden aspect-3/4 max-h-[70vh] cursor-pointer transition-transform hover:scale-[1.02]"
                     onClick={() => setLightboxIndex(index)}
                   >
                     <img

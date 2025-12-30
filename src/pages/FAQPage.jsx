@@ -66,7 +66,7 @@ const FAQPage = () => {
               Mitos e Verdades
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Muitas pessoas ainda têm dúvidas sobre o "Capoto". Vamos
+              Muitas pessoas ainda têm dúvidas sobre o sistema ETICS. Vamos
               esclarecer o que é real e o que é apenas desconhecimento.
             </p>
           </div>

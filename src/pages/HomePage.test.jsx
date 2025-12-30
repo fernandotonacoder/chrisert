@@ -22,7 +22,7 @@ describe("HomePage", () => {
     const badges = screen
       .getAllByRole("generic", { hidden: true })
       .filter((el) => el.getAttribute("data-slot") === "badge");
-    expect(badges.length).toBe(4);
+    expect(badges.length).toBe(5);
   });
 
   it("renders call-to-action buttons in hero section", () => {
