@@ -5,32 +5,62 @@
 [![Tests](https://github.com/fernandotonacoder/chrisert/actions/workflows/test.yml/badge.svg)](https://github.com/fernandotonacoder/chrisert/actions/workflows/test.yml)
 [![Lint](https://github.com/fernandotonacoder/chrisert/actions/workflows/lint.yml/badge.svg)](https://github.com/fernandotonacoder/chrisert/actions/workflows/lint.yml)
 
-A business website for a fully-working construction services company. 
+<table>
+  <tr>
+    <td rowspan="3">
+      <a href="https://sonarcloud.io/summary/new_code?id=fernandotonacoder_chrisert">
+        <img src="https://sonarcloud.io/images/project_badges/sonarcloud-light.svg" alt="SonarQube Cloud" />
+      </a>
+    </td>
+    <td>
+      <a href="https://sonarcloud.io/summary/new_code?id=fernandotonacoder_chrisert">
+        <img src="https://sonarcloud.io/api/project_badges/measure?project=fernandotonacoder_chrisert&metric=alert_status" alt="Quality Gate Status" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://sonarcloud.io/summary/new_code?id=fernandotonacoder_chrisert">
+        <img src="https://sonarcloud.io/api/project_badges/measure?project=fernandotonacoder_chrisert&metric=security_rating" alt="Security Rating" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://sonarcloud.io/summary/new_code?id=fernandotonacoder_chrisert">
+        <img src="https://sonarcloud.io/api/project_badges/measure?project=fernandotonacoder_chrisert&metric=sqale_rating" alt="Maintainability Rating" />
+      </a>
+    </td>
+  </tr>
+</table>
+
+A high-performance web platform for a construction firm specializing in ETICS insulation. Built to bridge modern frontend development with real-world business needs, focusing on SEO and lead generation.
 
 ## 📋 About
 
-Currently working on a side project that will serve as the official website for a construction services company that specializes in applying ETICS (External Thermal Insulation Composite Systems) to both commercial and residential properties, providing thermal and acoustic insulation solutions for their clients. 
+Currently working on a side project that will serve as the official website for a construction services company that specializes in applying ETICS (External Thermal Insulation Composite Systems) to both commercial and residential properties, providing thermal and acoustic insulation solutions for their clients.
 
 Built with React and JavaScript, styled using Tailwind CSS and Shadcn UI components. The project follows a professional development workflow with GitHub Pages as a staging/test environment and Netlify for production deployment. Unit and component testing is handled with Vitest to ensure code reliability.
 
-This is a frontend-focused website that leverages Netlify Forms for contact handling, eliminating the need for a complex backend infrastructure since there's no heavy business logic or database requirements involved. 
+This is a frontend-focused website that leverages Netlify Forms for contact handling, eliminating the need for a complex backend infrastructure since there's no heavy business logic or database requirements involved.
 
-Optimized for performance and SEO to maximize the company's online visibility.  Fully responsive design ensuring a seamless experience across all devices. 
+Optimized for performance and SEO to maximize the company's online visibility. Fully responsive design ensuring a seamless experience across all devices.
 
-A hands-on project bridging web development skills with real business needs. 
+A hands-on project bridging web development skills with real business needs.
 
 ## 🚀 Tech Stack
 
-| Category | Technology |
-|----------|------------|
-| Framework | React |
-| Language | JavaScript |
-| Styling | Tailwind CSS |
-| UI Components | Shadcn UI |
-| Testing | Vitest |
-| Staging | GitHub Pages |
-| Production | Netlify |
-| Forms | Netlify Forms |
+| Category      | Technology                                                                              |
+| ------------- | --------------------------------------------------------------------------------------- |
+| Framework     | React                                                                                   |
+| Language      | JavaScript                                                                              |
+| Styling       | Tailwind CSS                                                                            |
+| UI Components | Shadcn UI                                                                               |
+| Testing       | Vitest                                                                                  |
+| Code Quality  | [SonarQube Cloud](https://sonarcloud.io/summary/new_code?id=fernandotonacoder_chrisert) |
+| Staging       | GitHub Pages                                                                            |
+| Production    | Netlify                                                                                 |
+| Forms         | Netlify Forms                                                                           |
 
 ## 🛠️ Getting Started
 
@@ -81,10 +111,10 @@ npm run preview
 
 ## 🔄 CI/CD Pipeline
 
-| Branch | Environment | Checks |
-|--------|-------------|--------|
-| `dev` | GitHub Pages (Staging) | Tests, Lint, Build |
-| `main` | Netlify (Production) | Tests, Lint, Security Audit, Build |
+| Branch | Environment            | Checks                             |
+| ------ | ---------------------- | ---------------------------------- |
+| `dev`  | GitHub Pages (Staging) | Tests, Lint, Build                 |
+| `main` | Netlify (Production)   | Tests, Lint, Security Audit, Build |
 
 - **Branch Protection:** Both `main` and `dev` are protected with linear history required; all changes must go through PRs
 - **Automated Testing:** Vitest runs on every PR to `dev` and `main`
@@ -100,10 +130,10 @@ chrisert/
 │   ├── components/    # Reusable UI components
 │   ├── pages/         # Page components
 │   ├── assets/        # Images, fonts, etc.
-│   └── ... 
+│   └── ...
 ├── public/            # Static assets
 ├── tests/             # Test setup
-└── ... 
+└── ...
 ```
 
 ## ✨ Features
@@ -118,13 +148,14 @@ chrisert/
 
 The **source code** of this project is licensed under the [MIT License](LICENSE).
 
-**Note:** All branding, logos, images, and business-specific content are proprietary and belong to the client.  Feel free to use this codebase as a learning resource or as inspiration for your own projects! 
+**Note:** All branding, logos, images, and business-specific content are proprietary and belong to the client. Feel free to use this codebase as a learning resource or as inspiration for your own projects!
 
 ## 👤 Author
 
 **Fernando Tona**
+
 - GitHub: [@fernandotonacoder](https://github.com/fernandotonacoder)
 
 ---
 
-*Built with ❤️ for real-world business needs*
+_Built with ❤️ for real-world business needs_
