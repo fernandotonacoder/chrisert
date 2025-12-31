@@ -84,11 +84,10 @@ const Lightbox = ({ images, currentIndex, onClose, onNavigate }) => {
           <ChevronRight className="size-10" />
         </button>
 
-        <div
-          className="aspect-[3/4] max-h-[90vh] max-w-[90vw] overflow-hidden rounded-lg animate-in zoom-in-95 duration-200"
+        <span
+          className="aspect-3/4 max-h-[90vh] max-w-[90vw] overflow-hidden rounded-lg animate-in zoom-in-95 duration-200 block"
           onClick={(e) => e.stopPropagation()}
           onKeyDown={(e) => e.stopPropagation()}
-          role="presentation"
         >
           <img
             src={images[currentIndex].image}
@@ -98,7 +97,7 @@ const Lightbox = ({ images, currentIndex, onClose, onNavigate }) => {
             }
             className="w-full h-full object-cover"
           />
-        </div>
+        </span>
       </button>
     </>
   );
