@@ -71,7 +71,7 @@ const PortfolioPage = () => {
                   >
                     <img
                       src={project.image}
-                      alt={`Projeto ${project.id}`}
+                      alt={project.alt}
                       className="w-full h-full object-cover"
                     />
                   </div>
