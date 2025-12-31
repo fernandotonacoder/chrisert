@@ -35,3 +35,6 @@ ehthumbs.db
 # Local tool caches
 .vite/
 .cache/
+
+# Test coverage
+coverage/
