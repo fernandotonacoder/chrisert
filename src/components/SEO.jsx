@@ -15,7 +15,7 @@ const SEO = ({
   const defaultKeywords =
     "ETICS, Capoto, isolamento térmico, remodelações, acabamentos, construção, eficiência energética, Portugal continental, Águeda";
   const defaultImage =
-    "https://raw.githubusercontent.com/fernandotonacoder/chrisert/main/public/chrisert-logo-with-footer-and-border-no-bg.png";
+    "https://raw.githubusercontent.com/fernandotonacoder/chrisert/main/public/chrisert-logo-with-footer-and-border.png";
 
   const fullTitle = title
     ? `${title} | ${siteName}`
