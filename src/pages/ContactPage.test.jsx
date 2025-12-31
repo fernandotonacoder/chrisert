@@ -7,6 +7,29 @@ const renderWithProviders = (component) => {
   return render(component);
 };
 
+const fillContactForm = async (user, overrides = {}) => {
+  const formData = {
+    nome: "João Silva",
+    email: "joao@teste.pt",
+    assunto: "Orçamento ETICS",
+    mensagem: "Gostaria de pedir um orçamento para a minha moradia.",
+    ...overrides,
+  };
+
+  if (formData.nome)
+    await user.type(screen.getByLabelText(/nome/i), formData.nome);
+  if (formData.email)
+    await user.type(screen.getByLabelText(/email/i), formData.email);
+  if (formData.assunto)
+    await user.type(screen.getByLabelText(/assunto/i), formData.assunto);
+  if (formData.mensagem)
+    await user.type(screen.getByLabelText(/mensagem/i), formData.mensagem);
+};
+
+const submitForm = async (user) => {
+  await user.click(screen.getByRole("button", { name: /enviar mensagem/i }));
+};
+
 describe("ContactPage", () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -152,18 +175,8 @@ describe("ContactPage", () => {
       );
 
       renderWithProviders(<ContactPage />);
-
-      await user.type(screen.getByLabelText(/nome/i), "João Silva");
-      await user.type(screen.getByLabelText(/email/i), "joao@teste.pt");
-      await user.type(screen.getByLabelText(/assunto/i), "Orçamento ETICS");
-      await user.type(
-        screen.getByLabelText(/mensagem/i),
-        "Gostaria de pedir um orçamento para a minha moradia."
-      );
-
-      await user.click(
-        screen.getByRole("button", { name: /enviar mensagem/i })
-      );
+      await fillContactForm(user);
+      await submitForm(user);
 
       await waitFor(() => {
         expect(
@@ -180,18 +193,8 @@ describe("ContactPage", () => {
       );
 
       renderWithProviders(<ContactPage />);
-
-      await user.type(screen.getByLabelText(/nome/i), "João Silva");
-      await user.type(screen.getByLabelText(/email/i), "joao@teste.pt");
-      await user.type(screen.getByLabelText(/assunto/i), "Orçamento ETICS");
-      await user.type(
-        screen.getByLabelText(/mensagem/i),
-        "Gostaria de pedir um orçamento para a minha moradia."
-      );
-
-      await user.click(
-        screen.getByRole("button", { name: /enviar mensagem/i })
-      );
+      await fillContactForm(user);
+      await submitForm(user);
 
       await waitFor(() => {
         expect(
