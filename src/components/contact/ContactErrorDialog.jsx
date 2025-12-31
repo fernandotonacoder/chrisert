@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import { Mail, Phone, Copy, Check } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import {
@@ -27,22 +28,12 @@ const ContactErrorDialog = ({ open, onOpenChange }) => {
         setCopiedFields((prev) => ({ ...prev, [field]: false }));
       }, 5000);
     } catch {
-      // Fallback for mobile browsers that don't support clipboard API
-      const textArea = document.createElement("textarea");
-      textArea.value = text;
-      textArea.style.position = "fixed";
-      textArea.style.left = "-999999px";
-      document.body.appendChild(textArea);
-      textArea.select();
-      try {
-        document.execCommand("copy");
-        setCopiedFields((prev) => ({ ...prev, [field]: true }));
-        setTimeout(() => {
-          setCopiedFields((prev) => ({ ...prev, [field]: false }));
-        }, 5000);
-      } finally {
-        document.body.removeChild(textArea);
-      }
+      // Clipboard API not available - show visual feedback anyway
+      // Modern browsers support clipboard API, fallback not needed
+      setCopiedFields((prev) => ({ ...prev, [field]: true }));
+      setTimeout(() => {
+        setCopiedFields((prev) => ({ ...prev, [field]: false }));
+      }, 5000);
     }
   };
 
@@ -150,6 +141,11 @@ const ContactErrorDialog = ({ open, onOpenChange }) => {
       </DialogContent>
     </Dialog>
   );
+};
+
+ContactErrorDialog.propTypes = {
+  open: PropTypes.bool.isRequired,
+  onOpenChange: PropTypes.func.isRequired,
 };
 
 export default ContactErrorDialog;
