@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const SEO = ({
   title,
   description,
@@ -47,6 +49,15 @@ const SEO = ({
       <meta name="twitter:image" content={fullImage} />
     </>
   );
+};
+
+SEO.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  keywords: PropTypes.string,
+  canonical: PropTypes.string,
+  ogImage: PropTypes.string,
+  ogType: PropTypes.string,
 };
 
 export default SEO;

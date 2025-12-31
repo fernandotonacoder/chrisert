@@ -17,16 +17,30 @@ Object.defineProperty(window, "matchMedia", {
 
 // Mock IntersectionObserver for embla-carousel
 class IntersectionObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
+  // Mock implementation - intentionally empty for testing
+  observe() {
+    return undefined;
+  }
+  unobserve() {
+    return undefined;
+  }
+  disconnect() {
+    return undefined;
+  }
 }
 window.IntersectionObserver = IntersectionObserver;
 
 // Mock ResizeObserver for embla-carousel
 class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
+  // Mock implementation - intentionally empty for testing
+  observe() {
+    return undefined;
+  }
+  unobserve() {
+    return undefined;
+  }
+  disconnect() {
+    return undefined;
+  }
 }
 window.ResizeObserver = ResizeObserver;

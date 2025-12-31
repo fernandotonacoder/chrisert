@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";
+import ContactErrorDialog from "@/components/contact/ContactErrorDialog";
 import SEO from "@/components/SEO";
 import {
   Form,
@@ -16,36 +18,38 @@ import {
 } from "@/components/ui/Form";
 
 const contactFormSchema = z.object({
-  name: z.string().min(2, {
+  nome: z.string().min(2, {
     message: "O nome deve ter pelo menos 2 caracteres.",
   }),
   email: z.string().email({
     message: "Por favor, insira um email válido.",
   }),
-  phone: z
+  telefone: z
     .string()
     .min(9, {
       message: "O telefone deve ter pelo menos 9 dígitos.",
     })
     .optional()
     .or(z.literal("")),
-  subject: z.string().min(5, {
+  assunto: z.string().min(5, {
     message: "O assunto deve ter pelo menos 5 caracteres.",
   }),
-  message: z.string().min(10, {
+  mensagem: z.string().min(10, {
     message: "A mensagem deve ter pelo menos 10 caracteres.",
   }),
 });
 
 const ContactPage = () => {
+  const [showErrorDialog, setShowErrorDialog] = useState(false);
+
   const form = useForm({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
-      name: "",
+      nome: "",
       email: "",
-      phone: "",
-      subject: "",
-      message: "",
+      telefone: "",
+      assunto: "",
+      mensagem: "",
     },
   });
 
@@ -67,10 +71,10 @@ const ContactPage = () => {
         alert("Mensagem enviada com sucesso! Entraremos em contacto em breve.");
         form.reset();
       } else {
-        alert("Ocorreu um erro. Por favor, tente novamente.");
+        setShowErrorDialog(true);
       }
     } catch {
-      alert("Ocorreu um erro. Por favor, tente novamente.");
+      setShowErrorDialog(true);
     }
   };
 
@@ -110,7 +114,7 @@ const ContactPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormField
                 control={form.control}
-                name="name"
+                name="nome"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Nome *</FormLabel>
@@ -143,7 +147,7 @@ const ContactPage = () => {
 
             <FormField
               control={form.control}
-              name="phone"
+              name="telefone"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Telefone (opcional)</FormLabel>
@@ -160,7 +164,7 @@ const ContactPage = () => {
 
             <FormField
               control={form.control}
-              name="subject"
+              name="assunto"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Assunto *</FormLabel>
@@ -177,7 +181,7 @@ const ContactPage = () => {
 
             <FormField
               control={form.control}
-              name="message"
+              name="mensagem"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Mensagem *</FormLabel>
@@ -229,6 +233,11 @@ const ContactPage = () => {
           </div>
         </div>
       </div>
+
+      <ContactErrorDialog
+        open={showErrorDialog}
+        onOpenChange={setShowErrorDialog}
+      />
     </div>
   );
 };

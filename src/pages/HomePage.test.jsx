@@ -21,7 +21,7 @@ describe("HomePage", () => {
 
     const badges = screen
       .getAllByRole("generic", { hidden: true })
-      .filter((el) => el.getAttribute("data-slot") === "badge");
+      .filter((el) => el.dataset.slot === "badge");
     expect(badges.length).toBe(5);
   });
 
