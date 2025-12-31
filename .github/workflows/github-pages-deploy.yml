@@ -11,6 +11,8 @@ concurrency:
 
 jobs:
   test:
+    # Skip if push is from sync-main-to-dev bot (code already deployed to staging/GH-Pages & prod/Netlify)
+    if: github.actor != 'github-actions[bot]'
     uses: ./.github/workflows/test.yml
 
   build:
