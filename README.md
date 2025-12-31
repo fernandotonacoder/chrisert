@@ -100,6 +100,9 @@ npm run build
 # Run tests
 npm run test
 
+# Run tests with coverage report
+npm run test:coverage
+
 # Preview production build
 npm run preview
 ```
