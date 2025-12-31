@@ -28,8 +28,14 @@ jobs:
           git fetch origin dev
           git checkout dev
 
-          # Rebase dev on top of main to maintain linear history
-          git rebase origin/main
+          # Check if dev and main have diverged with conflicts
+          if git rebase origin/main; then
+            echo "Rebase successful"
+          else
+            echo "Rebase failed due to conflicts - resetting dev to main"
+            git rebase --abort
+            git reset --hard origin/main
+          fi
 
           # Push with force-with-lease (safe force push that fails if remote has new commits)
           # This workflow uses a PAT with admin bypass to push directly to the protected branch
