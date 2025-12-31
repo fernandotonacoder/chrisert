@@ -1,4 +1,5 @@
 import * as React from "react";
+import PropTypes from "prop-types";
 import * as LabelPrimitive from "@radix-ui/react-label";
 
 import { cn } from "@/lib/utils";
@@ -15,5 +16,9 @@ function Label({ className, ...props }) {
     />
   );
 }
+
+Label.propTypes = {
+  className: PropTypes.string,
+};
 
 export { Label };

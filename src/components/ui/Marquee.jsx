@@ -1,4 +1,5 @@
 "use client";
+import PropTypes from "prop-types";
 import FastMarquee from "react-fast-marquee";
 import { cn } from "@/lib/utils";
 
@@ -8,6 +9,10 @@ export const Marquee = ({ className, ...props }) => (
     {...props}
   />
 );
+
+Marquee.propTypes = {
+  className: PropTypes.string,
+};
 
 export const MarqueeContent = ({
   loop = 0,
@@ -23,6 +28,12 @@ export const MarqueeContent = ({
   />
 );
 
+MarqueeContent.propTypes = {
+  loop: PropTypes.number,
+  autoFill: PropTypes.bool,
+  pauseOnHover: PropTypes.bool,
+};
+
 export const MarqueeFade = ({ className, side, ...props }) => (
   <div
     className={cn(
@@ -34,9 +45,18 @@ export const MarqueeFade = ({ className, side, ...props }) => (
   />
 );
 
+MarqueeFade.propTypes = {
+  className: PropTypes.string,
+  side: PropTypes.oneOf(["left", "right"]),
+};
+
 export const MarqueeItem = ({ className, ...props }) => (
   <div
     className={cn("mx-2 flex-shrink-0 object-contain", className)}
     {...props}
   />
 );
+
+MarqueeItem.propTypes = {
+  className: PropTypes.string,
+};

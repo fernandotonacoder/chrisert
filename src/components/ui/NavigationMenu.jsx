@@ -1,4 +1,5 @@
 import * as React from "react";
+import PropTypes from "prop-types";
 import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu";
 import { cva } from "class-variance-authority";
 import { ChevronDownIcon } from "lucide-react";
@@ -125,6 +126,41 @@ function NavigationMenuIndicator({ className, ...props }) {
     </NavigationMenuPrimitive.Indicator>
   );
 }
+
+NavigationMenu.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.node,
+  viewport: PropTypes.bool,
+};
+
+NavigationMenuList.propTypes = {
+  className: PropTypes.string,
+};
+
+NavigationMenuItem.propTypes = {
+  className: PropTypes.string,
+};
+
+NavigationMenuTrigger.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.node,
+};
+
+NavigationMenuContent.propTypes = {
+  className: PropTypes.string,
+};
+
+NavigationMenuViewport.propTypes = {
+  className: PropTypes.string,
+};
+
+NavigationMenuLink.propTypes = {
+  className: PropTypes.string,
+};
+
+NavigationMenuIndicator.propTypes = {
+  className: PropTypes.string,
+};
 
 export {
   NavigationMenu,

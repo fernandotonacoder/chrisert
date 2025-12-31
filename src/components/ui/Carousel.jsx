@@ -1,4 +1,5 @@
 import * as React from "react";
+import PropTypes from "prop-types";
 import useEmblaCarousel from "embla-carousel-react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
@@ -205,6 +206,37 @@ function CarouselNext({
     </Button>
   );
 }
+
+Carousel.propTypes = {
+  orientation: PropTypes.oneOf(["horizontal", "vertical"]),
+  opts: PropTypes.shape({
+    axis: PropTypes.oneOf(["x", "y"]),
+  }),
+  setApi: PropTypes.func,
+  plugins: PropTypes.array,
+  className: PropTypes.string,
+  children: PropTypes.node,
+};
+
+CarouselContent.propTypes = {
+  className: PropTypes.string,
+};
+
+CarouselItem.propTypes = {
+  className: PropTypes.string,
+};
+
+CarouselPrevious.propTypes = {
+  className: PropTypes.string,
+  variant: PropTypes.string,
+  size: PropTypes.string,
+};
+
+CarouselNext.propTypes = {
+  className: PropTypes.string,
+  variant: PropTypes.string,
+  size: PropTypes.string,
+};
 
 export {
   Carousel,

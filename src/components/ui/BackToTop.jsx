@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
@@ -54,4 +55,10 @@ export const BackToTop = ({
       </svg>
     </Button>
   );
+};
+
+BackToTop.propTypes = {
+  className: PropTypes.string,
+  minHeight: PropTypes.number,
+  scrollTo: PropTypes.number,
 };
