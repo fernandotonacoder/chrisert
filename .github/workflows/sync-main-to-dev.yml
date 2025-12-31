@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.SYNC_BOT_TOKEN_CHRISERT }}
 
       - name: Configure Git
         run: |
@@ -25,6 +25,12 @@ jobs:
 
       - name: Sync main to dev
         run: |
+          git fetch origin dev
           git checkout dev
-          git merge origin/main --no-edit
-          git push origin dev
+
+          # Rebase dev on top of main to maintain linear history
+          git rebase origin/main
+
+          # Push with force-with-lease (safe force push that fails if remote has new commits)
+          # This workflow uses a PAT with admin bypass to push directly to the protected branch
+          git push origin dev --force-with-lease

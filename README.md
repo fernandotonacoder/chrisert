@@ -86,10 +86,11 @@ npm run preview
 | `dev` | GitHub Pages (Staging) | Tests, Lint, Build |
 | `main` | Netlify (Production) | Tests, Lint, Security Audit, Build |
 
-- **Branch Protection:** Direct merges to `main` are blocked; all changes must go through `dev` first
+- **Branch Protection:** Both `main` and `dev` are protected with linear history required; all changes must go through PRs
 - **Automated Testing:** Vitest runs on every PR to `dev` and `main`
 - **Security Audits:** Weekly dependency audits + on every PR
 - **Deployments:** Automatic on push to respective branches
+- **Auto-Sync:** After each push to `main`, changes are automatically rebased onto `dev` to keep branches in sync
 
 ## 📁 Project Structure
 
