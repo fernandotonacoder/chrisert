@@ -46,8 +46,12 @@ const Lightbox = ({ images, currentIndex, onClose, onNavigate }) => {
     <div
       className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center animate-in fade-in duration-200"
       onClick={onClose}
+      onKeyDown={(e) => e.key === "Enter" && onClose()}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
+      role="button"
+      tabIndex={0}
+      aria-label="Fechar lightbox"
     >
       <button
         onClick={onClose}
@@ -82,6 +86,8 @@ const Lightbox = ({ images, currentIndex, onClose, onNavigate }) => {
       <div
         className="aspect-[3/4] max-h-[90vh] max-w-[90vw] overflow-hidden rounded-lg animate-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
+        role="img"
+        aria-label={`Imagem do projeto ${currentIndex + 1} de ${images.length}`}
       >
         <img
           src={images[currentIndex].image}

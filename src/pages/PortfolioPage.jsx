@@ -65,16 +65,18 @@ const PortfolioPage = () => {
             <CarouselContent>
               {portfolioImages.map((project, index) => (
                 <CarouselItem key={project.id}>
-                  <div
-                    className="rounded-lg overflow-hidden aspect-3/4 max-h-[70vh] cursor-pointer transition-transform hover:scale-[1.02]"
+                  <button
+                    type="button"
+                    className="w-full rounded-lg overflow-hidden aspect-3/4 max-h-[70vh] cursor-pointer transition-transform hover:scale-[1.02]"
                     onClick={() => setLightboxIndex(index)}
+                    aria-label={`Ver projeto ${index + 1}: ${project.alt}`}
                   >
                     <img
                       src={project.image}
                       alt={project.alt}
                       className="w-full h-full object-cover"
                     />
-                  </div>
+                  </button>
                 </CarouselItem>
               ))}
             </CarouselContent>

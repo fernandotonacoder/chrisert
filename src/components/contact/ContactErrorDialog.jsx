@@ -19,13 +19,37 @@ const CONTACT_INFO = {
 const ContactErrorDialog = ({ open, onOpenChange }) => {
   const [copiedFields, setCopiedFields] = useState({});
 
-  const copyToClipboard = (text, field) => {
-    navigator.clipboard.writeText(text).then(() => {
+  const copyToClipboard = async (text, field) => {
+    try {
+      await navigator.clipboard.writeText(text);
       setCopiedFields((prev) => ({ ...prev, [field]: true }));
       setTimeout(() => {
         setCopiedFields((prev) => ({ ...prev, [field]: false }));
       }, 5000);
-    });
+    } catch {
+      // Fallback for mobile browsers that don't support clipboard API
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-999999px";
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand("copy");
+        setCopiedFields((prev) => ({ ...prev, [field]: true }));
+        setTimeout(() => {
+          setCopiedFields((prev) => ({ ...prev, [field]: false }));
+        }, 5000);
+      } finally {
+        document.body.removeChild(textArea);
+      }
+    }
+  };
+
+  const handleCopyClick = (e, text, field) => {
+    e.preventDefault();
+    e.stopPropagation();
+    copyToClipboard(text, field);
   };
 
   return (
@@ -59,11 +83,16 @@ const ContactErrorDialog = ({ open, onOpenChange }) => {
               </div>
             </a>
             <Button
+              type="button"
               variant="outline"
               size="icon"
-              className="rounded-lg border-primary-foreground/20 bg-transparent text-primary-foreground hover:border-accent hover:bg-primary-foreground/5"
-              onClick={() => copyToClipboard(CONTACT_INFO.email, "email")}
+              className="min-w-11 min-h-11 rounded-lg border-primary-foreground/20 bg-transparent text-primary-foreground hover:border-accent hover:bg-primary-foreground/5 active:bg-primary-foreground/10"
+              onClick={(e) => handleCopyClick(e, CONTACT_INFO.email, "email")}
+              onTouchEnd={(e) =>
+                handleCopyClick(e, CONTACT_INFO.email, "email")
+              }
               title="Copiar email"
+              aria-label="Copiar email para área de transferência"
             >
               {copiedFields.email ? (
                 <Check className="w-4 h-4 text-accent" />
@@ -90,11 +119,16 @@ const ContactErrorDialog = ({ open, onOpenChange }) => {
               </div>
             </a>
             <Button
+              type="button"
               variant="outline"
               size="icon"
-              className="rounded-lg border-primary-foreground/20 bg-transparent text-primary-foreground hover:border-accent hover:bg-primary-foreground/5"
-              onClick={() => copyToClipboard(CONTACT_INFO.phone, "phone")}
+              className="min-w-11 min-h-11 rounded-lg border-primary-foreground/20 bg-transparent text-primary-foreground hover:border-accent hover:bg-primary-foreground/5 active:bg-primary-foreground/10"
+              onClick={(e) => handleCopyClick(e, CONTACT_INFO.phone, "phone")}
+              onTouchEnd={(e) =>
+                handleCopyClick(e, CONTACT_INFO.phone, "phone")
+              }
               title="Copiar telefone"
+              aria-label="Copiar telefone para área de transferência"
             >
               {copiedFields.phone ? (
                 <Check className="w-4 h-4 text-accent" />

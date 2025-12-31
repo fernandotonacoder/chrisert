@@ -146,7 +146,10 @@ describe("ContactPage", () => {
   describe("Form submission", () => {
     it("shows error dialog when submission fails", async () => {
       const user = userEvent.setup();
-      global.fetch = vi.fn(() => Promise.reject(new Error("Network error")));
+      vi.stubGlobal(
+        "fetch",
+        vi.fn(() => Promise.reject(new Error("Network error")))
+      );
 
       renderWithProviders(<ContactPage />);
 
@@ -171,7 +174,10 @@ describe("ContactPage", () => {
 
     it("shows error dialog when server returns error", async () => {
       const user = userEvent.setup();
-      global.fetch = vi.fn(() => Promise.resolve({ ok: false }));
+      vi.stubGlobal(
+        "fetch",
+        vi.fn(() => Promise.resolve({ ok: false }))
+      );
 
       renderWithProviders(<ContactPage />);
 
