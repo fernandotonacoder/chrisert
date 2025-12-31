@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
@@ -26,4 +27,12 @@ export const CTASection = ({
       </div>
     </section>
   );
+};
+
+CTASection.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  buttonText: PropTypes.string,
+  buttonLink: PropTypes.string,
+  className: PropTypes.string,
 };

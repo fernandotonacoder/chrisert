@@ -1,4 +1,5 @@
 import * as React from "react"
+import PropTypes from "prop-types"
 import * as AccordionPrimitive from "@radix-ui/react-accordion"
 import { ChevronDownIcon } from "lucide-react"
 
@@ -22,6 +23,10 @@ function AccordionItem({
   );
 }
 
+AccordionItem.propTypes = {
+  className: PropTypes.string,
+};
+
 function AccordionTrigger({
   className,
   children,
@@ -44,6 +49,11 @@ function AccordionTrigger({
   );
 }
 
+AccordionTrigger.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.node,
+};
+
 function AccordionContent({
   className,
   children,
@@ -58,5 +68,10 @@ function AccordionContent({
     </AccordionPrimitive.Content>
   );
 }
+
+AccordionContent.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.node,
+};
 
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent }

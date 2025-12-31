@@ -1,4 +1,5 @@
 import * as React from "react";
+import PropTypes from "prop-types";
 
 export function BarsScaleFadeIcon({
   size = 24,
@@ -86,3 +87,10 @@ export function BarsScaleFadeIcon({
     </svg>
   );
 }
+
+BarsScaleFadeIcon.propTypes = {
+  size: PropTypes.number,
+  color: PropTypes.string,
+  strokeWidth: PropTypes.number,
+  className: PropTypes.string,
+};
