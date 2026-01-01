@@ -38,15 +38,21 @@ A high-performance web platform for a construction firm specializing in ETICS in
 
 ## 📋 About
 
-Currently working on a side project that will serve as the official website for a construction services company that specializes in applying ETICS (External Thermal Insulation Composite Systems) to both commercial and residential properties, providing thermal and acoustic insulation solutions for their clients.
+**A real website for a real business — currently live and operating.**
+
+A professional ETICS insulation firm needed a complete digital presence. No logo, no social media, and no website. I took total ownership of their digital identity, delivering a "0 to 1" solution:
+
+- **Brand Identity:** Created a professional logo and visual style from scratch
+- **Social Strategy:** Launched their Facebook page and optimized their Instagram presence
+- **The Platform:** Developed a clean, SEO-optimized React site to bridge the gap between their craftsmanship and modern web standards
+
+### Technical Implementation
 
 Built with React and JavaScript, styled using Tailwind CSS and Shadcn UI components. The project follows a professional development workflow with GitHub Pages as a staging/test environment and Netlify for production deployment. Unit and component testing is handled with Vitest to ensure code reliability.
 
-This is a frontend-focused website that leverages Netlify Forms for contact handling, eliminating the need for a complex backend infrastructure since there's no heavy business logic or database requirements involved.
+A frontend-focused website leveraging Netlify Forms for contact handling, eliminating the need for a complex backend infrastructure since there's no heavy business logic or database requirements involved.
 
 Optimized for performance and SEO to maximize the company's online visibility. Fully responsive design ensuring a seamless experience across all devices.
-
-A hands-on project bridging web development skills with real business needs.
 
 ## 🚀 Tech Stack
 
@@ -57,7 +63,7 @@ A hands-on project bridging web development skills with real business needs.
 | Styling       | Tailwind CSS                                                                            |
 | UI Components | Shadcn UI                                                                               |
 | Testing       | Vitest                                                                                  |
-| Code Quality  | [SonarQube Cloud](https://sonarcloud.io/summary/new_code?id=fernandotonacoder_chrisert) |
+| Code Quality  | [SonarQube Cloud](https://sonarcloud.io/project/overview?id=fernandotonacoder_chrisert) |
 | Staging       | GitHub Pages                                                                            |
 | Production    | Netlify                                                                                 |
 | Forms         | Netlify Forms                                                                           |
