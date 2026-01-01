@@ -131,6 +131,11 @@ npm run preview
 - **Deployments:** Automatic on push to respective branches
 - **Auto-Sync:** After each push to `main`, changes are automatically rebased onto `dev` to keep branches in sync
 
+### Deployment Controls
+
+- **Manual Triggers:** Both GitHub Pages and Netlify workflows can also be triggered manually via Actions → Run workflow
+- **Environment Protection:** Both staging (GitHub Pages) and production (Netlify) deployments require manual approval from configured reviewers before proceeding
+
 ## 📁 Project Structure
 
 ```
