@@ -84,16 +84,32 @@ describe("Lightbox", () => {
     expect(onNavigateMock).toHaveBeenCalledWith(2);
   });
 
-  it("wraps to last image when navigating prev from first image", () => {
+  it("does not navigate when at first image and prev is clicked", () => {
     renderLightbox(0);
     fireEvent.click(screen.getByLabelText("Foto anterior"));
-    expect(onNavigateMock).toHaveBeenCalledWith(2); // Last image index
+    expect(onNavigateMock).not.toHaveBeenCalled();
   });
 
-  it("wraps to first image when navigating next from last image", () => {
+  it("does not navigate when at last image and next is clicked", () => {
     renderLightbox(2);
     fireEvent.click(screen.getByLabelText("Próxima foto"));
-    expect(onNavigateMock).toHaveBeenCalledWith(0); // First image index
+    expect(onNavigateMock).not.toHaveBeenCalled();
+  });
+
+  it("disables prev button at first image", () => {
+    renderLightbox(0);
+    expect(screen.getByLabelText("Foto anterior")).toBeDisabled();
+  });
+
+  it("disables next button at last image", () => {
+    renderLightbox(2);
+    expect(screen.getByLabelText("Próxima foto")).toBeDisabled();
+  });
+
+  it("enables both buttons in the middle", () => {
+    renderLightbox(1);
+    expect(screen.getByLabelText("Foto anterior")).not.toBeDisabled();
+    expect(screen.getByLabelText("Próxima foto")).not.toBeDisabled();
   });
 
   describe("keyboard navigation", () => {
@@ -113,6 +129,18 @@ describe("Lightbox", () => {
       renderLightbox(1);
       fireEvent.keyDown(document, { key: "ArrowRight" });
       expect(onNavigateMock).toHaveBeenCalledWith(2);
+    });
+
+    it("does not navigate prev on ArrowLeft at first image", () => {
+      renderLightbox(0);
+      fireEvent.keyDown(document, { key: "ArrowLeft" });
+      expect(onNavigateMock).not.toHaveBeenCalled();
+    });
+
+    it("does not navigate next on ArrowRight at last image", () => {
+      renderLightbox(2);
+      fireEvent.keyDown(document, { key: "ArrowRight" });
+      expect(onNavigateMock).not.toHaveBeenCalled();
     });
 
     it("does not respond to other keys", () => {
@@ -180,7 +208,7 @@ describe("Lightbox", () => {
   });
 
   it("stops propagation when clicking navigation buttons", () => {
-    renderLightbox();
+    renderLightbox(1); // Use middle index so both buttons are enabled
 
     // Click prev button - should not trigger backdrop close
     fireEvent.click(screen.getByLabelText("Foto anterior"));
