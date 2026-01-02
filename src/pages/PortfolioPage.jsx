@@ -9,7 +9,7 @@ import {
 import { CTASection } from "@/components/ui/CTASection";
 import Lightbox from "@/components/portfolio/Lightbox";
 import SocialLinks from "@/components/portfolio/SocialLinks";
-import SEO from "@/components/SEO";
+import { SEO } from "@/components/SEO";
 import { portfolioImages } from "@/data/portfolioImages";
 
 const PortfolioPage = () => {
@@ -86,9 +86,9 @@ const PortfolioPage = () => {
 
           {/* Dot indicators */}
           <div className="flex justify-center gap-2 mt-4">
-            {portfolioImages.map((_, index) => (
+            {portfolioImages.map((project, index) => (
               <button
-                key={index}
+                key={project.id}
                 onClick={() => api?.scrollTo(index)}
                 className={`h-2 rounded-full transition-all ${
                   index === current

@@ -5,7 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import SEO from "@/components/SEO";
+import { SEO } from "@/components/SEO";
 import { faqCategories, mythsAndFacts } from "@/data/faqData";
 
 const FAQPage = () => {
@@ -44,10 +44,10 @@ const FAQPage = () => {
                   collapsible
                   className="border rounded-lg px-4"
                 >
-                  {category.questions.map((item, index) => (
+                  {category.questions.map((item) => (
                     <AccordionItem
-                      key={index}
-                      value={`${category.id}-${index}`}
+                      key={item.question}
+                      value={`${category.id}-${item.question}`}
                     >
                       <AccordionTrigger className="text-base">
                         {item.question}
@@ -78,9 +78,9 @@ const FAQPage = () => {
           </div>
 
           <div className="space-y-4">
-            {mythsAndFacts.map((item, index) => (
+            {mythsAndFacts.map((item) => (
               <div
-                key={index}
+                key={item.myth}
                 className="bg-background rounded-lg border overflow-hidden"
               >
                 <div className="grid md:grid-cols-2">

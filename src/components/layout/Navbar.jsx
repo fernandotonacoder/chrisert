@@ -112,7 +112,7 @@ export const Navbar = React.forwardRef(
         ref={combinedRef}
         style={{ colorScheme: "only light" }}
         className={cn(
-          "sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur @supports-[backdrop-filter]:bg-background/60 px-4 md:px-6 [&_*]:no-underline",
+          "sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur @supports-[backdrop-filter]:bg-background/60 px-4 md:px-6 **:no-underline",
           className
         )}
         {...props}
@@ -138,8 +138,11 @@ export const Navbar = React.forwardRef(
                   <PopoverContent align="start" className="w-48 p-2">
                     <NavigationMenu className="max-w-none">
                       <NavigationMenuList className="flex-col items-start gap-1">
-                        {navigationLinks.map((link, index) => (
-                          <NavigationMenuItem key={index} className="w-full">
+                        {navigationLinks.map((link) => (
+                          <NavigationMenuItem
+                            key={link.href}
+                            className="w-full"
+                          >
                             <Link
                               to={link.href}
                               className={cn(
@@ -160,8 +163,8 @@ export const Navbar = React.forwardRef(
               ) : (
                 <NavigationMenu className="flex">
                   <NavigationMenuList className="gap-1">
-                    {navigationLinks.map((link, index) => (
-                      <NavigationMenuItem key={index}>
+                    {navigationLinks.map((link) => (
+                      <NavigationMenuItem key={link.href}>
                         <Link
                           to={link.href}
                           className={cn(
