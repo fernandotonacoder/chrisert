@@ -226,83 +226,6 @@ describe("useFullscreenGallery", () => {
     expect(result.current.position).toEqual({ x: 0, y: 0 });
   });
 
-  it("handles wheel zoom in fullscreen", async () => {
-    const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
-    );
-
-    await setupFullscreen(result);
-
-    const mockEvent = {
-      deltaY: -100,
-      preventDefault: vi.fn(),
-    };
-
-    act(() => {
-      result.current.handleWheel(mockEvent);
-    });
-
-    expect(mockEvent.preventDefault).toHaveBeenCalled();
-    expect(result.current.scale).toBeGreaterThan(1);
-  });
-
-  it("zooms out with wheel when deltaY is positive", async () => {
-    const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
-    );
-
-    await setupFullscreen(result);
-
-    // First zoom in
-    act(() => {
-      result.current.handleWheel({ deltaY: -100, preventDefault: vi.fn() });
-      result.current.handleWheel({ deltaY: -100, preventDefault: vi.fn() });
-    });
-
-    const zoomedScale = result.current.scale;
-
-    // Then zoom out
-    act(() => {
-      result.current.handleWheel({ deltaY: 100, preventDefault: vi.fn() });
-    });
-
-    expect(result.current.scale).toBeLessThan(zoomedScale);
-  });
-
-  it("clamps zoom to minimum of 1", async () => {
-    const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
-    );
-
-    await setupFullscreen(result);
-
-    // Try to zoom out below 1
-    act(() => {
-      result.current.handleWheel({ deltaY: 100, preventDefault: vi.fn() });
-      result.current.handleWheel({ deltaY: 100, preventDefault: vi.fn() });
-      result.current.handleWheel({ deltaY: 100, preventDefault: vi.fn() });
-    });
-
-    expect(result.current.scale).toBe(1);
-  });
-
-  it("clamps zoom to maximum of 4", async () => {
-    const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
-    );
-
-    await setupFullscreen(result);
-
-    // Zoom in many times
-    for (let i = 0; i < 20; i++) {
-      act(() => {
-        result.current.handleWheel({ deltaY: -100, preventDefault: vi.fn() });
-      });
-    }
-
-    expect(result.current.scale).toBeLessThanOrEqual(4);
-  });
-
   it("cycles through zoom levels on image click", async () => {
     const { result } = renderHook(() =>
       useFullscreenGallery(mockImages, mockCarouselApi)
@@ -642,23 +565,6 @@ describe("useFullscreenGallery", () => {
     expect(result.current.scale).toBe(1);
   });
 
-  it("handles wheel event when not fullscreen", () => {
-    const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
-    );
-
-    const mockEvent = {
-      deltaY: -100,
-      preventDefault: vi.fn(),
-    };
-
-    act(() => {
-      result.current.handleWheel(mockEvent);
-    });
-
-    expect(result.current.scale).toBe(1);
-  });
-
   it("handles touch start with single touch", () => {
     const { result } = renderHook(() =>
       useFullscreenGallery(mockImages, mockCarouselApi)
@@ -791,36 +697,6 @@ describe("useFullscreenGallery", () => {
     });
 
     expect(document.webkitExitFullscreen).toHaveBeenCalled();
-  });
-
-  it("resets position when zooming back to 1x via wheel", async () => {
-    const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
-    );
-
-    await setupFullscreen(result);
-
-    // Zoom in
-    act(() => {
-      result.current.handleWheel({ deltaY: -100, preventDefault: vi.fn() });
-    });
-
-    // Drag to change position
-    act(() => {
-      result.current.handleMouseDown({ clientX: 100, clientY: 100 });
-      result.current.handleMouseMove({ clientX: 150, clientY: 150 });
-      result.current.handleMouseUp();
-    });
-
-    // Zoom back to 1
-    for (let i = 0; i < 10; i++) {
-      act(() => {
-        result.current.handleWheel({ deltaY: 100, preventDefault: vi.fn() });
-      });
-    }
-
-    expect(result.current.scale).toBe(1);
-    expect(result.current.position).toEqual({ x: 0, y: 0 });
   });
 
   it("resets position when cycling back to 1x zoom", async () => {

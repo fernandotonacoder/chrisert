@@ -119,10 +119,12 @@ export const useFullscreenGallery = (images, carouselApi) => {
     if (newScale === 1) setPosition({ x: 0, y: 0 });
   }, [scale]);
 
-  // Mouse handlers
-  const handleWheel = useCallback(
-    (e) => {
-      if (!isFullscreen) return;
+  // Wheel zoom - use native event listener with passive: false to allow preventDefault
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container || !isFullscreen) return;
+
+    const handleWheel = (e) => {
       e.preventDefault();
       const delta = e.deltaY > 0 ? -0.3 : 0.3;
       setScale((s) => {
@@ -130,9 +132,11 @@ export const useFullscreenGallery = (images, carouselApi) => {
         if (newScale === 1) setPosition({ x: 0, y: 0 });
         return newScale;
       });
-    },
-    [isFullscreen]
-  );
+    };
+
+    container.addEventListener("wheel", handleWheel, { passive: false });
+    return () => container.removeEventListener("wheel", handleWheel);
+  }, [isFullscreen]);
 
   const handleImageClick = useCallback(() => {
     if (!isFullscreen || hasMoved.current) return;
@@ -270,7 +274,6 @@ export const useFullscreenGallery = (images, carouselApi) => {
     goToNext,
 
     // Handlers
-    handleWheel,
     handleImageClick,
     handleMouseDown,
     handleMouseMove,

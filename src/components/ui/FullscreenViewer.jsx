@@ -15,7 +15,6 @@ const FullscreenViewer = ({
   onClose,
   onPrev,
   onNext,
-  onWheel,
   onImageClick,
   onMouseDown,
   onMouseMove,
@@ -98,7 +97,6 @@ const FullscreenViewer = ({
           isZoomed ? "cursor-grab active:cursor-grabbing" : "cursor-zoom-in"
         }`}
         onClick={onImageClick}
-        onWheel={onWheel}
         onMouseDown={onMouseDown}
         onMouseMove={onMouseMove}
         onMouseUp={onMouseUp}
@@ -138,7 +136,6 @@ FullscreenViewer.propTypes = {
   onClose: PropTypes.func.isRequired,
   onPrev: PropTypes.func.isRequired,
   onNext: PropTypes.func.isRequired,
-  onWheel: PropTypes.func.isRequired,
   onImageClick: PropTypes.func.isRequired,
   onMouseDown: PropTypes.func.isRequired,
   onMouseMove: PropTypes.func.isRequired,

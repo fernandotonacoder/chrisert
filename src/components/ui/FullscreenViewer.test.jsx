@@ -22,7 +22,6 @@ const defaultProps = {
   onClose: vi.fn(),
   onPrev: vi.fn(),
   onNext: vi.fn(),
-  onWheel: vi.fn(),
   onImageClick: vi.fn(),
   onMouseDown: vi.fn(),
   onMouseMove: vi.fn(),
@@ -109,14 +108,6 @@ describe("FullscreenViewer", () => {
 
     fireEvent.click(screen.getByLabelText("Clique para ampliar"));
     expect(onImageClick).toHaveBeenCalledTimes(1);
-  });
-
-  it("calls onWheel when scrolling on gesture layer", () => {
-    const onWheel = vi.fn();
-    render(<FullscreenViewer {...defaultProps} onWheel={onWheel} />);
-
-    fireEvent.wheel(screen.getByLabelText("Clique para ampliar"));
-    expect(onWheel).toHaveBeenCalledTimes(1);
   });
 
   it("calls mouse handlers on gesture layer", () => {

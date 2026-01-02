@@ -122,7 +122,6 @@ const PortfolioPage = () => {
         onClose={gallery.close}
         onPrev={gallery.goToPrev}
         onNext={gallery.goToNext}
-        onWheel={gallery.handleWheel}
         onImageClick={gallery.handleImageClick}
         onMouseDown={gallery.handleMouseDown}
         onMouseMove={gallery.handleMouseMove}
