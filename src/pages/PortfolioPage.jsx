@@ -9,7 +9,7 @@ import {
 import { CTASection } from "@/components/common/CTASection";
 import Lightbox from "@/components/ui/Lightbox";
 import SocialLinks from "@/components/common/SocialLinks";
-import { SEO } from "@/components/common/SEO";
+import { Seo } from "@/components/common/Seo";
 import { portfolioImages } from "@/data/portfolioImages";
 
 const PortfolioPage = () => {
@@ -46,7 +46,7 @@ const PortfolioPage = () => {
 
   return (
     <div className="flex flex-col">
-      <SEO
+      <Seo
         title="Portfólio"
         description="Veja alguns dos nossos projetos de isolamento térmico e renovação de fachadas realizados em Portugal."
         canonical="/portfolio"

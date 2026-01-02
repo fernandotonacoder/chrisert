@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { CTASection } from "@/components/common/CTASection";
-import { SEO } from "@/components/common/SEO";
+import { Seo } from "@/components/common/Seo";
 import { Award, Users, ThermometerSun } from "lucide-react";
 
 const heroImage = new URL("/hero-work.jpg", import.meta.url).href;
@@ -10,7 +10,7 @@ const heroImage = new URL("/hero-work.jpg", import.meta.url).href;
 const HomePage = () => {
   return (
     <div className="flex flex-col">
-      <SEO canonical="/" />
+      <Seo canonical="/" />
       <section className="relative min-h-[90vh] flex items-center">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"

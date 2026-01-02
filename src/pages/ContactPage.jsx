@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";
 import ContactErrorDialog from "@/components/contact/ContactErrorDialog";
-import { SEO } from "@/components/common/SEO";
+import { Seo } from "@/components/common/Seo";
 import {
   Form,
   FormControl,
@@ -78,7 +78,7 @@ const ContactPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-10">
-      <SEO
+      <Seo
         title="Contactos"
         description="Entre em contacto com a Chrisert para orçamentos gratuitos de isolamento térmico e obras em fachadas."
         canonical="/contactos"

@@ -1,40 +1,40 @@
 import { render } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
-import { SEO } from "./SEO";
+import { Seo } from "./Seo";
 
-describe("SEO", () => {
+describe("Seo", () => {
   it("renders title with site name", () => {
-    render(<SEO title="Contactos" />);
+    render(<Seo title="Contactos" />);
     expect(document.title).toBe("Contactos | Chrisert");
   });
 
   it("renders default title when no title prop provided", () => {
-    render(<SEO />);
+    render(<Seo />);
     expect(document.title).toBe(
       "Chrisert - Especialistas em ETICS e Isolamento Térmico"
     );
   });
 
   it("renders meta description", () => {
-    render(<SEO description="Descrição personalizada" />);
+    render(<Seo description="Descrição personalizada" />);
     const metaDescription = document.querySelector('meta[name="description"]');
     expect(metaDescription).toHaveAttribute("content", "Descrição personalizada");
   });
 
   it("renders default description when not provided", () => {
-    render(<SEO />);
+    render(<Seo />);
     const metaDescription = document.querySelector('meta[name="description"]');
     expect(metaDescription?.getAttribute("content")).toContain("ETICS");
   });
 
   it("renders meta keywords", () => {
-    render(<SEO keywords="isolamento, capoto" />);
+    render(<Seo keywords="isolamento, capoto" />);
     const metaKeywords = document.querySelector('meta[name="keywords"]');
     expect(metaKeywords).toHaveAttribute("content", "isolamento, capoto");
   });
 
   it("renders canonical URL with base URL", () => {
-    render(<SEO canonical="/contactos" />);
+    render(<Seo canonical="/contactos" />);
     const canonicalLink = document.querySelector('link[rel="canonical"]');
     expect(canonicalLink).toHaveAttribute(
       "href",
@@ -43,14 +43,14 @@ describe("SEO", () => {
   });
 
   it("renders default canonical URL when not provided", () => {
-    render(<SEO />);
+    render(<Seo />);
     const canonicalLink = document.querySelector('link[rel="canonical"]');
     expect(canonicalLink).toHaveAttribute("href", "https://chrisert.pt");
   });
 
   it("renders Open Graph meta tags", () => {
     render(
-      <SEO
+      <Seo
         title="Portfolio"
         description="Os nossos trabalhos"
         canonical="/portfolio"
@@ -73,19 +73,19 @@ describe("SEO", () => {
   });
 
   it("renders custom ogType", () => {
-    render(<SEO ogType="article" />);
+    render(<Seo ogType="article" />);
     const ogType = document.querySelector('meta[property="og:type"]');
     expect(ogType).toHaveAttribute("content", "article");
   });
 
   it("renders custom ogImage", () => {
-    render(<SEO ogImage="https://example.com/image.jpg" />);
+    render(<Seo ogImage="https://example.com/image.jpg" />);
     const ogImage = document.querySelector('meta[property="og:image"]');
     expect(ogImage).toHaveAttribute("content", "https://example.com/image.jpg");
   });
 
   it("renders Twitter meta tags", () => {
-    render(<SEO title="FAQ" description="Perguntas frequentes" />);
+    render(<Seo title="FAQ" description="Perguntas frequentes" />);
 
     const twitterCard = document.querySelector('meta[name="twitter:card"]');
     const twitterTitle = document.querySelector('meta[name="twitter:title"]');
