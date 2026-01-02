@@ -524,6 +524,161 @@ describe("useFullscreenGallery", () => {
     expect(result.current.currentIndex).toBe(1);
   });
 
+  it("handles Enter key for zoom cycling in fullscreen", async () => {
+    const { result } = renderHook(() =>
+      useFullscreenGallery(mockImages, mockCarouselApi)
+    );
+
+    await setupFullscreen(result);
+
+    expect(result.current.scale).toBe(1);
+
+    // Press Enter to cycle zoom
+    await act(async () => {
+      const event = new KeyboardEvent("keydown", { key: "Enter" });
+      document.dispatchEvent(event);
+    });
+
+    expect(result.current.scale).toBe(1.5);
+  });
+
+  it("handles Space key for zoom cycling in fullscreen", async () => {
+    const { result } = renderHook(() =>
+      useFullscreenGallery(mockImages, mockCarouselApi)
+    );
+
+    await setupFullscreen(result);
+
+    expect(result.current.scale).toBe(1);
+
+    // Press Space to cycle zoom
+    await act(async () => {
+      const event = new KeyboardEvent("keydown", { key: " " });
+      document.dispatchEvent(event);
+    });
+
+    expect(result.current.scale).toBe(1.5);
+  });
+
+  it("handles wheel zoom in fullscreen", async () => {
+    const { result } = renderHook(() =>
+      useFullscreenGallery(mockImages, mockCarouselApi)
+    );
+
+    const mockContainer = document.createElement("div");
+    mockContainer.requestFullscreen = vi.fn().mockResolvedValue();
+    mockContainer.addEventListener = vi.fn();
+    mockContainer.removeEventListener = vi.fn();
+    result.current.containerRef.current = mockContainer;
+
+    await act(async () => {
+      result.current.open(0);
+    });
+
+    // Simulate fullscreen being active
+    Object.defineProperty(document, "fullscreenElement", {
+      value: mockContainer,
+      writable: true,
+      configurable: true,
+    });
+
+    await act(async () => {
+      document.dispatchEvent(new Event("fullscreenchange"));
+    });
+
+    // The wheel handler should have been added
+    expect(mockContainer.addEventListener).toHaveBeenCalledWith(
+      "wheel",
+      expect.any(Function),
+      { passive: false }
+    );
+  });
+
+  it("handles wheel zoom up (zoom in)", async () => {
+    const { result } = renderHook(() =>
+      useFullscreenGallery(mockImages, mockCarouselApi)
+    );
+
+    const mockContainer = document.createElement("div");
+    mockContainer.requestFullscreen = vi.fn().mockResolvedValue();
+    
+    let wheelHandler;
+    mockContainer.addEventListener = vi.fn((event, handler) => {
+      if (event === "wheel") wheelHandler = handler;
+    });
+    mockContainer.removeEventListener = vi.fn();
+    result.current.containerRef.current = mockContainer;
+
+    await act(async () => {
+      result.current.open(0);
+    });
+
+    Object.defineProperty(document, "fullscreenElement", {
+      value: mockContainer,
+      writable: true,
+      configurable: true,
+    });
+
+    await act(async () => {
+      document.dispatchEvent(new Event("fullscreenchange"));
+    });
+
+    // Simulate wheel scroll up (zoom in)
+    await act(async () => {
+      wheelHandler({ deltaY: -100, preventDefault: vi.fn() });
+    });
+
+    expect(result.current.scale).toBeGreaterThan(1);
+  });
+
+  it("handles wheel zoom down (zoom out) and resets position at scale 1", async () => {
+    const { result } = renderHook(() =>
+      useFullscreenGallery(mockImages, mockCarouselApi)
+    );
+
+    const mockContainer = document.createElement("div");
+    mockContainer.requestFullscreen = vi.fn().mockResolvedValue();
+    
+    let wheelHandler;
+    mockContainer.addEventListener = vi.fn((event, handler) => {
+      if (event === "wheel") wheelHandler = handler;
+    });
+    mockContainer.removeEventListener = vi.fn();
+    result.current.containerRef.current = mockContainer;
+
+    await act(async () => {
+      result.current.open(0);
+    });
+
+    Object.defineProperty(document, "fullscreenElement", {
+      value: mockContainer,
+      writable: true,
+      configurable: true,
+    });
+
+    await act(async () => {
+      document.dispatchEvent(new Event("fullscreenchange"));
+    });
+
+    // First zoom in
+    await act(async () => {
+      wheelHandler({ deltaY: -100, preventDefault: vi.fn() });
+    });
+
+    expect(result.current.scale).toBeGreaterThan(1);
+
+    // Then zoom out back to 1
+    await act(async () => {
+      wheelHandler({ deltaY: 100, preventDefault: vi.fn() });
+      wheelHandler({ deltaY: 100, preventDefault: vi.fn() });
+      wheelHandler({ deltaY: 100, preventDefault: vi.fn() });
+      wheelHandler({ deltaY: 100, preventDefault: vi.fn() });
+    });
+
+    expect(result.current.scale).toBe(1);
+    expect(result.current.position).toEqual({ x: 0, y: 0 });
+  });
+
   it("handles mouse down correctly when zoomed", async () => {
     const { result } = renderHook(() =>
       useFullscreenGallery(mockImages, mockCarouselApi)
