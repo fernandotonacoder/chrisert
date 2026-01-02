@@ -145,9 +145,10 @@ export const useFullscreenGallery = (images, carouselApi) => {
 
   const handleMouseDown = useCallback(
     (e) => {
-      if (!isFullscreen || !isZoomed) return;
-      isDragging.current = true;
+      if (!isFullscreen) return;
       hasMoved.current = false;
+      if (!isZoomed) return;
+      isDragging.current = true;
       dragStart.current = {
         x: e.clientX - position.x,
         y: e.clientY - position.y,

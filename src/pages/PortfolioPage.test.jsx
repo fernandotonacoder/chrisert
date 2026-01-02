@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import PortfolioPage from "./PortfolioPage";
@@ -89,7 +89,10 @@ describe("PortfolioPage", () => {
     renderWithProviders(<PortfolioPage />);
 
     const imageButtons = screen.getAllByRole("button", { name: /ver projeto/i });
-    fireEvent.click(imageButtons[0]);
+    
+    await act(async () => {
+      fireEvent.click(imageButtons[0]);
+    });
 
     expect(Element.prototype.requestFullscreen).toHaveBeenCalled();
   });
