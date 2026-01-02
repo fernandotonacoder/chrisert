@@ -33,7 +33,7 @@ jobs:
 
       - name: Install and Build
         run: |
-          npm ci
+          npm ci --ignore-scripts
           npm run build
 
       - name: Deploy to Netlify

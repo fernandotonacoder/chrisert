@@ -2,7 +2,8 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { Navbar } from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { BackToTop } from "@/components/ui/BackToTop";
+import { BackToTop } from "@/components/common/BackToTop";
+import { ScrollRestoration } from "@/components/common/ScrollRestoration";
 import HomePage from "./pages/HomePage";
 import ServicesPage from "./pages/ServicesPage";
 import PortfolioPage from "./pages/PortfolioPage";
@@ -13,6 +14,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 function App() {
   return (
     <div className="flex flex-col min-h-screen">
+      <ScrollRestoration />
       <div className="print:hidden">
         <Navbar />
       </div>

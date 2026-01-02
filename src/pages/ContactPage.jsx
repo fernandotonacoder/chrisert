@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";
 import ContactErrorDialog from "@/components/contact/ContactErrorDialog";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/common/SEO";
 import {
   Form,
   FormControl,

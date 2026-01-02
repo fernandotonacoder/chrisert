@@ -1,5 +1,5 @@
-import { CTASection } from "@/components/ui/CTASection";
-import { SEO } from "@/components/SEO";
+import { CTASection } from "@/components/common/CTASection";
+import { SEO } from "@/components/common/SEO";
 import { services, eticsBenefits, processSteps } from "@/data/servicesData";
 
 const ServicesPage = () => {
