@@ -94,18 +94,6 @@ export const useFullscreenGallery = (images, carouselApi) => {
     };
   }, [carouselApi, currentIndex]);
 
-  // Keyboard navigation
-  useEffect(() => {
-    if (!isFullscreen) return;
-
-    const handleKey = (e) => {
-      if (e.key === "ArrowLeft") goToPrev();
-      else if (e.key === "ArrowRight") goToNext();
-    };
-    document.addEventListener("keydown", handleKey);
-    return () => document.removeEventListener("keydown", handleKey);
-  }, [isFullscreen, goToPrev, goToNext]);
-
   // Cycle to next zoom level
   const cycleZoom = useCallback(() => {
     const currentLevelIndex = ZOOM_LEVELS.findIndex((z) => scale <= z);
@@ -118,6 +106,22 @@ export const useFullscreenGallery = (images, carouselApi) => {
     setScale(newScale);
     if (newScale === 1) setPosition({ x: 0, y: 0 });
   }, [scale]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    if (!isFullscreen) return;
+
+    const handleKey = (e) => {
+      if (e.key === "ArrowLeft") goToPrev();
+      else if (e.key === "ArrowRight") goToNext();
+      else if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        cycleZoom();
+      }
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [isFullscreen, goToPrev, goToNext, cycleZoom]);
 
   // Wheel zoom - use native event listener with passive: false to allow preventDefault
   useEffect(() => {
