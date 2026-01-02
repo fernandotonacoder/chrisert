@@ -44,8 +44,8 @@ jobs:
             git reset --hard origin/main
           fi
 
-          # Create empty commit with skip ci to prevent triggering workflows
-          git commit --allow-empty -m "chore: sync from main [skip ci]"
+          # Create empty commit to mark sync completion
+          git commit --allow-empty -m "chore: sync from main"
 
           # Push with force-with-lease (safe force push that fails if remote has new commits)
           # This workflow uses a GitHub App token to push to the protected branch
