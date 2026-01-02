@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/Button";
 import { BarsScaleFadeIcon } from "@/components/ui/icons/BarsScaleFadeIcon";
-import SEO from "@/components/SEO";
+import { SEO } from "@/components/SEO";
 import { useEffect, useState } from "react";
 
 const NotFoundPage = () => {
@@ -10,7 +10,7 @@ const NotFoundPage = () => {
 
   useEffect(() => {
     if (count <= 0) {
-      window.location.replace(basename);
+      globalThis.location.replace(basename);
       return;
     }
 

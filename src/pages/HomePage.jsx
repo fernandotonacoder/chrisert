@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { CTASection } from "@/components/ui/CTASection";
-import SEO from "@/components/SEO";
+import { SEO } from "@/components/SEO";
 import { Award, Users, ThermometerSun } from "lucide-react";
 
 const heroImage = new URL("/hero-work.jpg", import.meta.url).href;

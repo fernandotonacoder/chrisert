@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";
 import ContactErrorDialog from "@/components/contact/ContactErrorDialog";
-import SEO from "@/components/SEO";
+import { SEO } from "@/components/SEO";
 import {
   Form,
   FormControl,
@@ -21,9 +21,7 @@ const contactFormSchema = z.object({
   nome: z.string().min(2, {
     message: "O nome deve ter pelo menos 2 caracteres.",
   }),
-  email: z.string().email({
-    message: "Por favor, insira um email válido.",
-  }),
+  email: z.email("Por favor, insira um email válido."),
   telefone: z
     .string()
     .min(9, {
