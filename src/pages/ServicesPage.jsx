@@ -1,5 +1,5 @@
-import { CTASection } from "@/components/ui/CTASection";
-import SEO from "@/components/SEO";
+import { CTASection } from "@/components/common/CTASection";
+import { SEO } from "@/components/common/SEO";
 import { services, eticsBenefits, processSteps } from "@/data/servicesData";
 
 const ServicesPage = () => {
@@ -28,11 +28,11 @@ const ServicesPage = () => {
       <section className="py-16 px-4">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => {
+            {services.map((service) => {
               const IconComponent = service.icon;
               return (
                 <div
-                  key={index}
+                  key={service.title}
                   className="p-6 border rounded-lg bg-background hover:shadow-lg transition-shadow"
                 >
                   <div className="mb-4">
@@ -48,9 +48,9 @@ const ServicesPage = () => {
                     {service.description}
                   </p>
                   <ul className="space-y-2">
-                    {service.features.map((feature, idx) => (
+                    {service.features.map((feature) => (
                       <li
-                        key={idx}
+                        key={feature}
                         className="flex items-center gap-2 text-sm text-muted-foreground"
                       >
                         <span className="text-primary">✓</span>
@@ -79,11 +79,11 @@ const ServicesPage = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {eticsBenefits.map((benefit, index) => {
+            {eticsBenefits.map((benefit) => {
               const IconComponent = benefit.icon;
               return (
                 <div
-                  key={index}
+                  key={benefit.title}
                   className="text-center p-6 bg-background rounded-lg border"
                 >
                   <div className="flex justify-center mb-3">
@@ -118,8 +118,8 @@ const ServicesPage = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {processSteps.map((item, index) => (
-              <div key={index} className="text-center">
+            {processSteps.map((item) => (
+              <div key={item.step} className="text-center">
                 <div className="text-4xl font-bold text-primary/20 mb-2">
                   {item.step}
                 </div>

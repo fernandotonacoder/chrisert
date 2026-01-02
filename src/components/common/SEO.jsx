@@ -60,4 +60,5 @@ SEO.propTypes = {
   ogType: PropTypes.string,
 };
 
+export { SEO };
 export default SEO;
