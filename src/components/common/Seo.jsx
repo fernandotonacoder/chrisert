@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const SEO = ({
+const Seo = ({
   title,
   description,
   keywords,
@@ -51,7 +51,7 @@ const SEO = ({
   );
 };
 
-SEO.propTypes = {
+Seo.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   keywords: PropTypes.string,
@@ -60,5 +60,5 @@ SEO.propTypes = {
   ogType: PropTypes.string,
 };
 
-export { SEO };
-export default SEO;
+export { Seo };
+export default Seo;

@@ -1,11 +1,11 @@
 import { CTASection } from "@/components/common/CTASection";
-import { SEO } from "@/components/common/SEO";
+import { Seo } from "@/components/common/Seo";
 import { services, eticsBenefits, processSteps } from "@/data/servicesData";
 
 const ServicesPage = () => {
   return (
     <div className="flex flex-col">
-      <SEO
+      <Seo
         title="Serviços"
         description="Conheça os nossos serviços de isolamento térmico (ETICS/Capoto), renovação de fachadas, pintura e limpeza de telhados."
         canonical="/servicos"
