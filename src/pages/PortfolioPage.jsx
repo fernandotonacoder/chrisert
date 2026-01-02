@@ -6,10 +6,10 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "@/components/ui/Carousel";
-import { CTASection } from "@/components/ui/CTASection";
-import Lightbox from "@/components/portfolio/Lightbox";
-import SocialLinks from "@/components/portfolio/SocialLinks";
-import { SEO } from "@/components/SEO";
+import { CTASection } from "@/components/common/CTASection";
+import Lightbox from "@/components/ui/Lightbox";
+import SocialLinks from "@/components/common/SocialLinks";
+import { SEO } from "@/components/common/SEO";
 import { portfolioImages } from "@/data/portfolioImages";
 
 const PortfolioPage = () => {

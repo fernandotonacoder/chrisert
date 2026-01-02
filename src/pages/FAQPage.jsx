@@ -1,11 +1,11 @@
-import { CTASection } from "@/components/ui/CTASection";
+import { CTASection } from "@/components/common/CTASection";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { SEO } from "@/components/SEO";
+import { SEO } from "@/components/common/SEO";
 import { faqCategories, mythsAndFacts } from "@/data/faqData";
 
 const FAQPage = () => {
