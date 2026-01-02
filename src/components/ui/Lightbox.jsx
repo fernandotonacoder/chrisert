@@ -4,13 +4,37 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 const Lightbox = ({ images, currentIndex, onClose, onNavigate }) => {
   const touchStartX = useRef(null);
+  const containerRef = useRef(null);
+
+  const canGoPrev = currentIndex > 0;
+  const canGoNext = currentIndex < images.length - 1;
+
+  useEffect(() => {
+    const enterFullscreen = async () => {
+      try {
+        if (document.fullscreenElement === null) {
+          await containerRef.current?.requestFullscreen();
+        }
+      } catch {
+        // Fullscreen not supported or denied - continue without it
+      }
+    };
+
+    enterFullscreen();
+
+    return () => {
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(() => {});
+      }
+    };
+  }, []);
 
   const navigate = useCallback(
     (direction) => {
-      if (direction === "prev") {
-        onNavigate(currentIndex > 0 ? currentIndex - 1 : images.length - 1);
-      } else {
-        onNavigate(currentIndex < images.length - 1 ? currentIndex + 1 : 0);
+      if (direction === "prev" && currentIndex > 0) {
+        onNavigate(currentIndex - 1);
+      } else if (direction === "next" && currentIndex < images.length - 1) {
+        onNavigate(currentIndex + 1);
       }
     },
     [currentIndex, images.length, onNavigate]
@@ -44,14 +68,17 @@ const Lightbox = ({ images, currentIndex, onClose, onNavigate }) => {
   }, [navigate, onClose]);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center animate-in fade-in duration-200">
+    <div
+      ref={containerRef}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black animate-in fade-in duration-200"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       {/* Backdrop - semantic button element */}
       <button
         type="button"
-        className="absolute inset-0 bg-black/95 cursor-default"
+        className="absolute inset-0 bg-black cursor-default"
         onClick={onClose}
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
         aria-label="Fechar lightbox"
       />
 
@@ -69,7 +96,12 @@ const Lightbox = ({ images, currentIndex, onClose, onNavigate }) => {
       <button
         type="button"
         onClick={() => navigate("prev")}
-        className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors z-10 p-2"
+        disabled={!canGoPrev}
+        className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors z-10 p-2 ${
+          canGoPrev
+            ? "text-white/70 hover:text-white cursor-pointer"
+            : "text-white/20 cursor-not-allowed"
+        }`}
         aria-label="Foto anterior"
       >
         <ChevronLeft className="size-10" />
@@ -79,21 +111,26 @@ const Lightbox = ({ images, currentIndex, onClose, onNavigate }) => {
       <button
         type="button"
         onClick={() => navigate("next")}
-        className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors z-10 p-2"
+        disabled={!canGoNext}
+        className={`absolute right-4 top-1/2 -translate-y-1/2 transition-colors z-10 p-2 ${
+          canGoNext
+            ? "text-white/70 hover:text-white cursor-pointer"
+            : "text-white/20 cursor-not-allowed"
+        }`}
         aria-label="Próxima foto"
       >
         <ChevronRight className="size-10" />
       </button>
 
       {/* Image container */}
-      <figure className="relative z-10 aspect-3/4 max-h-[90vh] max-w-[90vw] overflow-hidden rounded-lg animate-in zoom-in-95 duration-200 block m-0">
+      <figure className="relative z-10 max-h-[95vh] max-w-[95vw] overflow-hidden rounded-lg animate-in zoom-in-95 duration-200 m-0">
         <img
           src={images[currentIndex].image}
           alt={
             images[currentIndex].alt ||
             `Projeto ${currentIndex + 1} de ${images.length}`
           }
-          className="w-full h-full object-cover"
+          className="max-h-[95vh] max-w-[95vw] object-contain"
         />
       </figure>
     </div>
