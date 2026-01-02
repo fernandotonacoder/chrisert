@@ -37,6 +37,9 @@ jobs:
             git reset --hard origin/main
           fi
 
+          # Create empty commit with skip ci to prevent triggering workflows
+          git commit --allow-empty -m "chore: sync from main [skip ci]"
+
           # Push with force-with-lease (safe force push that fails if remote has new commits)
           # This workflow uses a PAT with admin bypass to push directly to the protected branch
           git push origin dev --force-with-lease
