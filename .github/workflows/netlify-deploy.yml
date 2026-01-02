@@ -1,3 +1,7 @@
+# Production deployment workflow
+# Triggered on push to main or manual dispatch
+# Runs tests and lint before deploying to Netlify
+
 name: Production → Netlify
 on:
   push:
