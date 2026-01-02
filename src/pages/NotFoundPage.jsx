@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/Button";
 import { BarsScaleFadeIcon } from "@/components/ui/icons/BarsScaleFadeIcon";
-import { SEO } from "@/components/common/SEO";
+import { Seo } from "@/components/common/Seo";
 import { useEffect, useState } from "react";
 
 const NotFoundPage = () => {
@@ -23,7 +23,7 @@ const NotFoundPage = () => {
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4">
-      <SEO
+      <Seo
         title="Página Não Encontrada"
         description="A página que procura não existe."
       />

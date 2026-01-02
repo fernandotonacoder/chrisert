@@ -1,6 +1,6 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import PortfolioPage from "./PortfolioPage";
 
 const renderWithProviders = (component) => {
@@ -8,6 +8,22 @@ const renderWithProviders = (component) => {
 };
 
 describe("PortfolioPage", () => {
+  let originalRequestFullscreen;
+  let originalExitFullscreen;
+
+  beforeEach(() => {
+    originalRequestFullscreen = Element.prototype.requestFullscreen;
+    originalExitFullscreen = document.exitFullscreen;
+
+    Element.prototype.requestFullscreen = vi.fn().mockResolvedValue();
+    document.exitFullscreen = vi.fn().mockResolvedValue();
+  });
+
+  afterEach(() => {
+    Element.prototype.requestFullscreen = originalRequestFullscreen;
+    document.exitFullscreen = originalExitFullscreen;
+  });
+
   it("renders the page title and description", () => {
     renderWithProviders(<PortfolioPage />);
 
@@ -38,5 +54,46 @@ describe("PortfolioPage", () => {
       "href",
       "https://www.facebook.com/chrisert.pt/"
     );
+  });
+
+  it("renders carousel navigation buttons", () => {
+    renderWithProviders(<PortfolioPage />);
+
+    expect(screen.getByRole("button", { name: /previous slide/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /next slide/i })).toBeInTheDocument();
+  });
+
+  it("renders dot indicators for navigation", () => {
+    renderWithProviders(<PortfolioPage />);
+
+    const dotButtons = screen.getAllByRole("button", { name: /ir para projeto/i });
+    expect(dotButtons.length).toBeGreaterThan(0);
+  });
+
+  it("renders CTA section", () => {
+    renderWithProviders(<PortfolioPage />);
+
+    expect(screen.getByText(/gostou do que viu/i)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /pedir orçamento/i })).toBeInTheDocument();
+  });
+
+  it("renders fullscreen viewer container", () => {
+    renderWithProviders(<PortfolioPage />);
+
+    expect(
+      screen.getByLabelText("Visualizador de imagens em ecrã inteiro")
+    ).toBeInTheDocument();
+  });
+
+  it("opens fullscreen when clicking on image", async () => {
+    renderWithProviders(<PortfolioPage />);
+
+    const imageButtons = screen.getAllByRole("button", { name: /ver projeto/i });
+    
+    await act(async () => {
+      fireEvent.click(imageButtons[0]);
+    });
+
+    expect(Element.prototype.requestFullscreen).toHaveBeenCalled();
   });
 });

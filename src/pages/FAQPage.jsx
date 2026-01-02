@@ -5,13 +5,13 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { SEO } from "@/components/common/SEO";
+import { Seo } from "@/components/common/Seo";
 import { faqCategories, mythsAndFacts } from "@/data/faqData";
 
 const FAQPage = () => {
   return (
     <div className="flex flex-col">
-      <SEO
+      <Seo
         title="Perguntas Frequentes"
         description="Dúvidas sobre ETICS ou Capoto? Encontre respostas para as perguntas mais comuns sobre isolamento térmico."
         canonical="/faq"
