@@ -59,13 +59,21 @@ export const useFullscreenGallery = (images, carouselApi) => {
     }
   }, []);
 
-  // Navigate
+  // Navigate with zoom reset
   const goToPrev = useCallback(() => {
-    if (canGoPrev) setCurrentIndex((i) => i - 1);
+    if (canGoPrev) {
+      setCurrentIndex((i) => i - 1);
+      setScale(1);
+      setPosition({ x: 0, y: 0 });
+    }
   }, [canGoPrev]);
 
   const goToNext = useCallback(() => {
-    if (canGoNext) setCurrentIndex((i) => i + 1);
+    if (canGoNext) {
+      setCurrentIndex((i) => i + 1);
+      setScale(1);
+      setPosition({ x: 0, y: 0 });
+    }
   }, [canGoNext]);
 
   // Handle fullscreen change - sync carousel when exiting
@@ -85,12 +93,6 @@ export const useFullscreenGallery = (images, carouselApi) => {
       document.removeEventListener("webkitfullscreenchange", handleChange);
     };
   }, [carouselApi, currentIndex]);
-
-  // Reset zoom when changing image
-  useEffect(() => {
-    setScale(1);
-    setPosition({ x: 0, y: 0 });
-  }, [currentIndex]);
 
   // Keyboard navigation
   useEffect(() => {
