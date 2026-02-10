@@ -4,6 +4,7 @@
 [![Staging](https://github.com/fernandotonacoder/chrisert/actions/workflows/github-pages-deploy.yml/badge.svg?branch=dev)](https://github.com/fernandotonacoder/chrisert/actions/workflows/github-pages-deploy.yml)
 [![Tests](https://github.com/fernandotonacoder/chrisert/actions/workflows/test.yml/badge.svg)](https://github.com/fernandotonacoder/chrisert/actions/workflows/test.yml)
 [![Lint](https://github.com/fernandotonacoder/chrisert/actions/workflows/lint.yml/badge.svg)](https://github.com/fernandotonacoder/chrisert/actions/workflows/lint.yml)
+[![Security Audit](https://github.com/fernandotonacoder/chrisert/actions/workflows/security-audit.yml/badge.svg)](https://github.com/fernandotonacoder/chrisert/actions/workflows/security-audit.yml)
 
 <table>
   <tr>

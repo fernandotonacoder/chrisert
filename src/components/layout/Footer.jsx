@@ -1,7 +1,4 @@
-import {
-  SiFacebook,
-  SiInstagram
-} from "@icons-pack/react-simple-icons";
+import { SiFacebook, SiInstagram } from "@icons-pack/react-simple-icons";
 import {
   Marquee,
   MarqueeContent,
@@ -48,7 +45,7 @@ const CustomFooter = () => (
       </Marquee>
     </div>
     <p className="text-sm text-muted-foreground">
-      © 2026 Chrisert. Desenvolvido por{" "}
+      © {new Date().getFullYear()} Chrisert. Desenvolvido por{" "}
       <a
         href="https://fernandotonacoder.github.io/"
         target="_blank"
