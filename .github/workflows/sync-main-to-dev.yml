@@ -21,7 +21,7 @@ jobs:
           private-key: ${{ secrets.SYNC_BOT_PRIVATE_KEY }}
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6.0.2
         with:
           fetch-depth: 0
           token: ${{ steps.app-token.outputs.token }}
