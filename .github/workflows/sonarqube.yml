@@ -1,24 +1,25 @@
-name: SonarQube Cloud Analysis
+name: SonarQube Server (Community) Analysis
 
 on:
   push:
     branches:
-      - main
+      # - main # production, already covered automatically by SonarQube Cloud
       - dev
-  pull_request:
-    types: [opened, synchronize, reopened]
+  # pull_request: # SonarQube Server Community doesn't support PRs
+  #   types: [opened, synchronize, reopened]
+  workflow_dispatch:
 
 jobs:
   sonarqube:
     name: SonarQube
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6.0.2
         with:
           fetch-depth: 0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6.3.0
         with:
           node-version: "24"
           cache: "npm"
@@ -29,7 +30,8 @@ jobs:
       - name: Run tests with coverage
         run: npm run test:coverage
 
-      - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v6
+      - name: Official SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v7.0.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
