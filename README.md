@@ -306,7 +306,13 @@ The **source code** of this project is licensed under the [MIT License](LICENSE)
 **Fernando Tona**
 
 - GitHub: [@fernandotonacoder](https://github.com/fernandotonacoder)
+- LinkedIn: [Fernando Tona](https://www.linkedin.com/in/fernandotona/)
+- Website: [fernandotonacoder.github.io](https://fernandotonacoder.github.io/)
 
 ---
 
+<div align="center">
+
 _Built with ❤️ for real-world business needs_
+
+</div>
