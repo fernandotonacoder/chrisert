@@ -8,6 +8,7 @@ on:
 jobs:
   ensure-dev-to-main:
     runs-on: ubuntu-latest
+    permissions: {}
     steps:
       - name: Verify source is dev
         if: github.head_ref != 'dev'
