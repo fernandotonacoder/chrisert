@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 
 // Mock matchMedia for embla-carousel
-Object.defineProperty(window, "matchMedia", {
+Object.defineProperty(globalThis, "matchMedia", {
   writable: true,
   value: (query) => ({
     matches: false,
@@ -17,7 +17,6 @@ Object.defineProperty(window, "matchMedia", {
 
 // Mock IntersectionObserver for embla-carousel
 class IntersectionObserver {
-  // Mock implementation - intentionally empty for testing
   observe() {
     return undefined;
   }
@@ -28,11 +27,10 @@ class IntersectionObserver {
     return undefined;
   }
 }
-window.IntersectionObserver = IntersectionObserver;
+globalThis.IntersectionObserver = IntersectionObserver;
 
 // Mock ResizeObserver for embla-carousel
 class ResizeObserver {
-  // Mock implementation - intentionally empty for testing
   observe() {
     return undefined;
   }
@@ -43,4 +41,4 @@ class ResizeObserver {
     return undefined;
   }
 }
-window.ResizeObserver = ResizeObserver;
+globalThis.ResizeObserver = ResizeObserver;

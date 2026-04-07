@@ -180,13 +180,7 @@ A professional ETICS insulation firm needed a complete digital presence. No logo
 - **Social Strategy:** Launched their Facebook page and optimized their Instagram presence
 - **The Platform:** Developed a clean, SEO-optimized React site to bridge the gap between their craftsmanship and modern web standards
 
-### Technical Implementation
-
-Built with React and JavaScript, styled using Tailwind CSS and Shadcn UI components. The project follows a professional development workflow with GitHub Pages as a staging/test environment and Netlify for production deployment. Unit and component testing is handled with Vitest to ensure code reliability.
-
-A frontend-focused website leveraging Netlify Forms for contact handling, eliminating the need for a complex backend infrastructure since there's no heavy business logic or database requirements involved.
-
-Optimized for performance and SEO to maximize the company's online visibility. Fully responsive design ensuring a seamless experience across all devices.
+Netlify Forms handles contact submissions, eliminating backend complexity given there's no heavy business logic or database requirements involved.
 
 ## 🚀 Tech Stack
 
@@ -206,25 +200,13 @@ Optimized for performance and SEO to maximize the company's online visibility. F
 
 ### Prerequisites
 
-- Node.js (v24 or higher recommended)
-- npm or yarn
-
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/fernandotonacoder/chrisert.git
-# Navigate to the project directory
-cd chrisert
-# Install dependencies
-npm install
-# Start the development server
-npm run dev
-```
+- Node.js (v24 or higher)
 
 ### Available Scripts
 
 ```bash
+# Install dependencies
+npm install
 # Run development server
 npm run dev
 # Run dev server accessible from other devices (e.g., mobile)
@@ -246,15 +228,17 @@ npm run preview
 
 ## 🔄 CI/CD Pipeline
 
-| Branch | Environment            | Checks                             |
-| ------ | ---------------------- | ---------------------------------- |
-| `dev`  | GitHub Pages (Staging) | Tests, Lint, Build                 |
-| `main` | Netlify (Production)   | Tests, Lint, Security Audit, Build |
+| Branch | Environment            | Required Status Checks                                               |
+| ------ | ---------------------- | -------------------------------------------------------------------- |
+| `dev`  | GitHub Pages (Staging) | Tests + Build, Lint, Security Audit, SonarCloud Analysis             |
+| `main` | Netlify (Production)   | Tests + Build, Lint, Security Audit, SonarCloud Analysis, Enforce Dev-to-Main |
 
 - **Branch Protection:** Both `main` and `dev` are protected with linear history required; all changes must go through PRs
-- **Automated Testing:** Vitest runs on every PR to `dev` and `main`
-- **Security Audits:** Weekly dependency audits + on every PR
-- **Deployments:** Automatic on push to respective branches
+- **Enforce Dev-to-Main:** A required check on `main` blocks any PR not originating from `dev`, ensuring all code goes through staging first
+- **Automated Testing:** Vitest + build verification runs on every PR to `dev` and `main`
+- **Security:** Four complementary layers — `npm audit` (dependency vulnerabilities, runs weekly and on every PR), Dependabot alerts (continuous dependency monitoring at the repo level), CodeQL (static analysis for code-level vulnerabilities), and SonarQube (security ratings, hotspots, and vulnerability scanning on both `main` and `dev`)
+- **Deployments:** Manually approved after push to respective branches; can also be triggered manually via Actions → Run workflow
+- **SonarQube:** SonarQube Server (self-hosted) scans on every push to `dev` and can be triggered manually — it runs tests with coverage before sending results; SonarQube Cloud automatically analyzes `main` and decorates PRs with quality feedback (SQ Server Community edition limitation: server does not support PR analysis)
 - **Auto-Sync:** After each push to `main`, changes are automatically rebased onto `dev` to keep branches in sync
 
 ### Code Quality Strategy
@@ -267,33 +251,6 @@ This project uses two SonarQube instances with complementary roles:
 | **SonarQube Server** (self-hosted on Azure) | `dev`  | Continuous analysis of active development; monitors code quality before it reaches `main` |
 
 SonarQube Cloud handles PR decoration automatically via GitHub App. The self-hosted server runs via GitHub Actions on every push to `dev`. See [`docs/sonarqube-admin.md`](docs/sonarqube-admin.md) for administration notes.
-
-### Deployment Controls
-
-- **Manual Triggers:** Both GitHub Pages and Netlify workflows can also be triggered manually via Actions → Run workflow
-- **Environment Protection:** Both staging (GitHub Pages) and production (Netlify) deployments require manual approval from configured reviewers before proceeding
-
-## 📁 Project Structure
-
-```
-chrisert/
-├── src/
-│   ├── components/    # Reusable UI components
-│   ├── pages/         # Page components
-│   ├── assets/        # Images, fonts, etc.
-│   └── ...
-├── public/            # Static assets
-├── tests/             # Test setup
-└── ...
-```
-
-## ✨ Features
-
-- 📱 Fully responsive design
-- 🔍 SEO optimized
-- ⚡ Performance optimized
-- 📝 Contact form with Netlify Forms integration
-- 🎨 Modern UI with Shadcn components
 
 ## 📄 License
 

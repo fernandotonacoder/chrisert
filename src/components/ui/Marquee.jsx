@@ -1,6 +1,7 @@
 "use client";
 import PropTypes from "prop-types";
-import FastMarquee from "react-fast-marquee";
+import _FastMarquee from "react-fast-marquee";
+const FastMarquee = _FastMarquee?.default ?? _FastMarquee;
 import { cn } from "@/lib/utils";
 
 export const Marquee = ({ className, ...props }) => (

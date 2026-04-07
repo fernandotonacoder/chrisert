@@ -11,6 +11,8 @@ concurrency:
 
 jobs:
   call-test:
+    permissions:
+      contents: read
     uses: ./.github/workflows/test.yml
 
   call-lint:
@@ -22,6 +24,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: [call-test, call-lint]
     environment: netlify
+    permissions:
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v6.0.2

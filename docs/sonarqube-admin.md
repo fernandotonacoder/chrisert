@@ -34,9 +34,6 @@ Badge URL:
 ```
 https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/api/project_badges/measure?project=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317&metric=alert_status&token=<BADGE_TOKEN>
 ```
-
-Available metrics: `alert_status`, `security_rating`, `sqale_rating`, `reliability_rating`, `coverage`, `duplicated_lines_density`
-
 ---
 
 ## Project Key

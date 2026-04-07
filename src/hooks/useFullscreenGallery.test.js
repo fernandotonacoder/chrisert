@@ -12,8 +12,7 @@ const mockCarouselApi = {
   scrollTo: vi.fn(),
 };
 
-// Helper to setup fullscreen state
-const setupFullscreen = async (result, index = 0) => {
+export const setupFullscreen = async (result, index = 0) => {
   const mockContainer = document.createElement("div");
   mockContainer.requestFullscreen = vi.fn().mockResolvedValue();
   result.current.containerRef.current = mockContainer;
@@ -22,7 +21,6 @@ const setupFullscreen = async (result, index = 0) => {
     result.current.open(index);
   });
 
-  // Simulate fullscreen being active
   Object.defineProperty(document, "fullscreenElement", {
     value: mockContainer,
     writable: true,
@@ -36,6 +34,33 @@ const setupFullscreen = async (result, index = 0) => {
   return mockContainer;
 };
 
+const setupWheelContainer = async (result) => {
+  const mockContainer = document.createElement("div");
+  mockContainer.requestFullscreen = vi.fn().mockResolvedValue();
+  let wheelHandler;
+  mockContainer.addEventListener = vi.fn((event, handler) => {
+    if (event === "wheel") wheelHandler = handler;
+  });
+  mockContainer.removeEventListener = vi.fn();
+  result.current.containerRef.current = mockContainer;
+
+  await act(async () => {
+    result.current.open(0);
+  });
+
+  Object.defineProperty(document, "fullscreenElement", {
+    value: mockContainer,
+    writable: true,
+    configurable: true,
+  });
+
+  await act(async () => {
+    document.dispatchEvent(new Event("fullscreenchange"));
+  });
+
+  return { mockContainer, getWheelHandler: () => wheelHandler };
+};
+
 describe("useFullscreenGallery", () => {
   let originalRequestFullscreen;
   let originalExitFullscreen;
@@ -44,12 +69,14 @@ describe("useFullscreenGallery", () => {
   beforeEach(() => {
     originalRequestFullscreen = Element.prototype.requestFullscreen;
     originalExitFullscreen = document.exitFullscreen;
-    originalFullscreenElement = Object.getOwnPropertyDescriptor(document, "fullscreenElement");
+    originalFullscreenElement = Object.getOwnPropertyDescriptor(
+      document,
+      "fullscreenElement",
+    );
 
     Element.prototype.requestFullscreen = vi.fn().mockResolvedValue();
     document.exitFullscreen = vi.fn().mockResolvedValue();
 
-    // Reset fullscreenElement
     Object.defineProperty(document, "fullscreenElement", {
       value: null,
       writable: true,
@@ -63,13 +90,17 @@ describe("useFullscreenGallery", () => {
     Element.prototype.requestFullscreen = originalRequestFullscreen;
     document.exitFullscreen = originalExitFullscreen;
     if (originalFullscreenElement) {
-      Object.defineProperty(document, "fullscreenElement", originalFullscreenElement);
+      Object.defineProperty(
+        document,
+        "fullscreenElement",
+        originalFullscreenElement,
+      );
     }
   });
 
   it("initializes with default state", () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     expect(result.current.isFullscreen).toBe(false);
@@ -83,16 +114,10 @@ describe("useFullscreenGallery", () => {
 
   it("opens fullscreen at specified index", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
-    const mockContainer = document.createElement("div");
-    mockContainer.requestFullscreen = vi.fn().mockResolvedValue();
-    result.current.containerRef.current = mockContainer;
-
-    await act(async () => {
-      result.current.open(1);
-    });
+    const mockContainer = await setupFullscreen(result, 1);
 
     expect(result.current.currentIndex).toBe(1);
     expect(mockContainer.requestFullscreen).toHaveBeenCalled();
@@ -100,7 +125,7 @@ describe("useFullscreenGallery", () => {
 
   it("closes fullscreen", () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     act(() => {
@@ -112,16 +137,10 @@ describe("useFullscreenGallery", () => {
 
   it("navigates to previous image", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
-    const mockContainer = document.createElement("div");
-    mockContainer.requestFullscreen = vi.fn().mockResolvedValue();
-    result.current.containerRef.current = mockContainer;
-
-    await act(async () => {
-      result.current.open(1);
-    });
+    await setupFullscreen(result, 1);
 
     act(() => {
       result.current.goToPrev();
@@ -132,7 +151,7 @@ describe("useFullscreenGallery", () => {
 
   it("navigates to next image", () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     act(() => {
@@ -144,16 +163,10 @@ describe("useFullscreenGallery", () => {
 
   it("does not navigate past first image", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
-    const mockContainer = document.createElement("div");
-    mockContainer.requestFullscreen = vi.fn().mockResolvedValue();
-    result.current.containerRef.current = mockContainer;
-
-    await act(async () => {
-      result.current.open(0);
-    });
+    await setupFullscreen(result, 0);
 
     act(() => {
       result.current.goToPrev();
@@ -164,16 +177,10 @@ describe("useFullscreenGallery", () => {
 
   it("does not navigate past last image", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
-    const mockContainer = document.createElement("div");
-    mockContainer.requestFullscreen = vi.fn().mockResolvedValue();
-    result.current.containerRef.current = mockContainer;
-
-    await act(async () => {
-      result.current.open(2);
-    });
+    await setupFullscreen(result, 2);
 
     act(() => {
       result.current.goToNext();
@@ -184,7 +191,7 @@ describe("useFullscreenGallery", () => {
 
   it("returns correct canGoPrev and canGoNext values", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     const mockContainer = document.createElement("div");
@@ -211,16 +218,10 @@ describe("useFullscreenGallery", () => {
 
   it("resets scale and position when opening", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
-    const mockContainer = document.createElement("div");
-    mockContainer.requestFullscreen = vi.fn().mockResolvedValue();
-    result.current.containerRef.current = mockContainer;
-
-    await act(async () => {
-      result.current.open(0);
-    });
+    await setupFullscreen(result, 0);
 
     expect(result.current.scale).toBe(1);
     expect(result.current.position).toEqual({ x: 0, y: 0 });
@@ -228,7 +229,7 @@ describe("useFullscreenGallery", () => {
 
   it("cycles through zoom levels on image click", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     await setupFullscreen(result);
@@ -262,26 +263,23 @@ describe("useFullscreenGallery", () => {
 
   it("handles mouse drag when zoomed", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     await setupFullscreen(result);
 
-    // Zoom in first
     act(() => {
       result.current.handleImageClick();
     });
 
     expect(result.current.isZoomed).toBe(true);
 
-    // Start drag
     act(() => {
       result.current.handleMouseDown({ clientX: 100, clientY: 100 });
     });
 
     expect(result.current.isDragging.current).toBe(true);
 
-    // Move
     act(() => {
       result.current.handleMouseMove({ clientX: 150, clientY: 150 });
     });
@@ -289,7 +287,6 @@ describe("useFullscreenGallery", () => {
     expect(result.current.position.x).not.toBe(0);
     expect(result.current.position.y).not.toBe(0);
 
-    // End drag
     act(() => {
       result.current.handleMouseUp();
     });
@@ -299,26 +296,24 @@ describe("useFullscreenGallery", () => {
 
   it("does not click zoom if dragged", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     await setupFullscreen(result);
 
-    // Zoom in
     act(() => {
       result.current.handleImageClick();
     });
 
     const initialScale = result.current.scale;
 
-    // Simulate drag (mouseDown, mouseMove sets hasMoved)
+    // mouseMove sets hasMoved, which prevents the subsequent click from zooming
     act(() => {
       result.current.handleMouseDown({ clientX: 100, clientY: 100 });
       result.current.handleMouseMove({ clientX: 200, clientY: 200 });
       result.current.handleMouseUp();
     });
 
-    // Click should not change zoom because hasMoved is true
     act(() => {
       result.current.handleImageClick();
     });
@@ -328,12 +323,11 @@ describe("useFullscreenGallery", () => {
 
   it("handles touch start for drag when zoomed", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     await setupFullscreen(result);
 
-    // Zoom in first
     act(() => {
       result.current.handleImageClick();
     });
@@ -349,24 +343,21 @@ describe("useFullscreenGallery", () => {
 
   it("handles touch move for drag when zoomed", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     await setupFullscreen(result);
 
-    // Zoom in
     act(() => {
       result.current.handleImageClick();
     });
 
-    // Start touch
     act(() => {
       result.current.handleTouchStart({
         touches: [{ clientX: 100, clientY: 100 }],
       });
     });
 
-    // Move touch
     act(() => {
       result.current.handleTouchMove({
         touches: [{ clientX: 150, clientY: 150 }],
@@ -378,12 +369,11 @@ describe("useFullscreenGallery", () => {
 
   it("handles pinch zoom with two fingers", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     await setupFullscreen(result);
 
-    // Start pinch
     act(() => {
       result.current.handleTouchStart({
         touches: [
@@ -408,14 +398,13 @@ describe("useFullscreenGallery", () => {
 
   it("handles swipe to navigate when not zoomed", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     await setupFullscreen(result, 1);
 
     expect(result.current.currentIndex).toBe(1);
 
-    // Start touch
     act(() => {
       result.current.handleTouchStart({
         touches: [{ clientX: 200, clientY: 100 }],
@@ -434,12 +423,11 @@ describe("useFullscreenGallery", () => {
 
   it("handles swipe right to go previous", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     await setupFullscreen(result, 1);
 
-    // Start touch
     act(() => {
       result.current.handleTouchStart({
         touches: [{ clientX: 100, clientY: 100 }],
@@ -458,12 +446,11 @@ describe("useFullscreenGallery", () => {
 
   it("handles tap to zoom on touch", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     await setupFullscreen(result);
 
-    // Start touch
     act(() => {
       result.current.handleTouchStart({
         touches: [{ clientX: 100, clientY: 100 }],
@@ -482,12 +469,11 @@ describe("useFullscreenGallery", () => {
 
   it("syncs carousel when exiting fullscreen", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     await setupFullscreen(result, 2);
 
-    // Exit fullscreen
     Object.defineProperty(document, "fullscreenElement", {
       value: null,
       writable: true,
@@ -504,21 +490,23 @@ describe("useFullscreenGallery", () => {
 
   it("handles keyboard navigation in fullscreen", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     await setupFullscreen(result, 1);
 
-    // Press ArrowRight
     await act(async () => {
-      document.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowRight" }));
+      document.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "ArrowRight" }),
+      );
     });
 
     expect(result.current.currentIndex).toBe(2);
 
-    // Press ArrowLeft
     await act(async () => {
-      document.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowLeft" }));
+      document.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "ArrowLeft" }),
+      );
     });
 
     expect(result.current.currentIndex).toBe(1);
@@ -526,14 +514,13 @@ describe("useFullscreenGallery", () => {
 
   it("handles Enter key for zoom cycling in fullscreen", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     await setupFullscreen(result);
 
     expect(result.current.scale).toBe(1);
 
-    // Press Enter to cycle zoom
     await act(async () => {
       const event = new KeyboardEvent("keydown", { key: "Enter" });
       document.dispatchEvent(event);
@@ -544,14 +531,13 @@ describe("useFullscreenGallery", () => {
 
   it("handles Space key for zoom cycling in fullscreen", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     await setupFullscreen(result);
 
     expect(result.current.scale).toBe(1);
 
-    // Press Space to cycle zoom
     await act(async () => {
       const event = new KeyboardEvent("keydown", { key: " " });
       document.dispatchEvent(event);
@@ -562,70 +548,27 @@ describe("useFullscreenGallery", () => {
 
   it("handles wheel zoom in fullscreen", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
-    const mockContainer = document.createElement("div");
-    mockContainer.requestFullscreen = vi.fn().mockResolvedValue();
-    mockContainer.addEventListener = vi.fn();
-    mockContainer.removeEventListener = vi.fn();
-    result.current.containerRef.current = mockContainer;
+    const { mockContainer } = await setupWheelContainer(result);
 
-    await act(async () => {
-      result.current.open(0);
-    });
-
-    // Simulate fullscreen being active
-    Object.defineProperty(document, "fullscreenElement", {
-      value: mockContainer,
-      writable: true,
-      configurable: true,
-    });
-
-    await act(async () => {
-      document.dispatchEvent(new Event("fullscreenchange"));
-    });
-
-    // The wheel handler should have been added
     expect(mockContainer.addEventListener).toHaveBeenCalledWith(
       "wheel",
       expect.any(Function),
-      { passive: false }
+      { passive: false },
     );
   });
 
   it("handles wheel zoom up (zoom in)", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
-    const mockContainer = document.createElement("div");
-    mockContainer.requestFullscreen = vi.fn().mockResolvedValue();
-    
-    let wheelHandler;
-    mockContainer.addEventListener = vi.fn((event, handler) => {
-      if (event === "wheel") wheelHandler = handler;
-    });
-    mockContainer.removeEventListener = vi.fn();
-    result.current.containerRef.current = mockContainer;
+    const { getWheelHandler } = await setupWheelContainer(result);
 
     await act(async () => {
-      result.current.open(0);
-    });
-
-    Object.defineProperty(document, "fullscreenElement", {
-      value: mockContainer,
-      writable: true,
-      configurable: true,
-    });
-
-    await act(async () => {
-      document.dispatchEvent(new Event("fullscreenchange"));
-    });
-
-    // Simulate wheel scroll up (zoom in)
-    await act(async () => {
-      wheelHandler({ deltaY: -100, preventDefault: vi.fn() });
+      getWheelHandler()({ deltaY: -100, preventDefault: vi.fn() });
     });
 
     expect(result.current.scale).toBeGreaterThan(1);
@@ -633,46 +576,24 @@ describe("useFullscreenGallery", () => {
 
   it("handles wheel zoom down (zoom out) and resets position at scale 1", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
-    const mockContainer = document.createElement("div");
-    mockContainer.requestFullscreen = vi.fn().mockResolvedValue();
-    
-    let wheelHandler;
-    mockContainer.addEventListener = vi.fn((event, handler) => {
-      if (event === "wheel") wheelHandler = handler;
-    });
-    mockContainer.removeEventListener = vi.fn();
-    result.current.containerRef.current = mockContainer;
-
-    await act(async () => {
-      result.current.open(0);
-    });
-
-    Object.defineProperty(document, "fullscreenElement", {
-      value: mockContainer,
-      writable: true,
-      configurable: true,
-    });
-
-    await act(async () => {
-      document.dispatchEvent(new Event("fullscreenchange"));
-    });
+    const { getWheelHandler } = await setupWheelContainer(result);
 
     // First zoom in
     await act(async () => {
-      wheelHandler({ deltaY: -100, preventDefault: vi.fn() });
+      getWheelHandler()({ deltaY: -100, preventDefault: vi.fn() });
     });
 
     expect(result.current.scale).toBeGreaterThan(1);
 
     // Then zoom out back to 1
     await act(async () => {
-      wheelHandler({ deltaY: 100, preventDefault: vi.fn() });
-      wheelHandler({ deltaY: 100, preventDefault: vi.fn() });
-      wheelHandler({ deltaY: 100, preventDefault: vi.fn() });
-      wheelHandler({ deltaY: 100, preventDefault: vi.fn() });
+      getWheelHandler()({ deltaY: 100, preventDefault: vi.fn() });
+      getWheelHandler()({ deltaY: 100, preventDefault: vi.fn() });
+      getWheelHandler()({ deltaY: 100, preventDefault: vi.fn() });
+      getWheelHandler()({ deltaY: 100, preventDefault: vi.fn() });
     });
 
     expect(result.current.scale).toBe(1);
@@ -681,7 +602,7 @@ describe("useFullscreenGallery", () => {
 
   it("handles mouse down correctly when zoomed", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     const mockEvent = {
@@ -698,7 +619,7 @@ describe("useFullscreenGallery", () => {
 
   it("handles mouse up correctly", () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     act(() => {
@@ -710,7 +631,7 @@ describe("useFullscreenGallery", () => {
 
   it("handles image click when not fullscreen", () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     act(() => {
@@ -722,7 +643,7 @@ describe("useFullscreenGallery", () => {
 
   it("handles touch start with single touch", () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     const mockEvent = {
@@ -738,7 +659,7 @@ describe("useFullscreenGallery", () => {
 
   it("handles touch start with two touches for pinch", () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     const mockEvent = {
@@ -757,7 +678,7 @@ describe("useFullscreenGallery", () => {
 
   it("handles touch move when not fullscreen", () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     const mockEvent = {
@@ -773,7 +694,7 @@ describe("useFullscreenGallery", () => {
 
   it("handles touch end when not fullscreen", () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     const mockEvent = {
@@ -789,7 +710,7 @@ describe("useFullscreenGallery", () => {
 
   it("exposes containerRef", () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     expect(result.current.containerRef).toBeDefined();
@@ -798,7 +719,7 @@ describe("useFullscreenGallery", () => {
 
   it("exposes isDragging ref", () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     expect(result.current.isDragging).toBeDefined();
@@ -807,7 +728,7 @@ describe("useFullscreenGallery", () => {
 
   it("handles mouse move when not dragging", () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     const mockEvent = {
@@ -824,7 +745,7 @@ describe("useFullscreenGallery", () => {
 
   it("supports webkit fullscreen API", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     const mockContainer = document.createElement("div");
@@ -844,7 +765,7 @@ describe("useFullscreenGallery", () => {
     document.webkitExitFullscreen = vi.fn();
 
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     act(() => {
@@ -856,7 +777,7 @@ describe("useFullscreenGallery", () => {
 
   it("resets position when cycling back to 1x zoom", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     await setupFullscreen(result);
@@ -884,12 +805,11 @@ describe("useFullscreenGallery", () => {
 
   it("does not navigate on small swipes", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     await setupFullscreen(result, 1);
 
-    // Start touch
     act(() => {
       result.current.handleTouchStart({
         touches: [{ clientX: 100, clientY: 100 }],
@@ -903,23 +823,20 @@ describe("useFullscreenGallery", () => {
       });
     });
 
-    // Should stay on same image but zoom (tap)
     expect(result.current.currentIndex).toBe(1);
   });
 
   it("handles touch end when dragging returns early", async () => {
     const { result } = renderHook(() =>
-      useFullscreenGallery(mockImages, mockCarouselApi)
+      useFullscreenGallery(mockImages, mockCarouselApi),
     );
 
     await setupFullscreen(result);
 
-    // Zoom in
     act(() => {
       result.current.handleImageClick();
     });
 
-    // Start drag
     act(() => {
       result.current.handleTouchStart({
         touches: [{ clientX: 100, clientY: 100 }],
@@ -928,14 +845,13 @@ describe("useFullscreenGallery", () => {
 
     const initialScale = result.current.scale;
 
-    // End while still dragging
+    // End while still dragging — should not cycle zoom
     act(() => {
       result.current.handleTouchEnd({
         changedTouches: [{ clientX: 100 }],
       });
     });
 
-    // Should not cycle zoom
     expect(result.current.scale).toBe(initialScale);
   });
 });
