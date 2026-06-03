@@ -168,7 +168,9 @@
 
 ---
 
-A high-performance web platform for a construction firm specializing in ETICS insulation. Built to bridge modern frontend development with real-world business needs, focusing on SEO and lead generation.
+A high-performance web platform for a construction firm specializing in ETICS insulation — **live in production at [chrisert.pt](https://chrisert.pt/)**. Built to bridge modern frontend development with real-world business needs, focusing on SEO and lead generation.
+
+Engineered as a **React SPA** (Vite, Tailwind CSS, Shadcn UI) with a two-stage **GitHub Actions** CI/CD pipeline — feature branches → `dev` (GitHub Pages staging) → `main` (Netlify production) — gated by branch protection, Vitest, SonarQube quality gates, and **manually approved deploys**.
 
 ## 📋 About
 
