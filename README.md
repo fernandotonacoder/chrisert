@@ -6,6 +6,14 @@
 [![Lint](https://github.com/fernandotonacoder/chrisert/actions/workflows/lint.yml/badge.svg)](https://github.com/fernandotonacoder/chrisert/actions/workflows/lint.yml)
 [![Security Audit](https://github.com/fernandotonacoder/chrisert/actions/workflows/security-audit.yml/badge.svg)](https://github.com/fernandotonacoder/chrisert/actions/workflows/security-audit.yml)
 
+---
+
+A high-performance web platform for a construction firm specializing in ETICS insulation — **live in production at [chrisert.pt](https://chrisert.pt/)**. Built to bridge modern frontend development with real-world business needs, focusing on SEO and lead generation.
+
+Engineered as a **React SPA** (Vite, Tailwind CSS, Shadcn UI) with a two-stage **GitHub Actions** CI/CD pipeline — feature branches → `dev` (GitHub Pages staging) → `main` (Netlify production) — gated by branch protection, Vitest, SonarQube quality gates, and **manually approved deploys**.
+
+---
+
 <table>
   <tr>
     <th>SonarQube Cloud <code>main</code></th>
@@ -19,7 +27,7 @@
     </td>
     <td>
       <a href="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/dashboard?id=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317">
-        <img src="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/api/project_badges/quality_gate?project=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317&token=sqb_29e1338abec328874a7e501928a3f3b3efa8a26c" alt="Quality gate" />
+        <img src="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/api/project_badges/quality_gate?project=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317&token=sqb_f6221958044a1bbe6efcfb32a2f2ddc743942cb4" alt="Quality gate" />
       </a>
     </td>
   </tr>
@@ -32,7 +40,7 @@
     </td>
     <td>
       <a href="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/dashboard?id=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317">
-        <img src="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/api/project_badges/measure?project=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317&metric=software_quality_security_rating&token=sqb_29e1338abec328874a7e501928a3f3b3efa8a26c" alt="Security Rating (dev)" />
+        <img src="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/api/project_badges/measure?project=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317&metric=software_quality_security_rating&token=sqb_f6221958044a1bbe6efcfb32a2f2ddc743942cb4" alt="Security Rating (dev)" />
       </a>
     </td>
   </tr>
@@ -48,7 +56,7 @@
     <td>N/A — free tier limitation</td>
     <td>
       <a href="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/dashboard?id=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317">
-        <img src="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/api/project_badges/measure?project=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317&metric=software_quality_security_issues&token=sqb_29e1338abec328874a7e501928a3f3b3efa8a26c" alt="Security Issues" />
+        <img src="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/api/project_badges/measure?project=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317&metric=software_quality_security_issues&token=sqb_f6221958044a1bbe6efcfb32a2f2ddc743942cb4" alt="Security Issues" />
       </a>
     </td>
   </tr>
@@ -56,7 +64,7 @@
     <td>N/A — free tier limitation</td>
     <td>
       <a href="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/dashboard?id=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317">
-        <img src="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/api/project_badges/measure?project=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317&metric=security_hotspots&token=sqb_29e1338abec328874a7e501928a3f3b3efa8a26c" alt="Security Hotspots" />
+        <img src="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/api/project_badges/measure?project=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317&metric=security_hotspots&token=sqb_f6221958044a1bbe6efcfb32a2f2ddc743942cb4" alt="Security Hotspots" />
       </a>
     </td>
   </tr>
@@ -69,7 +77,7 @@
     </td>
     <td>
       <a href="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/dashboard?id=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317">
-        <img src="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/api/project_badges/measure?project=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317&metric=software_quality_reliability_rating&token=sqb_29e1338abec328874a7e501928a3f3b3efa8a26c" alt="Reliability Rating (dev)" />
+        <img src="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/api/project_badges/measure?project=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317&metric=software_quality_reliability_rating&token=sqb_f6221958044a1bbe6efcfb32a2f2ddc743942cb4" alt="Reliability Rating (dev)" />
       </a>
     </td>
   </tr>
@@ -85,7 +93,7 @@
     <td>N/A — free tier limitation</td>
     <td>
       <a href="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/dashboard?id=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317">
-        <img src="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/api/project_badges/measure?project=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317&metric=software_quality_reliability_issues&token=sqb_29e1338abec328874a7e501928a3f3b3efa8a26c" alt="Reliability Issues" />
+        <img src="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/api/project_badges/measure?project=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317&metric=software_quality_reliability_issues&token=sqb_f6221958044a1bbe6efcfb32a2f2ddc743942cb4" alt="Reliability Issues" />
       </a>
     </td>
   </tr>
@@ -98,7 +106,7 @@
     </td>
     <td>
       <a href="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/dashboard?id=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317">
-        <img src="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/api/project_badges/measure?project=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317&metric=software_quality_maintainability_rating&token=sqb_29e1338abec328874a7e501928a3f3b3efa8a26c" alt="Maintainability Rating (dev)" />
+        <img src="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/api/project_badges/measure?project=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317&metric=software_quality_maintainability_rating&token=sqb_f6221958044a1bbe6efcfb32a2f2ddc743942cb4" alt="Maintainability Rating (dev)" />
       </a>
     </td>
   </tr>
@@ -110,7 +118,7 @@
     </td>
     <td>
       <a href="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/dashboard?id=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317">
-        <img src="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/api/project_badges/measure?project=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317&metric=software_quality_maintainability_remediation_effort&token=sqb_29e1338abec328874a7e501928a3f3b3efa8a26c" alt="Technical Debt (dev)" />
+        <img src="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/api/project_badges/measure?project=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317&metric=software_quality_maintainability_remediation_effort&token=sqb_f6221958044a1bbe6efcfb32a2f2ddc743942cb4" alt="Technical Debt (dev)" />
       </a>
     </td>
   </tr>
@@ -126,7 +134,7 @@
     <td>N/A — free tier limitation</td>
     <td>
       <a href="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/dashboard?id=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317">
-        <img src="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/api/project_badges/measure?project=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317&metric=software_quality_maintainability_issues&token=sqb_29e1338abec328874a7e501928a3f3b3efa8a26c" alt="Maintainability Issues" />
+        <img src="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/api/project_badges/measure?project=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317&metric=software_quality_maintainability_issues&token=sqb_f6221958044a1bbe6efcfb32a2f2ddc743942cb4" alt="Maintainability Issues" />
       </a>
     </td>
   </tr>
@@ -135,7 +143,7 @@
     <td>N/A — free tier limitation</td>
     <td>
       <a href="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/dashboard?id=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317">
-        <img src="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/api/project_badges/measure?project=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317&metric=coverage&token=sqb_29e1338abec328874a7e501928a3f3b3efa8a26c" alt="Coverage (dev)" />
+        <img src="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/api/project_badges/measure?project=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317&metric=coverage&token=sqb_f6221958044a1bbe6efcfb32a2f2ddc743942cb4" alt="Coverage (dev)" />
       </a>
     </td>
   </tr>
@@ -147,7 +155,7 @@
     </td>
     <td>
       <a href="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/dashboard?id=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317">
-        <img src="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/api/project_badges/measure?project=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317&metric=duplicated_lines_density&token=sqb_29e1338abec328874a7e501928a3f3b3efa8a26c" alt="Duplicated Lines (%) (dev)" />
+        <img src="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/api/project_badges/measure?project=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317&metric=duplicated_lines_density&token=sqb_f6221958044a1bbe6efcfb32a2f2ddc743942cb4" alt="Duplicated Lines (%) (dev)" />
       </a>
     </td>
   </tr>
@@ -160,15 +168,13 @@
     </td>
     <td>
       <a href="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/dashboard?id=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317">
-        <img src="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/api/project_badges/measure?project=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317&metric=ncloc&token=sqb_29e1338abec328874a7e501928a3f3b3efa8a26c" alt="Lines of Code (dev)" />
+        <img src="https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/api/project_badges/measure?project=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317&metric=ncloc&token=sqb_f6221958044a1bbe6efcfb32a2f2ddc743942cb4" alt="Lines of Code (dev)" />
       </a>
     </td>
   </tr>
 </table>
 
 ---
-
-A high-performance web platform for a construction firm specializing in ETICS insulation. Built to bridge modern frontend development with real-world business needs, focusing on SEO and lead generation.
 
 ## 📋 About
 
@@ -186,15 +192,17 @@ Netlify Forms handles contact submissions, eliminating backend complexity given 
 
 | Category      | Technology                                                                                                                                                                                                                                                                           |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Framework     | React                                                                                                                                                                                                                                                                                |
-| Language      | JavaScript                                                                                                                                                                                                                                                                           |
+| Framework     | React 19 + React Router                                                                                                                                                                                                                                                              |
+| Language      | JavaScript (JSX)                                                                                                                                                                                                                                                                     |
+| Build Tool    | Vite                                                                                                                                                                                                                                                                                 |
 | Styling       | Tailwind CSS                                                                                                                                                                                                                                                                         |
 | UI Components | Shadcn UI                                                                                                                                                                                                                                                                            |
-| Testing       | Vitest                                                                                                                                                                                                                                                                               |
+| Forms         | react-hook-form + Zod + Netlify Forms                                                                                                                                                                                                                                                |
+| Testing       | Vitest + Testing Library                                                                                                                                                                                                                                                             |
+| Linting       | ESLint                                                                                                                                                                                                                                                                               |
 | Code Quality  | [SonarQube Cloud](https://sonarcloud.io/project/overview?id=fernandotonacoder_chrisert) (`main`) + [SonarQube Server](https://sonarqube-ft-dpdwb8g8dnhkfbey.swedencentral-01.azurewebsites.net/dashboard?id=fernandotonacoder_chrisert_bbc86f72-9ba6-4533-99be-b85658dca317) (`dev`) |
 | Staging       | GitHub Pages                                                                                                                                                                                                                                                                         |
 | Production    | Netlify                                                                                                                                                                                                                                                                              |
-| Forms         | Netlify Forms                                                                                                                                                                                                                                                                        |
 
 ## 🛠️ Getting Started
 
@@ -213,8 +221,10 @@ npm run dev
 npm run dev -- --host
 # Build for production
 npm run build
-# Run tests
+# Run tests once
 npm run test
+# Run tests in watch mode
+npm run test:watch
 # Run tests with coverage report
 npm run test:coverage
 # Preview production build
