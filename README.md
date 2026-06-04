@@ -1,8 +1,8 @@
 # Chrisert - Business Website
 
-[![Production](https://github.com/fernandotonacoder/chrisert/actions/workflows/netlify-deploy.yml/badge.svg?branch=main)](https://github.com/fernandotonacoder/chrisert/actions/workflows/netlify-deploy.yml)
-[![Staging](https://github.com/fernandotonacoder/chrisert/actions/workflows/github-pages-deploy.yml/badge.svg?branch=dev)](https://github.com/fernandotonacoder/chrisert/actions/workflows/github-pages-deploy.yml)
-[![Tests](https://github.com/fernandotonacoder/chrisert/actions/workflows/test.yml/badge.svg)](https://github.com/fernandotonacoder/chrisert/actions/workflows/test.yml)
+[![Production](https://github.com/fernandotonacoder/chrisert/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/fernandotonacoder/chrisert/actions/workflows/deploy.yml)
+[![Staging](https://github.com/fernandotonacoder/chrisert/actions/workflows/deploy.yml/badge.svg?branch=dev)](https://github.com/fernandotonacoder/chrisert/actions/workflows/deploy.yml)
+[![Build and Test](https://github.com/fernandotonacoder/chrisert/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/fernandotonacoder/chrisert/actions/workflows/build-and-test.yml)
 [![Lint](https://github.com/fernandotonacoder/chrisert/actions/workflows/lint.yml/badge.svg)](https://github.com/fernandotonacoder/chrisert/actions/workflows/lint.yml)
 [![Security Audit](https://github.com/fernandotonacoder/chrisert/actions/workflows/security-audit.yml/badge.svg)](https://github.com/fernandotonacoder/chrisert/actions/workflows/security-audit.yml)
 
@@ -240,14 +240,14 @@ npm run preview
 
 | Branch | Environment            | Required Status Checks                                               |
 | ------ | ---------------------- | -------------------------------------------------------------------- |
-| `dev`  | GitHub Pages (Staging) | Tests + Build, Lint, Security Audit, SonarCloud Analysis             |
-| `main` | Netlify (Production)   | Tests + Build, Lint, Security Audit, SonarCloud Analysis, Enforce Dev-to-Main |
+| `dev`  | GitHub Pages (Staging) | Build and Test, Lint, Security Audit, SonarCloud Analysis             |
+| `main` | Netlify (Production)   | Build and Test, Lint, Security Audit, SonarCloud Analysis, Enforce Dev-to-Main |
 
 - **Branch Protection:** Both `main` and `dev` are protected with linear history required; all changes must go through PRs
 - **Enforce Dev-to-Main:** A required check on `main` blocks any PR not originating from `dev`, ensuring all code goes through staging first
 - **Automated Testing:** Vitest + build verification runs on every PR to `dev` and `main`
 - **Security:** Four complementary layers — `npm audit` (dependency vulnerabilities, runs weekly and on every PR), Dependabot alerts (continuous dependency monitoring at the repo level), CodeQL (static analysis for code-level vulnerabilities), and SonarQube (security ratings, hotspots, and vulnerability scanning on both `main` and `dev`)
-- **Deployments:** Manually approved after push to respective branches; can also be triggered manually via Actions → Run workflow
+- **Deployments:** Triggered manually only via Actions → Run workflow (`workflow_dispatch`) and gated by environment approval — no automatic deploy on push
 - **SonarQube:** SonarQube Server (self-hosted) scans on every push to `dev` and can be triggered manually — it runs tests with coverage before sending results; SonarQube Cloud automatically analyzes `main` and decorates PRs with quality feedback (SQ Server Community edition limitation: server does not support PR analysis)
 - **Auto-Sync:** After each push to `main`, changes are automatically rebased onto `dev` to keep branches in sync
 
@@ -268,18 +268,13 @@ The **source code** of this project is licensed under the [MIT License](LICENSE)
 
 **Note:** All branding, logos, images, and business-specific content are proprietary and belong to the client. Feel free to use this codebase as a learning resource or as inspiration for your own projects!
 
-## 👤 Author
-
-**Fernando Tona**
-
-- GitHub: [@fernandotonacoder](https://github.com/fernandotonacoder)
-- LinkedIn: [Fernando Tona](https://www.linkedin.com/in/fernandotona/)
-- Website: [fernandotonacoder.github.io](https://fernandotonacoder.github.io/)
-
 ---
 
 <div align="center">
 
-_Built with ❤️ for real-world business needs_
+**⭐ Star this repo if you find it useful!**
+
+Made with ❤️ by Fernando Tona
+[Website](https://fernandotonacoder.github.io) • [LinkedIn](https://www.linkedin.com/in/fernandotona/) • [GitHub](https://github.com/fernandotonacoder)
 
 </div>

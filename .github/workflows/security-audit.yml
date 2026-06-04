@@ -5,14 +5,18 @@ on:
     branches:
       - main
       - dev
-    paths-ignore:
-      - 'README.md'
-      - 'docs/**'
   schedule:
     - cron: '0 0 * * 0'
 
 jobs:
+  changes:
+    permissions:
+      contents: read
+    uses: ./.github/workflows/_detect-code-changes.yml
+
   security-audit:
+    needs: changes
+    if: needs.changes.outputs.code == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: read

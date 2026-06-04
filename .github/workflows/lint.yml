@@ -5,13 +5,17 @@ on:
     branches:
       - main
       - dev
-    paths-ignore:
-      - 'README.md'
-      - 'docs/**'
   workflow_call:
 
 jobs:
+  changes:
+    permissions:
+      contents: read
+    uses: ./.github/workflows/_detect-code-changes.yml
+
   lint:
+    needs: changes
+    if: needs.changes.outputs.code == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: read
