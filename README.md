@@ -1,7 +1,7 @@
 # Chrisert - Business Website
 
-[![Production](https://github.com/fernandotonacoder/chrisert/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/fernandotonacoder/chrisert/actions/workflows/deploy.yml)
-[![Staging](https://github.com/fernandotonacoder/chrisert/actions/workflows/deploy.yml/badge.svg?branch=dev)](https://github.com/fernandotonacoder/chrisert/actions/workflows/deploy.yml)
+[![Production](https://img.shields.io/github/actions/workflow/status/fernandotonacoder/chrisert/deploy.yml?branch=main&label=Production)](https://github.com/fernandotonacoder/chrisert/actions/workflows/deploy.yml)
+[![Staging](https://img.shields.io/github/actions/workflow/status/fernandotonacoder/chrisert/deploy.yml?branch=dev&label=Staging)](https://github.com/fernandotonacoder/chrisert/actions/workflows/deploy.yml)
 [![Build and Test](https://github.com/fernandotonacoder/chrisert/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/fernandotonacoder/chrisert/actions/workflows/build-and-test.yml)
 [![Lint](https://github.com/fernandotonacoder/chrisert/actions/workflows/lint.yml/badge.svg)](https://github.com/fernandotonacoder/chrisert/actions/workflows/lint.yml)
 [![Security Audit](https://github.com/fernandotonacoder/chrisert/actions/workflows/security-audit.yml/badge.svg)](https://github.com/fernandotonacoder/chrisert/actions/workflows/security-audit.yml)
