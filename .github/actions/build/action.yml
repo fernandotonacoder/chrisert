@@ -1,0 +1,27 @@
+name: Build site
+description: Install dependencies and build the production bundle.
+
+inputs:
+  deploy-target:
+    description: "Value for DEPLOY_TARGET (e.g. 'github-pages'); empty builds for the root domain (Netlify)."
+    required: false
+    default: ""
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v6.3.0
+      with:
+        node-version: "24"
+        cache: "npm"
+
+    - name: Install dependencies
+      shell: bash
+      run: npm ci --ignore-scripts
+
+    - name: Build
+      shell: bash
+      run: npm run build
+      env:
+        DEPLOY_TARGET: ${{ inputs.deploy-target }}
