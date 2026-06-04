@@ -16,7 +16,7 @@ jobs:
   call-test:
     permissions:
       contents: read
-    uses: ./.github/workflows/test.yml
+    uses: ./.github/workflows/build-and-test.yml
 
   call-lint:
     uses: ./.github/workflows/lint.yml

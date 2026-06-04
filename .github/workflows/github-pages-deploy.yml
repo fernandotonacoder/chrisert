@@ -38,7 +38,7 @@ jobs:
     if: needs.check.outputs.should_deploy == 'true'
     permissions:
       contents: read
-    uses: ./.github/workflows/test.yml
+    uses: ./.github/workflows/build-and-test.yml
 
   build:
     runs-on: ubuntu-latest
