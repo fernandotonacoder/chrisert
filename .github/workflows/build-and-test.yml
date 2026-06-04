@@ -1,17 +1,20 @@
-name: Test
+name: Build and Test
 
 on:
   pull_request:
     branches:
       - main
       - dev
-    paths-ignore:
-      - 'README.md'
-      - 'docs/**'
   workflow_call:
 
 jobs:
-  test:
+  changes:
+    uses: ./.github/workflows/_detect-code-changes.yml
+
+  build-and-test:
+    name: Build and Test
+    needs: changes
+    if: needs.changes.outputs.code == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: read
