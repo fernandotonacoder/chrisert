@@ -268,18 +268,13 @@ The **source code** of this project is licensed under the [MIT License](LICENSE)
 
 **Note:** All branding, logos, images, and business-specific content are proprietary and belong to the client. Feel free to use this codebase as a learning resource or as inspiration for your own projects!
 
-## 👤 Author
-
-**Fernando Tona**
-
-- GitHub: [@fernandotonacoder](https://github.com/fernandotonacoder)
-- LinkedIn: [Fernando Tona](https://www.linkedin.com/in/fernandotona/)
-- Website: [fernandotonacoder.github.io](https://fernandotonacoder.github.io/)
-
 ---
 
 <div align="center">
 
-_Built with ❤️ for real-world business needs_
+**⭐ Star this repo if you find it useful!**
+
+Made with ❤️ by Fernando Tona
+[Website](https://fernandotonacoder.github.io) • [LinkedIn](https://www.linkedin.com/in/fernandotona/) • [GitHub](https://github.com/fernandotonacoder)
 
 </div>
