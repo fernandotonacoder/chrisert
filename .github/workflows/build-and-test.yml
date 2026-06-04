@@ -9,6 +9,8 @@ on:
 
 jobs:
   changes:
+    permissions:
+      contents: read
     uses: ./.github/workflows/_detect-code-changes.yml
 
   build-and-test:
