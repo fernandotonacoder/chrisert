@@ -1,0 +1,97 @@
+name: Deploy
+
+# Manual deploy. The branch picked in the "Run workflow" dropdown decides
+# the target: dev → GitHub Pages (staging), main → Netlify (production).
+# The deployed code is always the selected branch, so it can never mismatch
+# the environment. Lock this down further with environment deployment branch
+# policies (Settings → Environments): netlify → main only, github-pages → dev only.
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - name: Validate target branch
+        run: |
+          if [ "${{ github.ref_name }}" != "dev" ] && [ "${{ github.ref_name }}" != "main" ]; then
+            echo "::error::Deploy runs only from 'dev' (-> GitHub Pages) or 'main' (-> Netlify); got '${{ github.ref_name }}'."
+            exit 1
+          fi
+
+  call-test:
+    needs: [guard]
+    permissions:
+      contents: read
+    uses: ./.github/workflows/build-and-test.yml
+
+  call-lint:
+    needs: [guard]
+    permissions:
+      contents: read
+    uses: ./.github/workflows/lint.yml
+
+  # main → Netlify (production)
+  netlify:
+    if: github.ref_name == 'main'
+    needs: [call-test, call-lint]
+    runs-on: ubuntu-latest
+    environment: netlify
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.2
+
+      - name: Build
+        uses: ./.github/actions/build
+
+      - name: Deploy to Netlify
+        run: npx netlify-cli deploy --dir=dist --prod
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+  # dev → GitHub Pages (staging)
+  pages-build:
+    if: github.ref_name == 'dev'
+    needs: [call-test, call-lint]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.2
+
+      - name: Build
+        uses: ./.github/actions/build
+        with:
+          deploy-target: github-pages
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v6.0.0
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4.0.0
+        with:
+          path: ./dist
+
+  pages-deploy:
+    if: github.ref_name == 'dev'
+    needs: [pages-build]
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5.0.0
