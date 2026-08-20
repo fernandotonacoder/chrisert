@@ -6,6 +6,12 @@ on:
       - main
       - dev
   workflow_call:
+    inputs:
+      upload-dist:
+        description: "Upload dist/ as the 'dist' artifact so the caller can deploy it. The build here runs without DEPLOY_TARGET, i.e. Vite base '/' (Netlify)."
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   changes:
@@ -22,12 +28,12 @@ jobs:
       contents: read
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7.0.1
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6.3.0
+        uses: actions/setup-node@v7.0.0
         with:
-          node-version: "24"
+          node-version-file: ".nvmrc"
           cache: "npm"
 
       - name: Install dependencies
@@ -38,3 +44,12 @@ jobs:
 
       - name: Verify build
         run: npm run build
+
+      - name: Upload dist artifact
+        if: ${{ inputs.upload-dist }}
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: dist
+          path: dist
+          if-no-files-found: error
+          retention-days: 7

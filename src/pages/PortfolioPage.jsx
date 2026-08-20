@@ -24,6 +24,8 @@ const PortfolioPage = () => {
     if (gallery.isFullscreen || !api) return;
 
     const handleKeyDown = (e) => {
+      if (e.target.closest?.("button, a, input, textarea, select, [tabindex]"))
+        return;
       if (e.key === "ArrowLeft") api.scrollPrev();
       else if (e.key === "ArrowRight") api.scrollNext();
       else if (e.key === "Enter") gallery.open(current);
@@ -87,6 +89,7 @@ const PortfolioPage = () => {
             {portfolioImages.map((project, index) => (
               <button
                 key={project.id}
+                type="button"
                 onClick={() => api?.scrollTo(index)}
                 className={`h-2 rounded-full transition-all ${
                   index === current
