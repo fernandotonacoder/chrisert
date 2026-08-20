@@ -1,0 +1,10 @@
+{
+  // Composite actions are NOT workflows: without this, VS Code can fall back to
+  // a cached "GitHub Actions Workflow" language mode for action.yml and validate
+  // it against the workflow schema, demanding `on:`/`jobs:` and rejecting the
+  // valid `inputs:`/`runs:` keys.
+  "files.associations": {
+    "**/.github/actions/**/action.yml": "yaml",
+    "**/.github/actions/**/action.yaml": "yaml"
+  }
+}
