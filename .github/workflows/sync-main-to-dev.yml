@@ -6,8 +6,12 @@ on:
       - main
   workflow_dispatch:
 
+concurrency:
+  group: sync-main-to-dev
+  cancel-in-progress: false
+
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   sync:
@@ -15,13 +19,13 @@ jobs:
     steps:
       - name: Generate GitHub App Token
         id: app-token
-        uses: actions/create-github-app-token@v1
+        uses: actions/create-github-app-token@v3.2.0
         with:
           app-id: ${{ secrets.SYNC_BOT_APP_ID }}
           private-key: ${{ secrets.SYNC_BOT_PRIVATE_KEY }}
 
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7.0.1
         with:
           fetch-depth: 0
           token: ${{ steps.app-token.outputs.token }}
@@ -40,14 +44,12 @@ jobs:
           if git rebase origin/main; then
             echo "Rebase successful"
           else
-            echo "Rebase failed due to conflicts - resetting dev to main"
+            echo "::error::Rebase of dev onto main hit conflicts - resolve manually (dev left untouched)."
             git rebase --abort
-            git reset --hard origin/main
+            exit 1
           fi
 
           # Create empty commit to mark sync completion
           git commit --allow-empty -m "chore: sync from main"
 
-          # Push with force-with-lease (safe force push that fails if remote has new commits)
-          # This workflow uses a GitHub App token to push to the protected branch
           git push origin dev --force-with-lease

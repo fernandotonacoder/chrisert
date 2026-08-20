@@ -188,6 +188,8 @@ A professional ETICS insulation firm needed a complete digital presence. No logo
 
 Netlify Forms handles contact submissions, eliminating backend complexity given there's no heavy business logic or database requirements involved.
 
+> **Note:** Netlify detects forms by parsing the deployed HTML at build time, which a client-rendered SPA never exposes. `public/__forms.html` is that detection stub — a hidden static copy of the contact form's field names. **Do not delete it, and keep its field names in sync with `src/pages/ContactPage.jsx`:** submissions fail silently if it drifts or disappears, with no build error and no failing test.
+
 ## 🚀 Tech Stack
 
 | Category      | Technology                                                                                                                                                                                                                                                                           |
@@ -208,7 +210,7 @@ Netlify Forms handles contact submissions, eliminating backend complexity given 
 
 ### Prerequisites
 
-- Node.js (v24 or higher)
+- Node.js (v24 or higher) — the version is pinned in `.nvmrc`, so `nvm use` or `fnm use` picks it up automatically, and CI reads the same file
 
 ### Available Scripts
 
@@ -246,10 +248,10 @@ npm run preview
 - **Branch Protection:** Both `main` and `dev` are protected with linear history required; all changes must go through PRs
 - **Enforce Dev-to-Main:** A required check on `main` blocks any PR not originating from `dev`, ensuring all code goes through staging first
 - **Automated Testing:** Vitest + build verification runs on every PR to `dev` and `main`
-- **Security:** Four complementary layers — `npm audit` (dependency vulnerabilities, runs weekly and on every PR), Dependabot alerts (continuous dependency monitoring at the repo level), CodeQL (static analysis for code-level vulnerabilities), and SonarQube (security ratings, hotspots, and vulnerability scanning on both `main` and `dev`)
-- **Deployments:** Triggered manually only via Actions → Run workflow (`workflow_dispatch`) and gated by environment approval — no automatic deploy on push
+- **Security:** Four complementary layers — `npm audit` (dependency vulnerabilities, runs monthly and on every PR), Dependabot alerts (continuous dependency monitoring at the repo level), CodeQL (static analysis for code-level vulnerabilities), and SonarQube (security ratings, hotspots, and vulnerability scanning on both `main` and `dev`)
+- **Deployments:** Triggered manually only via Actions → Run workflow (`workflow_dispatch`) and gated by environment approval — no automatic deploy on push. Every deploy re-runs Build and Test, Lint and Security Audit before publishing; production ships the exact bundle those checks verified, downloaded as an artifact rather than rebuilt
 - **SonarQube:** SonarQube Server (self-hosted) scans on every push to `dev` and can be triggered manually — it runs tests with coverage before sending results; SonarQube Cloud automatically analyzes `main` and decorates PRs with quality feedback (SQ Server Community edition limitation: server does not support PR analysis)
-- **Auto-Sync:** After each push to `main`, changes are automatically rebased onto `dev` to keep branches in sync
+- **Auto-Sync:** After each push to `main`, changes are automatically rebased onto `dev` to keep branches in sync; if the rebase hits conflicts the workflow fails and leaves `dev` untouched, so nothing awaiting promotion is ever discarded
 
 ### Code Quality Strategy
 
