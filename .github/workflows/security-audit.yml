@@ -1,10 +1,14 @@
 name: Security Audit
 
+env:
+  nodeVersion: "24.x"
+
 on:
   pull_request:
     branches:
       - main
       - dev
+  workflow_dispatch:
   schedule:
     - cron: '0 0 * * 0'
 
@@ -22,12 +26,12 @@ jobs:
       contents: read
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7.0.1
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6.3.0
+        uses: actions/setup-node@v7.0.0
         with:
-          node-version: "24"
+          node-version: ${{ env.nodeVersion }}
           cache: "npm"
 
       - name: Install dependencies

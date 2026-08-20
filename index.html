@@ -94,12 +94,18 @@
       hidden
     >
       <input type="hidden" name="form-name" value="contacto" />
-      <input name="bot-field" />
-      <input type="text" name="nome" />
-      <input type="email" name="email" />
-      <input type="tel" name="telefone" />
-      <input type="text" name="assunto" />
-      <textarea name="mensagem"></textarea>
+      <label for="netlify-bot-field">Não preencher</label>
+      <input id="netlify-bot-field" name="bot-field" />
+      <label for="netlify-nome">Nome</label>
+      <input id="netlify-nome" type="text" name="nome" />
+      <label for="netlify-email">Email</label>
+      <input id="netlify-email" type="email" name="email" />
+      <label for="netlify-telefone">Telefone</label>
+      <input id="netlify-telefone" type="tel" name="telefone" />
+      <label for="netlify-assunto">Assunto</label>
+      <input id="netlify-assunto" type="text" name="assunto" />
+      <label for="netlify-mensagem">Mensagem</label>
+      <textarea id="netlify-mensagem" name="mensagem"></textarea>
     </form>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>

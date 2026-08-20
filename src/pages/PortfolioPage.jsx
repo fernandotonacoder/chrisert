@@ -87,6 +87,7 @@ const PortfolioPage = () => {
             {portfolioImages.map((project, index) => (
               <button
                 key={project.id}
+                type="button"
                 onClick={() => api?.scrollTo(index)}
                 className={`h-2 rounded-full transition-all ${
                   index === current

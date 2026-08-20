@@ -3,7 +3,7 @@ description: Install dependencies and build the production bundle.
 
 inputs:
   deploy-target:
-    description: "Value for DEPLOY_TARGET (e.g. 'github-pages'); empty builds for the root domain (Netlify)."
+    description: "Set to 'github-pages' to build with the /chrisert/ base path; leave empty for the root domain (Netlify)."
     required: false
     default: ""
 
@@ -11,7 +11,7 @@ runs:
   using: composite
   steps:
     - name: Setup Node.js
-      uses: actions/setup-node@v6.3.0
+      uses: actions/setup-node@v7.0.0
       with:
         node-version: "24"
         cache: "npm"
