@@ -1,8 +1,5 @@
 name: SonarQube Server (Community) Analysis
 
-env:
-  nodeVersion: "24.x"
-
 on:
   push:
     branches:
@@ -29,7 +26,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v7.0.0
         with:
-          node-version: ${{ env.nodeVersion }}
+          node-version-file: ".nvmrc"
           cache: "npm"
 
       - name: Install dependencies

@@ -1,16 +1,14 @@
 name: Security Audit
 
-env:
-  nodeVersion: "24.x"
-
 on:
   pull_request:
     branches:
       - main
       - dev
+  workflow_call:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * 0'
+    - cron: '1 9 1 * *'
 
 jobs:
   changes:
@@ -31,7 +29,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v7.0.0
         with:
-          node-version: ${{ env.nodeVersion }}
+          node-version-file: ".nvmrc"
           cache: "npm"
 
       - name: Install dependencies

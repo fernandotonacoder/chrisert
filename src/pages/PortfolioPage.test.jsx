@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import PortfolioPage from "./PortfolioPage";
@@ -85,13 +85,15 @@ describe("PortfolioPage", () => {
     ).toBeInTheDocument();
   });
 
-  it("opens fullscreen when clicking on image", () => {
+  it("requests fullscreen when clicking on image", async () => {
     renderWithProviders(<PortfolioPage />);
 
     const imageButtons = screen.getAllByRole("button", { name: /ver projeto/i });
 
     fireEvent.click(imageButtons[0]);
 
-    expect(Element.prototype.requestFullscreen).toHaveBeenCalled();
+    await waitFor(() =>
+      expect(Element.prototype.requestFullscreen).toHaveBeenCalled()
+    );
   });
 });

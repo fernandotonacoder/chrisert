@@ -24,6 +24,8 @@ const PortfolioPage = () => {
     if (gallery.isFullscreen || !api) return;
 
     const handleKeyDown = (e) => {
+      if (e.target.closest?.("button, a, input, textarea, select, [tabindex]"))
+        return;
       if (e.key === "ArrowLeft") api.scrollPrev();
       else if (e.key === "ArrowRight") api.scrollNext();
       else if (e.key === "Enter") gallery.open(current);
